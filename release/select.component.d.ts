@@ -1,0 +1,33 @@
+import { ControlValueAccessor } from '@angular/forms';
+export declare const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any;
+export declare class TreeSelectComponent implements ControlValueAccessor {
+    multiple: boolean;
+    private _childrenField;
+    private _idField;
+    private _textField;
+    private _isOpen;
+    private _items;
+    private _model;
+    private internalItems;
+    private selection;
+    private onTouchedCallback;
+    private onChangeCallback;
+    items: any[];
+    idField: string;
+    textField: string;
+    childrenField: string;
+    keyUp($event: any): void;
+    open($event: any): void;
+    readonly isOpen: boolean;
+    private modifySelection();
+    private getSelectedItems(array);
+    private readonly isHierarchic;
+    private changeInputParameters();
+    private transformItems(sources);
+    private changeSelection();
+    private getItemForModel(value, array);
+    onTouched(): void;
+    writeValue(value: any): void;
+    registerOnChange(fn: any): void;
+    registerOnTouched(fn: any): void;
+}

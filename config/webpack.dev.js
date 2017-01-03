@@ -13,7 +13,7 @@ module.exports = function(options) {
   return webpackMerge(commonConfig({ env: ENV }), {
     devtool: 'cheap-module-source-map',
     devServer: {
-      port: 9999,
+      port: 9998,
       hot: options.HMR,
       stats: {
         modules: false,
@@ -43,9 +43,16 @@ module.exports = function(options) {
         {
           test: /\.ts$/,
           loaders: [
-            'awesome-typescript-loader'
+            'awesome-typescript-loader',
+            'angular2-template-loader'
           ],
           exclude: [/\.(spec|e2e|d)\.ts$/]
+        },
+        {
+          test: /\.html$/,
+          loaders: [
+            'raw-loader'
+          ]
         },
         {
           test: /\.scss$/,
@@ -74,7 +81,7 @@ module.exports = function(options) {
         excludeWarnings: true
       }),
       new ProgressBarPlugin({
-        format: chalk.yellow.bold('Webpack Building...') + 
+        format: chalk.yellow.bold('Webpack Building...') +
           ' [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)'
       })
     ]

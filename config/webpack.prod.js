@@ -24,9 +24,16 @@ module.exports = function(env) {
         {
           test: /\.ts$/,
           loaders: [
-            'awesome-typescript-loader'
+            'awesome-typescript-loader',
+            'angular2-template-loader'
           ],
           exclude: [/\.(spec|e2e|d)\.ts$/]
+        },
+        {
+          test: /\.html$/,
+          loaders: [
+            'raw-loader'
+          ]
         },
         {
           test: /\.scss$/,
@@ -47,7 +54,7 @@ module.exports = function(env) {
       new HtmlWebpackPlugin({
         template: 'demo/index.ejs',
         chunksSortMode: 'dependency',
-        title: 'ngx-charts',
+        title: 'crazy-select',
         googleAnalytics: {
           trackingId: 'UA-57474611-3',
           pageViewOnLoad: true

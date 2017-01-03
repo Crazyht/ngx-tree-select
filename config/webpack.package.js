@@ -22,9 +22,16 @@ module.exports = function(env) {
         {
           test: /\.ts$/,
           loaders: [
-            'awesome-typescript-loader'
+            'awesome-typescript-loader',
+            'angular2-template-loader'
           ],
           exclude: [/\.(spec|e2e|d)\.ts$/]
+        },
+        {
+          test: /\.html$/,
+          loaders: [
+            'raw-loader'
+          ]
         },
         {
           test: /\.scss$/,
@@ -55,16 +62,6 @@ module.exports = function(env) {
       'core-js': 'core-js',
       'core-js/es6': 'core-js/es6',
       'core-js/es7/reflect': 'core-js/es7/reflect',
-      'd3-array': 'd3-array',
-      'd3-brush': 'd3-brush',
-      'd3-color': 'd3-color',
-      'd3-force': 'd3-force',
-      'd3-format': 'd3-format',
-      'd3-interpolate': 'd3-interpolate',
-      'd3-scale': 'd3-scale',
-      'd3-selection': 'd3-selection',
-      'd3-shape': 'd3-shape',
-      'd3-hierarchy': 'd3-hierarchy',
       'rxjs': 'rxjs',
       'rxjs/Rx': 'rxjs/Rx',
       'rxjs/Subject': 'rxjs/Subject',
@@ -72,8 +69,7 @@ module.exports = function(env) {
       'rxjs/observable/PromiseObservable': 'rxjs/observable/PromiseObservable',
       'rxjs/operator/toPromise': 'rxjs/operator/toPromise',
       'rxjs/Observable': 'rxjs/Observable',
-      'zone.js/dist/zone': 'zone.js/dist/zone',
-      'moment': 'moment'
+      'zone.js/dist/zone': 'zone.js/dist/zone'
     },
     plugins: [
       new webpack.BannerPlugin({
