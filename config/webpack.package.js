@@ -8,7 +8,7 @@ const { ENV, dir, APP_VERSION } = require('./helpers');
 
 const banner =
 `/**
- * ngx-charts v${APP_VERSION} (https://github.com/swimlane/ngx-charts)
+ * cra-select v${APP_VERSION} (https://github.com/Crazyht/crazy-select)
  * Copyright 2016
  * Licensed under MIT
  */`;
@@ -50,7 +50,7 @@ module.exports = function(env) {
     output: {
       path: dir('release'),
       libraryTarget: 'umd',
-      library: 'ngx-charts',
+      library: 'cra-select',
       umdNamedDefine: true
     },
     externals: {
@@ -81,7 +81,7 @@ module.exports = function(env) {
       new ngtools.AotPlugin({
         tsConfigPath: 'tsconfig-aot.json',
         baseDir: dir()
-        entryModule: dir('ngx-charts.ts') + '#NgxChartsModule'
+        entryModule: dir('cra-select.ts') + '#CrazySelectModule'
       }),
       new CleanWebpackPlugin(['release'], {
         root: dir(),

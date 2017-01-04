@@ -75,7 +75,7 @@ module.exports = function(options) {
       new HtmlWebpackPlugin({
         template: 'demo/index.ejs',
         chunksSortMode: 'dependency',
-        title: 'ngx-charts'
+        title: 'cra-select'
       }),
       new WebpackNotifierPlugin({
         excludeWarnings: true
