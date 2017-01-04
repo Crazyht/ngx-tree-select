@@ -18,10 +18,7 @@ module.exports = function(env) {
         },
         {
           test: /\.ts$/,
-          loader: [
-              'awesome-typescript-loader',
-              'angular2-template-loader'
-            ],
+          loader: 'awesome-typescript-loader',
           query: {
             sourceMap: false,
             inlineSourceMap: true,
@@ -30,12 +27,6 @@ module.exports = function(env) {
             }
           },
           exclude: [/\.e2e\.ts$/, /(node_modules)/]
-        },
-        {
-          test: /\.html$/,
-          loaders: [
-            'raw-loader'
-          ]
         },
         {
           enforce: 'post',
