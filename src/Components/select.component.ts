@@ -1,6 +1,8 @@
 import { Component, forwardRef, Input, HostListener } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { SelectableItem } from './selectable-item';
+import { SelectableItem } from '../selectable-item';
+import { SelectService } from '../Services/select.service';
+import { SelectOption } from '../Models/SelectOption';
 
 const noop = () => {
 };
@@ -14,7 +16,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 @Component({
     selector: 'cra-select',
     template: `
-<div tabindex="0" (keyup)="keyUp($event)" [cra-OffClick]="clickedOutside" class="ui-select-container dropdown open">
+<div tabindex="0" (keyup)="keyUp($event)" [cra-off-click]="clickedOutside" class="ui-select-container dropdown open">
     <div [ngClass]="{'ui-disabled': disabled}"></div>
     <!-- Control display -->
     <div class="ui-select-match">
@@ -33,47 +35,65 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
         class="ui-select-choices dropdown-menu"
         role="menu">
         <li *ngFor="let o of internalItems" role="menuitem">
-            <cra-select-item [item]="o"></cra-select-item>
+            <cra-select-item [item]="o" (selected)="itemSelected()"></cra-select-item>
 
         </li>
     </ul>
 </div>
 `,
-    providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
+    providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR, SelectService]
 })
 export class TreeSelectComponent implements ControlValueAccessor {
-    @Input()
-    public multiple: boolean = false;
-    private _childrenField: string = '';
-    private _idField: string = '';
-    private _textField: string = '';
     private _isOpen = false;
-    private _items: any[] = [];
-    private _model: any[] | any;
-    private internalItems: SelectableItem[] = [];
-    private selection: SelectableItem[] = [];
     private onTouchedCallback: () => void = noop;
     private onChangeCallback: (_: any) => void = noop;
 
     @Input()
     public set items(value: any[]) {
-        this._items = value;
-        this.changeInputParameters();
+        this.svc.setItems(value);
     }
+
     @Input()
     public set idField(value: string) {
-        this._idField = value;
-        this.changeInputParameters();
+        this.svc.setConfiguration( opt => opt.idProperty = value);
     }
+
     @Input()
     public set textField(value: string) {
-        this._textField = value;
-        this.changeInputParameters();
+        this.svc.setConfiguration( opt => opt.textProperty = value);
     }
+
     @Input()
     public set childrenField(value: string) {
-        this._childrenField = value;
-        this.changeInputParameters();
+        this.svc.setConfiguration( opt => opt.childProperty = value);
+    }
+
+    @Input()
+    public set  multiple(value:boolean) {
+        this.svc.setConfiguration( opt => opt.allowMultiple = value);
+    }
+
+    public get internalItems(): SelectableItem[] {
+        return this.svc.items;
+    }
+
+    public constructor(
+        private svc: SelectService
+    ) {
+    }
+
+    ngInit() {
+        this.svc.configurationChanged$.subscribe(options=> {
+            if (options.isValid()) {
+                //this.changeInputParameters();
+            }
+        });
+        this.svc.itemsChanged$.subscribe(items=> {
+
+        });
+        this.svc.itemSelectionChanged$.subscribe(items=> {
+
+        });
     }
 
     keyUp($event: any) { }
@@ -85,61 +105,6 @@ export class TreeSelectComponent implements ControlValueAccessor {
 
     public get isOpen(): boolean {
         return this._isOpen;
-    }
-
-    private modifySelection(): void {
-        console.log('Start modifySelection');
-        this.selection = this.getSelectedItems(this.internalItems);
-        console.log('End modifySelection');
-    }
-
-    private getSelectedItems(array: SelectableItem[]): SelectableItem[] {
-        let res: SelectableItem[] = [];
-        array.forEach(v => {
-            if (v.children && v.children.length > 0) {
-                res = [...res, ...this.getSelectedItems(v.children)];
-            } else if (v.selected === true) {
-                res.push(v);
-            }
-        });
-        return res;
-    }
-    private get isHierarchic(): boolean {
-        return (this._childrenField && this._childrenField.trim().length > 0);
-    }
-
-    private changeInputParameters(): void {
-        this.internalItems = [];
-
-        if (!this._idField || this._idField.trim().length === 0) {
-            return;
-        } else if (!this._textField || this._textField.trim().length === 0) {
-            return;
-        } else if (!this._items || !Array.isArray(this._items)) {
-            return;
-        }
-
-        this.internalItems = this.transformItems(this._items);
-        this.changeSelection();
-    }
-
-    // Recursive copy items to internal items
-    private transformItems(sources: any[]): SelectableItem[] {
-        if (sources && Array.isArray(sources)) {
-            return sources.map((srcItem) => {
-                let item = new SelectableItem(
-                        <string>srcItem[this._idField],
-                        <string>srcItem[this._textField],
-                        srcItem
-                    );
-                if (this.isHierarchic) {
-                    item.children = this.transformItems(srcItem[this._childrenField]);
-                }
-                return item;
-            });
-        }
-
-        return [];
     }
 
     private changeSelection() {
@@ -183,14 +148,14 @@ export class TreeSelectComponent implements ControlValueAccessor {
     // Set touched on blur
     @HostListener('blur')
     onTouched() {
+        this._isOpen = false;
         this.onTouchedCallback();
     }
 
     // Placeholders for the callbacks which are later provided by the Control Value Accessor
     writeValue(value: any) {
-        if (value !== this._model) {
-            this._model = value;
-            this.changeSelection();
+        if (value !== this.svc.Configuration.model) {
+            this.svc.setConfiguration(opt => opt.model = value);
         }
     }
 

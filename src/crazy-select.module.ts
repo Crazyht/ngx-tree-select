@@ -1,9 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TreeSelectComponent } from './select.component';
-import { TreeSelectItemComponent } from './select-item.component';
-import { OffClickDirective } from './off-click.directive';
+import { TreeSelectComponent } from './Components/select.component';
+import { TreeSelectItemComponent } from './Components/select-item.component';
+import { OffClickDirective } from './Directives/off-click.directive';
 
 @NgModule({
   imports: [

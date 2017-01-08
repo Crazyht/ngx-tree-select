@@ -26,7 +26,7 @@ describe('Component: ng2-select', () => {
 });
 
 @Component({
-  selector: 'select-test',
+  selector: 'cra-select-test',
   template: '<fq-tree-select></fq-tree-select>'
 })
 

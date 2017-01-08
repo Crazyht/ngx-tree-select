@@ -1,11 +1,11 @@
 import { Directive, HostListener, Input, OnInit, OnDestroy } from '@angular/core';
 
 @Directive({
-    selector: '[cra-OffClick]'
+    selector: '[cra-off-click]'
 })
 export class OffClickDirective implements OnInit, OnDestroy {
     /* tslint:disable */
-    @Input('cra-OffClick')
+    @Input('cra-off-click')
     public offClickkHandler: any;
     /* tslint:enable */
     @HostListener('click', ['$event'])

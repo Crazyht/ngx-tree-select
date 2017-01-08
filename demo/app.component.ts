@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import '../src/cra-select.scss';
 
 @Component({
-  selector: 'app',
+  selector: 'demo-app',
   templateUrl: 'demo/app.component.html'
 })
 export class AppComponent {
