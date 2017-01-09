@@ -6,7 +6,7 @@ import { Directive, HostListener, Input, OnInit, OnDestroy } from '@angular/core
 export class OffClickDirective implements OnInit, OnDestroy {
     /* tslint:disable */
     @Input('cra-off-click')
-    public offClickkHandler: any;
+    public offClickHandler: any;
     /* tslint:enable */
     @HostListener('click', ['$event'])
     public onClick($event: MouseEvent): void {
@@ -14,10 +14,10 @@ export class OffClickDirective implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): any {
-        setTimeout(() => { document.addEventListener('click', this.offClickkHandler); }, 0);
+        setTimeout(() => { document.addEventListener('click', this.offClickHandler); }, 0);
     }
 
     public ngOnDestroy(): any {
-        document.removeEventListener('click', this.offClickkHandler);
+        document.removeEventListener('click', this.offClickHandler);
     }
 }

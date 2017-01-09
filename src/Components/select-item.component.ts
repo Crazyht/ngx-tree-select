@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { SelectableItem } from '../selectable-item';
+import { SelectService } from '../Services/select.service';
 
 @Component({
     selector: 'cra-select-item',
@@ -10,22 +11,29 @@ import { SelectableItem } from '../selectable-item';
     <a href="javascript:void(0)" class="dropdown-item">
         <div>{{item.text}}</div>
     </a>
+    <ul *ngIf="haveChildren"
+        class="ui-select-choices"
+        role="menu">
+        <li *ngFor="let o of item.children" role="menuitem">
+            <cra-select-item [item]="o" (selected)="itemSelected()"></cra-select-item>
+        </li>
+    </ul>
 </div>
     `
 })
 export class TreeSelectItemComponent {
     @Input()
     public item: SelectableItem;
-    @Output()
-    public selected: EventEmitter<SelectableItem> = new EventEmitter<SelectableItem>();
+
+    public constructor(
+        private svc: SelectService
+    ) {}
 
     public get haveChildren(): boolean {
         return this.item && this.item.children && this.item.children.length > 0;
     }
 
     public select($event: any): void {
-        console.log('Child select');
-        this.item.selected = !this.item.selected;
-        this.selected.emit(this.item);
+        this.svc.toggleItemSelection(this.item);
     }
 }

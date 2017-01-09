@@ -22,10 +22,14 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     <div class="ui-select-match">
         <span tabindex="-1"
               class="btn btn-default btn-secondary form-control ui-select-toggle"
-              (click)="open($event)"
+              (click)="toggle($event)"
               style="outline: 0;">
             <span *ngIf="selection.length <= 0" class="ui-select-placeholder text-muted">{{placeholder}}</span>
-            <span *ngIf="!multiple && selection.length > 0" class="ui-select-match-text pull-left">{{selection[0].text}}</span>
+            <span *ngFor="let itm of selection" class="pull-left"
+                  [ngClass]="{'ui-select-match-text': !multiple, 'ui-select-match-item btn btn-default btn-xs': multiple}">
+                {{itm.text}}
+                <a *ngIf="multiple" class="close" style="margin-left: 5px; padding: 0;" (click)="removeItem($event, itm)">x</a>
+            </span>
             <i class="dropdown-toggle pull-right"></i>
             <i class="caret pull-right"></i>
         </span>
@@ -68,95 +72,66 @@ export class TreeSelectComponent implements ControlValueAccessor {
     }
 
     @Input()
-    public set  multiple(value:boolean) {
+    public set  multiple(value: boolean) {
         this.svc.setConfiguration( opt => opt.allowMultiple = value);
     }
 
-    public get internalItems(): SelectableItem[] {
-        return this.svc.items;
+    public get multiple(): boolean {
+        return this.svc.Configuration.allowMultiple;
     }
+
+    public get internalItems(): SelectableItem[] {
+        return this.svc.getInternalItems() || [];
+    }
+
+    public get selection(): SelectableItem[] {
+        return this.svc.getInternalSelection();
+    }
+
 
     public constructor(
         private svc: SelectService
     ) {
-    }
+        this.clickedOutside = this.clickedOutside.bind(this);
 
-    ngInit() {
-        this.svc.configurationChanged$.subscribe(options=> {
-            if (options.isValid()) {
-                //this.changeInputParameters();
-            }
+        this.svc.configurationChanged$.subscribe(options => {
         });
-        this.svc.itemsChanged$.subscribe(items=> {
-
+        this.svc.itemsChanged$.subscribe(items => {
+            this.onChangeCallback(this.svc.getSelection());
         });
-        this.svc.itemSelectionChanged$.subscribe(items=> {
-
+        this.svc.itemSelectionChanged$.subscribe(items => {
         });
     }
 
     keyUp($event: any) { }
 
-    open($event: any) {
-        // $event.preventDefault();
-        this._isOpen = true;
+    toggle($event: any) {
+        $event.preventDefault();
+        this.svc.toggleOpen();
     }
 
+    public removeItem($event: any, item: SelectableItem): void {
+        $event.stopPropagation();
+        this.svc.toggleItemSelection(item);
+    }
     public get isOpen(): boolean {
-        return this._isOpen;
+        return this.svc.Configuration.isOpen;
     }
 
-    private changeSelection() {
-        try {
-            
-            if (!this.svc.Configuration.idProperty || this.svc.Configuration.idProperty.trim().length === 0) {
-                return;
-            }
-
-            let model: any[];
-            if (!this.svc.Configuration.model) {
-                model = [];
-            } else if (!Array.isArray(this.svc.Configuration.model)) {
-                model = [this.svc.Configuration.model];
-            } else {
-                model = this.svc.Configuration.model;
-            }
-            let select: SelectableItem[] = [];
-            model.forEach(v => {
-                select = [...select, ...this.getItemForModel(v, this.internalItems)];
-            });
-            select.forEach(v => v.selected = true);
-            //this.modifySelection();
-        } catch (error) {
-            console.error('Error while changeSelection : ', error);
-        }
-    }
-
-    private getItemForModel(value: any, array: SelectableItem[]): SelectableItem[] {
-        let result: SelectableItem[] = [];
-        array.forEach(v => {
-            if (v.id === value[this.svc.Configuration.idProperty]) {
-                result.push(v);
-            }
-            if (this.svc.Configuration.isHierarchy() && v.children && v.children.length > 0) {
-                result = [...result, ...this.getItemForModel(value, v.children)];
-            }
-        });
-        return result;
+    clickedOutside() {
+        this.onTouched();
     }
 
     // Set touched on blur
     @HostListener('blur')
     onTouched() {
-        this._isOpen = false;
+        this.svc.close();
         this.onTouchedCallback();
     }
 
     // Placeholders for the callbacks which are later provided by the Control Value Accessor
     writeValue(value: any) {
-        if (value !== this.svc.Configuration.model) {
-            this.svc.setConfiguration(opt => opt.model = value);
-        }
+        this.svc.setSelection(value);
     }
 
     registerOnChange(fn: any) {

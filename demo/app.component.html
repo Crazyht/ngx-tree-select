@@ -1,3 +1,15 @@
 <div class="container">
-    <cra-select [items]="items" idField="id" textField="text"></cra-select>
+        <span>Simple select : </span>
+        <cra-select [items]="items" idField="id" textField="text"></cra-select>
+
+        
+        <span>Multiple select : </span>
+        <cra-select [items]="items" idField="id" textField="text" multiple="true"></cra-select>
+
+        <span>Simple Tree select : </span>
+        <cra-select [items]="itemsTree" idField="id" textField="text" childrenField="children"></cra-select>
+
+        
+        <span>Multiple Tree select : </span>
+        <cra-select [items]="itemsTree" idField="id" textField="text" childrenField="children" multiple="true"></cra-select>
 </div>
