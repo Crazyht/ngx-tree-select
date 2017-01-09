@@ -8,10 +8,10 @@ import { SelectService } from '../Services/select.service';
 <div class="ui-select-choices-row"
      [class.active]="item.selected"
      (click)="select($event)">
-    <a href="javascript:void(0)" class="dropdown-item">
-        <div><input type="checkbox" *ngIf="needCheckBox" [checked]="item.selected" /> {{item.text}}</div>
+    <a href="javascript:void(0)" class="dropdown-item" (click)="toggleOpen($event)">
+        <div><input type="checkbox" *ngIf="needCheckBox" [checked]="item.selected" (click)="select($event)"/> {{item.text}}</div>
     </a>
-    <ul *ngIf="haveChildren"
+    <ul *ngIf="haveChildren && isOpen"
         class="ui-select-choices"
         role="menu">
         <li *ngFor="let o of item.children" role="menuitem">
@@ -22,12 +22,21 @@ import { SelectService } from '../Services/select.service';
     `
 })
 export class TreeSelectItemComponent {
+    public get isOpen() {
+        return this.item.isOpen;
+    }
+
     @Input()
     public item: SelectableItem;
 
     public constructor(
         private svc: SelectService
     ) {}
+
+    toggleOpen($event: any) {
+        $event.stopPropagation();
+        this.item.isOpen = !this.item.isOpen;
+    }
 
     get needCheckBox(): boolean {
         return this.svc.Configuration.isHierarchy() && this.svc.Configuration.allowMultiple;
@@ -38,6 +47,7 @@ export class TreeSelectItemComponent {
     }
 
     public select($event: any): void {
+        $event.stopPropagation();
         if (this.svc.Configuration.allowMultiple || !this.haveChildren) {
             this.svc.toggleItemSelection(this.item);
         }

@@ -1,6 +1,7 @@
 export class SelectableItem {
     private _selected: boolean = false;
     public children?: SelectableItem[];
+    public isOpen: boolean = false;
 
     constructor(public id: string, public text: string, public data: any) {
     }

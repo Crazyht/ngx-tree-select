@@ -58,22 +58,22 @@ export class TreeSelectComponent implements ControlValueAccessor {
 
     @Input()
     public set idField(value: string) {
-        this.svc.setConfiguration( opt => opt.idProperty = value);
+        this.svc.setConfiguration( opt => opt.idProperty = value, true);
     }
 
     @Input()
     public set textField(value: string) {
-        this.svc.setConfiguration( opt => opt.textProperty = value);
+        this.svc.setConfiguration( opt => opt.textProperty = value, true);
     }
 
     @Input()
     public set childrenField(value: string) {
-        this.svc.setConfiguration( opt => opt.childProperty = value);
+        this.svc.setConfiguration( opt => opt.childProperty = value, true);
     }
 
     @Input()
     public set  multiple(value: boolean) {
-        this.svc.setConfiguration( opt => opt.allowMultiple = value);
+        this.svc.setConfiguration( opt => opt.allowMultiple = value, true);
     }
 
     public get multiple(): boolean {
