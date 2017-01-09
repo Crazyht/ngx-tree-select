@@ -36,7 +36,6 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
         role="menu">
         <li *ngFor="let o of internalItems" role="menuitem">
             <cra-select-item [item]="o" (selected)="itemSelected()"></cra-select-item>
-
         </li>
     </ul>
 </div>
@@ -109,24 +108,25 @@ export class TreeSelectComponent implements ControlValueAccessor {
 
     private changeSelection() {
         try {
-            if (!this._idField || this._idField.trim().length === 0) {
+            
+            if (!this.svc.Configuration.idProperty || this.svc.Configuration.idProperty.trim().length === 0) {
                 return;
             }
 
             let model: any[];
-            if (!this._model) {
+            if (!this.svc.Configuration.model) {
                 model = [];
-            } else if (!Array.isArray(this._model)) {
-                model = [this._model];
+            } else if (!Array.isArray(this.svc.Configuration.model)) {
+                model = [this.svc.Configuration.model];
             } else {
-                model = this._model;
+                model = this.svc.Configuration.model;
             }
             let select: SelectableItem[] = [];
             model.forEach(v => {
                 select = [...select, ...this.getItemForModel(v, this.internalItems)];
             });
             select.forEach(v => v.selected = true);
-            this.modifySelection();
+            //this.modifySelection();
         } catch (error) {
             console.error('Error while changeSelection : ', error);
         }
@@ -135,10 +135,10 @@ export class TreeSelectComponent implements ControlValueAccessor {
     private getItemForModel(value: any, array: SelectableItem[]): SelectableItem[] {
         let result: SelectableItem[] = [];
         array.forEach(v => {
-            if (v.id === value[this._idField]) {
+            if (v.id === value[this.svc.Configuration.idProperty]) {
                 result.push(v);
             }
-            if (this.isHierarchic && v.children && v.children.length > 0) {
+            if (this.svc.Configuration.isHierarchy() && v.children && v.children.length > 0) {
                 result = [...result, ...this.getItemForModel(value, v.children)];
             }
         });
