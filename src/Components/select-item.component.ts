@@ -9,7 +9,7 @@ import { SelectService } from '../Services/select.service';
      [class.active]="item.selected"
      (click)="select($event)">
     <a href="javascript:void(0)" class="dropdown-item">
-        <div>{{item.text}}</div>
+        <div><input type="checkbox" *ngIf="needCheckBox" [checked]="item.selected" /> {{item.text}}</div>
     </a>
     <ul *ngIf="haveChildren"
         class="ui-select-choices"
@@ -29,11 +29,17 @@ export class TreeSelectItemComponent {
         private svc: SelectService
     ) {}
 
+    get needCheckBox(): boolean {
+        return this.svc.Configuration.isHierarchy() && this.svc.Configuration.allowMultiple;
+    }
+
     public get haveChildren(): boolean {
         return this.item && this.item.children && this.item.children.length > 0;
     }
 
     public select($event: any): void {
-        this.svc.toggleItemSelection(this.item);
+        if (this.svc.Configuration.allowMultiple || !this.haveChildren) {
+            this.svc.toggleItemSelection(this.item);
+        }
     }
 }
