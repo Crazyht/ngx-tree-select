@@ -8,10 +8,10 @@ export class OffClickDirective implements OnInit, OnDestroy {
     @Input('cra-off-click')
     public offClickHandler: any;
     /* tslint:enable */
-    @HostListener('click', ['$event'])
-    public onClick($event: MouseEvent): void {
-        $event.stopPropagation();
-    }
+    // @HostListener('click', ['$event'])
+    // public onClick($event: MouseEvent): void {
+    //     $event.stopPropagation();
+    // }
 
     public ngOnInit(): any {
         setTimeout(() => { document.addEventListener('click', this.offClickHandler); }, 0);

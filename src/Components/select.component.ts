@@ -15,41 +15,14 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 
 @Component({
     selector: 'cra-select',
-    template: `
-<div tabindex="0" (keyup)="keyUp($event)" [cra-off-click]="clickedOutside" class="ui-select-container dropdown open">
-    <div [ngClass]="{'ui-disabled': disabled}"></div>
-    <!-- Control display -->
-    <div class="ui-select-match">
-        <span tabindex="-1"
-              class="btn btn-default btn-secondary form-control ui-select-toggle"
-              (click)="toggle($event)"
-              style="outline: 0;">
-            <span *ngIf="selection.length <= 0" class="ui-select-placeholder text-muted">{{placeholder}}</span>
-            <span *ngFor="let itm of selection" class="pull-left"
-                  [ngClass]="{'ui-select-match-text': !multiple, 'ui-select-match-item btn btn-default btn-xs': multiple}">
-                {{itm.text}}
-                <a *ngIf="multiple" class="close" style="margin-left: 5px; padding: 0;" (click)="removeItem($event, itm)">x</a>
-            </span>
-            <i class="dropdown-toggle pull-right"></i>
-            <i class="caret pull-right"></i>
-        </span>
-    </div>
-    <!-- options template -->
-    <ul *ngIf="isOpen && internalItems && internalItems.length > 0"
-        class="ui-select-choices dropdown-menu"
-        role="menu">
-        <li *ngFor="let o of internalItems" role="menuitem">
-            <cra-select-item [item]="o" (selected)="itemSelected()"></cra-select-item>
-        </li>
-    </ul>
-</div>
-`,
+    template: require('./select.component.html'),
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR, SelectService]
 })
 export class TreeSelectComponent implements ControlValueAccessor {
     private _isOpen = false;
     private onTouchedCallback: () => void = noop;
     private onChangeCallback: (_: any) => void = noop;
+    private haveFocus = false;
 
     @Input()
     public set items(value: any[]) {
@@ -107,6 +80,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
 
     toggle($event: any) {
         $event.preventDefault();
+        this.haveFocus = true;
         this.svc.toggleOpen();
     }
 
@@ -119,7 +93,10 @@ export class TreeSelectComponent implements ControlValueAccessor {
     }
 
     clickedOutside() {
-        this.onTouched();
+        if (!this.haveFocus) {
+            this.onTouched();
+        }
+        this.haveFocus = false;
     }
 
     // Set touched on blur

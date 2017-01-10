@@ -4,22 +4,7 @@ import { SelectService } from '../Services/select.service';
 
 @Component({
     selector: 'cra-select-item',
-    template: `
-<div class="ui-select-choices-row"
-     [class.active]="item.selected"
-     (click)="select($event)">
-    <a href="javascript:void(0)" class="dropdown-item" (click)="toggleOpen($event)">
-        <div><input type="checkbox" *ngIf="needCheckBox" [checked]="item.selected" (click)="select($event)"/> {{item.text}}</div>
-    </a>
-    <ul *ngIf="haveChildren && isOpen"
-        class="ui-select-choices"
-        role="menu">
-        <li *ngFor="let o of item.children" role="menuitem">
-            <cra-select-item [item]="o" (selected)="itemSelected()"></cra-select-item>
-        </li>
-    </ul>
-</div>
-    `
+    template: require('./select-item.component.html'),
 })
 export class TreeSelectItemComponent {
     public get isOpen() {
@@ -35,7 +20,11 @@ export class TreeSelectItemComponent {
 
     toggleOpen($event: any) {
         $event.stopPropagation();
-        this.item.isOpen = !this.item.isOpen;
+        if (this.haveChildren) {
+            this.item.isOpen = !this.item.isOpen;
+        } else {
+            this.select($event);
+        }
     }
 
     get needCheckBox(): boolean {
