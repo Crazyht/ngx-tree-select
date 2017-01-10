@@ -6,6 +6,7 @@ import { SelectService } from '../Services/select.service';
     selector: 'cra-select-item',
     template: `
 <div class="ui-select-choices-row"
+     [ngClass]="{'ui-select-choices-row-children': needCheckBox}"    
      [class.active]="item.selected"
      (click)="select($event)">
     <a href="javascript:void(0)" class="dropdown-item">

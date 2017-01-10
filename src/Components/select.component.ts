@@ -22,13 +22,13 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     <div class="ui-select-match">
         <span tabindex="-1"
               class="btn btn-default btn-secondary form-control ui-select-toggle"
-              (click)="toggle($event)"
-              style="outline: 0;">
+              [ngClass]="{'ui-select-toggle-text': !multiple, 'ui-select-toggle-item': multiple}"
+              (click)="toggle($event)">
             <span *ngIf="selection.length <= 0" class="ui-select-placeholder text-muted">{{placeholder}}</span>
             <span *ngFor="let itm of selection" class="pull-left"
                   [ngClass]="{'ui-select-match-text': !multiple, 'ui-select-match-item btn btn-default btn-xs': multiple}">
                 {{itm.text}}
-                <a *ngIf="multiple" class="close" style="margin-left: 5px; padding: 0;" (click)="removeItem($event, itm)">x</a>
+                <a *ngIf="multiple" class="close" (click)="removeItem($event, itm)">x</a>
             </span>
             <i class="dropdown-toggle pull-right"></i>
             <i class="caret pull-right"></i>
