@@ -16,7 +16,7 @@
                   class="pull-left"
                   [ngClass]="{'ui-select-match-text': !multiple, 'ui-select-match-item btn btn-default btn-xs': multiple}">
                 {{itm.text}}
-                <a *ngIf="multiple" class="close" style="margin-left: 5px; padding: 0;" (click)="removeItem($event, itm)">x</a>
+                <a *ngIf="multiple" class="close" (click)="removeItem($event, itm)">x</a>
             </span>
             <i class="dropdown-toggle pull-right"></i>
             <i class="caret pull-right"></i>
