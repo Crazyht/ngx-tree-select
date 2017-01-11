@@ -21,22 +21,22 @@ export class SelectService {
 
     public close(): void {
         if (this.Configuration.isOpen) {
-            this.setConfiguration(opt => opt.isOpen = false);
+            this.setConfiguration(opt => opt.isOpen = false, false);
         }
     }
 
     public open(): void {
         if (!this.Configuration.isOpen) {
-            this.setConfiguration(opt => opt.isOpen = true);
+            this.setConfiguration(opt => opt.isOpen = true, false);
         }
     }
 
     public toggleOpen(): void {
-        this.setConfiguration(opt => opt.isOpen = !opt.isOpen);
+        this.setConfiguration(opt => opt.isOpen = !opt.isOpen, false);
     }
 
     public setItems(value: any[]) {
-        this.setConfiguration(opt => opt.items = value);
+        this.setConfiguration(opt => opt.items = value, true);
     }
 
     public getInternalItems(): SelectableItem[] {
@@ -69,18 +69,18 @@ export class SelectService {
             this._items.forEach(v => v.selected = false);
         }
         item.selected = !item.selected;
-        this.setConfiguration(opt => opt.model = this.getSelection());
+        this.setConfiguration(opt => opt.model = this.getSelection(), false);
         if (this.Configuration.closeOnSelection) {
-            this.setConfiguration(opt => opt.isOpen = false);
+            this.setConfiguration(opt => opt.isOpen = false, false);
         }
     }
 
-    public setConfiguration(delegate: OptionDelegate): void {
+    public setConfiguration(delegate: OptionDelegate, processItems: boolean): void {
         let modelBck = this._options.model;
         delegate(this._options);
         this.configurationChanged$.next(this._options);
         if (this._options.isValid()) {
-            this.reconfigure();
+            this.reconfigure(processItems);
         }
         // if model changed, raise event
         if (modelBck !== undefined && this._options.model !== modelBck) {
@@ -122,11 +122,13 @@ export class SelectService {
         return res;
     }
 
-    private reconfigure(): void {
+    private reconfigure(processItems: boolean): void {
         if (this.Configuration.isValid()) {
             this.checkConfig();
-            this._items = this.toSelectableItems(this.Configuration.items);
-            this.itemsChanged$.next(this._items);
+            if (processItems) {
+                this._items = this.toSelectableItems(this.Configuration.items);
+                this.itemsChanged$.next(this._items);
+            }
 
             let model = this.getModel();
             let select: SelectableItem[] = [];

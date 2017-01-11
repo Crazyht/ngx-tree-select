@@ -1,0 +1,33 @@
+<div tabindex="0" 
+     (keyup)="keyUp($event)" 
+     [cra-off-click]="clickedOutside" 
+     class="ui-select-container dropdown open" 
+     (blur)="onTouched()">
+    <div [ngClass]="{'ui-disabled': disabled}"></div>
+    <!-- Control display -->
+    <div class="ui-select-match">
+        <span tabindex="-1"
+              class="btn btn-default btn-secondary form-control ui-select-toggle"
+              [ngClass]="{'ui-select-toggle-text': !multiple, 'ui-select-toggle-item': multiple}"
+              (click)="toggle($event)">
+            <span *ngIf="selection.length <= 0" 
+                  class="ui-select-placeholder text-muted">{{placeholder}}</span>
+            <span *ngFor="let itm of selection" 
+                  class="pull-left"
+                  [ngClass]="{'ui-select-match-text': !multiple, 'ui-select-match-item btn btn-default btn-xs': multiple}">
+                {{itm.text}}
+                <a *ngIf="multiple" class="close" style="margin-left: 5px; padding: 0;" (click)="removeItem($event, itm)">x</a>
+            </span>
+            <i class="dropdown-toggle pull-right"></i>
+            <i class="caret pull-right"></i>
+        </span>
+    </div>
+    <!-- options template -->
+    <ul *ngIf="isOpen && internalItems && internalItems.length > 0"
+        class="ui-select-choices dropdown-menu"
+        role="menu">
+        <li *ngFor="let o of internalItems" role="menuitem">
+            <cra-select-item [item]="o" (selected)="itemSelected()"></cra-select-item>
+        </li>
+    </ul>
+</div>

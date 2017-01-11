@@ -15,41 +15,14 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 
 @Component({
     selector: 'cra-select',
-    template: `
-<div tabindex="0" (keyup)="keyUp($event)" [cra-off-click]="clickedOutside" class="ui-select-container dropdown open">
-    <div [ngClass]="{'ui-disabled': disabled}"></div>
-    <!-- Control display -->
-    <div class="ui-select-match">
-        <span tabindex="-1"
-              class="btn btn-default btn-secondary form-control ui-select-toggle"
-              [ngClass]="{'ui-select-toggle-text': !multiple, 'ui-select-toggle-item': multiple}"
-              (click)="toggle($event)">
-            <span *ngIf="selection.length <= 0" class="ui-select-placeholder text-muted">{{placeholder}}</span>
-            <span *ngFor="let itm of selection" class="pull-left"
-                  [ngClass]="{'ui-select-match-text': !multiple, 'ui-select-match-item btn btn-default btn-xs': multiple}">
-                {{itm.text}}
-                <a *ngIf="multiple" class="close" (click)="removeItem($event, itm)">x</a>
-            </span>
-            <i class="dropdown-toggle pull-right"></i>
-            <i class="caret pull-right"></i>
-        </span>
-    </div>
-    <!-- options template -->
-    <ul *ngIf="isOpen && internalItems && internalItems.length > 0"
-        class="ui-select-choices dropdown-menu"
-        role="menu">
-        <li *ngFor="let o of internalItems" role="menuitem">
-            <cra-select-item [item]="o" (selected)="itemSelected()"></cra-select-item>
-        </li>
-    </ul>
-</div>
-`,
+    template: require('./select.component.html'),
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR, SelectService]
 })
 export class TreeSelectComponent implements ControlValueAccessor {
     private _isOpen = false;
     private onTouchedCallback: () => void = noop;
     private onChangeCallback: (_: any) => void = noop;
+    private haveFocus = false;
 
     @Input()
     public set items(value: any[]) {
@@ -58,22 +31,22 @@ export class TreeSelectComponent implements ControlValueAccessor {
 
     @Input()
     public set idField(value: string) {
-        this.svc.setConfiguration( opt => opt.idProperty = value);
+        this.svc.setConfiguration( opt => opt.idProperty = value, true);
     }
 
     @Input()
     public set textField(value: string) {
-        this.svc.setConfiguration( opt => opt.textProperty = value);
+        this.svc.setConfiguration( opt => opt.textProperty = value, true);
     }
 
     @Input()
     public set childrenField(value: string) {
-        this.svc.setConfiguration( opt => opt.childProperty = value);
+        this.svc.setConfiguration( opt => opt.childProperty = value, true);
     }
 
     @Input()
     public set  multiple(value: boolean) {
-        this.svc.setConfiguration( opt => opt.allowMultiple = value);
+        this.svc.setConfiguration( opt => opt.allowMultiple = value, true);
     }
 
     public get multiple(): boolean {
@@ -107,6 +80,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
 
     toggle($event: any) {
         $event.preventDefault();
+        this.haveFocus = true;
         this.svc.toggleOpen();
     }
 
@@ -119,7 +93,10 @@ export class TreeSelectComponent implements ControlValueAccessor {
     }
 
     clickedOutside() {
-        this.onTouched();
+        if (!this.haveFocus) {
+            this.onTouched();
+        }
+        this.haveFocus = false;
     }
 
     // Set touched on blur
