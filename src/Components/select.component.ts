@@ -20,7 +20,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 })
 export class TreeSelectComponent implements ControlValueAccessor {
     private _isOpen = false;
-    private onTouchedCallback: () => void = noop;
+    public onTouchedCallback: () => void = noop;
     private onChangeCallback: (_: any) => void = noop;
     private haveFocus = false;
 
@@ -74,6 +74,9 @@ export class TreeSelectComponent implements ControlValueAccessor {
         });
         this.svc.itemSelectionChanged$.subscribe(items => {
         });
+        this.svc.modelChanged$.subscribe(result => {
+            this.onChangeCallback(this.svc.getSelection());
+        });
     }
 
     keyUp($event: any) { }
@@ -93,7 +96,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
     }
 
     clickedOutside() {
-        if (!this.haveFocus) {
+        if (!this.haveFocus && this.isOpen || this.haveFocus && !this.isOpen) {
             this.onTouched();
         }
         this.haveFocus = false;

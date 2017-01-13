@@ -1,12 +1,35 @@
 import { Component } from '@angular/core';
 
 import '../src/cra-select.scss';
+import {SelectableItem} from '../src/selectable-item';
 
 @Component({
   selector: 'demo-app',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
+  public selectedItems1: any[] = [
+     { id: 1, text: 'item 1'}
+  ];
+
+  public selectedItems2: any[] = [
+     { id: 1, text: 'item 1'},
+     { id: 2, text: 'item 2'}
+  ];
+
+   public selectedItems3: any[] = [
+     {id: 11, text: 'item 1.1'}
+  ];
+
+   public selectedItems4: any[] = [
+     {id: 20, text: 'item 2', children: [
+      {id: 21, text: 'item 2.1'},
+      {id: 22, text: 'item 2.2'},
+      {id: 23, text: 'item 2.3'},
+    ]}
+  ];
+
   items= [
     { id: 1, text: 'item 1'},
     { id: 2, text: 'item 2'},

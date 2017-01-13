@@ -11,6 +11,8 @@ export class TreeSelectItemComponent {
         return this.item.isOpen;
     }
 
+    @Input() onTouchedCallBack: () => void;
+
     @Input()
     public item: SelectableItem;
 
@@ -40,5 +42,6 @@ export class TreeSelectItemComponent {
         if (this.svc.Configuration.allowMultiple || !this.haveChildren) {
             this.svc.toggleItemSelection(this.item);
         }
+        this.onTouchedCallBack();
     }
 }

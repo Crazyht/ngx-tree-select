@@ -15,7 +15,7 @@
         class="ui-select-choices"
         role="menu">
         <li *ngFor="let o of item.children" role="menuitem">
-            <cra-select-item [item]="o" (selected)="itemSelected()"></cra-select-item>
+            <cra-select-item [item]="o" (selected)="itemSelected()" [onTouchedCallBack]="onTouchedCallBack"></cra-select-item>
         </li>
     </ul>
 </div>
