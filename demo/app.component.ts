@@ -9,9 +9,7 @@ import {SelectableItem} from '../src/selectable-item';
 })
 export class AppComponent {
 
-  public selectedItems1: any[] = [
-     { id: 1, text: 'item 1'}
-  ];
+  public selectedItems1: any[] = [];
 
   public selectedItems2: any[] = [
      { id: 1, text: 'item 1'},

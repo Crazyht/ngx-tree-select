@@ -4,11 +4,22 @@
      (click)="select($event)">
     <a href="javascript:void(0)" class="dropdown-item" (click)="toggleOpen($event)">
         <div>
+            <span>
+                <i class="fa" [class.fa-plus-square-o]="haveChildren && !isOpen" [class.fa-minus-square-o]="haveChildren && isOpen">
+                    <i *ngIf="haveChildren && !isOpen">+</i>
+                    <i *ngIf="haveChildren && isOpen">-</i>
+                </i>
+            </span>
             <input type="checkbox" 
                    style="margin-right:5px" 
                    *ngIf="needCheckBox" 
                    [checked]="item.selected" 
-                   (click)="select($event)"/>{{item.text}}
+                   (click)="select($event)"/>
+            <i class="fa" *ngIf="needCheckBox" [class.fa-check-square-o]="item.selected" [class.fa-square-o]="!item.selected" (click)="select($event)">
+                <i *ngIf="item.selected">deselect</i>
+                <i *ngIf="!item.selected">select</i>
+            </i>
+            {{item.text}}
         </div>
     </a>
     <ul *ngIf="haveChildren && isOpen"
