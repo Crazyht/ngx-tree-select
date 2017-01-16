@@ -45,6 +45,9 @@ export class SelectService {
 
     public setSelection(values: any | any[]): void {
         this.Configuration.model = values;
+        if (this._options.isValid()) {
+            this.reconfigure(false);
+        }
     }
 
     public getSelection(): any | any[] {

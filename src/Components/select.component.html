@@ -27,7 +27,7 @@
         class="ui-select-choices dropdown-menu"
         role="menu">
         <li *ngFor="let o of internalItems" role="menuitem">
-            <cra-select-item [item]="o" (selected)="itemSelected()"></cra-select-item>
+            <cra-select-item [item]="o" (selected)="itemSelected()" [onTouchedCallBack]="onTouchedCallback"></cra-select-item>
         </li>
     </ul>
 </div>
