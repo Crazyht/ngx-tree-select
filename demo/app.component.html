@@ -1,15 +1,23 @@
 <div class="container">
         <span>Simple select : </span>
         <cra-select [items]="items" idField="id" textField="text" [(ngModel)]="selectedItems1"></cra-select>
-
+        <span>Selected id : {{selectedItems1?.id}}</span><br/> <br/>
         
         <span>Multiple select : </span>
         <cra-select [items]="items" idField="id" textField="text" multiple="true" [(ngModel)]="selectedItems2"></cra-select>
+        <span>Selected ids :</span>
+        <ul>
+                <li *ngFor="let itm of selectedItems2">{{itm.id}}</li>
+        </ul><br/>
 
         <span>Simple Tree select : </span>
         <cra-select [items]="itemsTree" idField="id" textField="text" childrenField="children" [(ngModel)]="selectedItems3"></cra-select>
-
+        <span>Selected id : {{selectedItems3?.id}}</span><br/> <br/>
         
         <span>Multiple Tree select : </span>
         <cra-select [items]="itemsTree" idField="id" textField="text" childrenField="children" multiple="true" [(ngModel)]="selectedItems4"></cra-select>
+        <span>Selected ids :</span>
+        <ul>
+                <li *ngFor="let itm of selectedItems4">{{itm.id}}</li>
+        </ul><br/>
 </div>
