@@ -15,9 +15,11 @@ describe('Component: ng2-select', () => {
       imports: [CrazySelectModule]
     });
     TestBed.overrideComponent(TestSelectComponent, {set: {template: html}});
-    fixture = TestBed.createComponent(TestSelectComponent);
-    context = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.compileComponents().then(()=>{
+      fixture = TestBed.createComponent(TestSelectComponent);
+      context = fixture.componentInstance;
+      fixture.detectChanges();
+    });
   });
 
   it('fixture should not be null', () => {
