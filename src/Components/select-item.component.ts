@@ -4,7 +4,7 @@ import { SelectService } from '../Services/select.service';
 
 @Component({
     selector: 'cra-select-item',
-    template: require('./select-item.component.html'),
+    templateUrl: './select-item.component.html',
 })
 export class TreeSelectItemComponent {
     public get isOpen() {

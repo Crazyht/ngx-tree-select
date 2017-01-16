@@ -15,7 +15,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 
 @Component({
     selector: 'cra-select',
-    template: require('./select.component.html'),
+    templateUrl: './select.component.html',
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR, SelectService]
 })
 export class TreeSelectComponent implements ControlValueAccessor {
