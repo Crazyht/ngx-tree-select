@@ -8,7 +8,7 @@ coverage/
 yarn.lock
 src/
 config/
-src/
+demo/
 .editorconfig
 .gitignore
 .gitattributes
