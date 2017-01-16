@@ -5,6 +5,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const chalk = require('chalk');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const commonConfig = require('./webpack.common');
 const { ENV, dir } = require('./helpers');
@@ -62,6 +63,10 @@ module.exports = function(options) {
             'postcss-loader?sourceMap',
             'sass-loader?sourceMap'
           ]
+        },
+        {
+          test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
+          loader: 'url-loader'
         }
       ]
     },

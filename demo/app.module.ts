@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CrazySelectModule } from '../src';
 
+
 @NgModule({
   imports: [CrazySelectModule, BrowserModule, FormsModule],
   declarations: [AppComponent],

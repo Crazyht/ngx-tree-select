@@ -65,7 +65,8 @@
     "@angular/platform-browser-dynamic": "~2.4.2",
     "core-js": "2.4.1",
     "rxjs": "5.0.3",
-    "zone.js": "^0.7.4"
+    "zone.js": "^0.7.4",
+    "font-awesome": "^4.7.0"
   },
   "devDependencies": {
     "@angular/common": "~2.4.2",
@@ -77,6 +78,7 @@
     "@angular/platform-browser-dynamic": "~2.4.2",
     "@angular/platform-server": "~2.4.2",
     "@types/core-js": "0.9.35",
+    "@types/extract-text-webpack-plugin": "^2.0.0",
     "@types/jasmine": "2.5.40",
     "@types/node": "6.0.58",
     "angular2-template-loader": "0.6.0",
@@ -89,6 +91,9 @@
     "core-js": "2.4.1",
     "cross-env": "^3.1.4",
     "css-loader": "0.26.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "font-awesome": "^4.7.0",
     "fs-extra": "^1.0.0",
     "gh-pages": "^0.12.0",
     "html-webpack-plugin": "2.26.0",
@@ -107,6 +112,7 @@
     "postcss": "^5.2.9",
     "postcss-loader": "1.2.1",
     "progress-bar-webpack-plugin": "^1.9.2",
+    "raw-loader": "^0.5.1",
     "replace": "^0.3.0",
     "rimraf": "^2.5.4",
     "rxjs": "^5.0.3",
@@ -118,11 +124,11 @@
     "tslint-loader": "^3.3.0",
     "typescript": "~2.1.4",
     "uglify-js": "2.7.5",
+    "url-loader": "^0.5.7",
     "webpack": "2.1.0-beta.27",
     "webpack-dev-server": "2.1.0-beta.11",
     "webpack-merge": "^2.0.0",
     "webpack-notifier": "^1.5.0",
-    "zone.js": "^0.7.4",
-    "raw-loader": "^0.5.1"
+    "zone.js": "^0.7.4"
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import '../src/cra-select.scss';
+import '../node_modules/font-awesome/scss/font-awesome.scss';
 import {SelectableItem} from '../src/selectable-item';
 
 @Component({
@@ -16,16 +17,12 @@ export class AppComponent {
      { id: 2, text: 'item 2'}
   ];
 
-   public selectedItems3: any[] = [
-     {id: 11, text: 'item 1.1'}
-  ];
+   public selectedItems3: any = {id: 11, text: 'item 1.1'};
 
    public selectedItems4: any[] = [
-     {id: 20, text: 'item 2', children: [
-      {id: 21, text: 'item 2.1'},
-      {id: 22, text: 'item 2.2'},
-      {id: 23, text: 'item 2.3'},
-    ]}
+     {id: 21, text: 'item 2.1'},
+     {id: 22, text: 'item 2.2'},
+     {id: 23, text: 'item 2.3'}
   ];
 
   items= [
@@ -47,7 +44,7 @@ export class AppComponent {
       {id: 22, text: 'item 2.2'},
       {id: 23, text: 'item 2.3'},
     ]},
-    {id: 33, text: 'item 3', children: []},
+    {id: 30, text: 'item 3', children: []},
   ];
 
 }
