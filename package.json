@@ -1,6 +1,6 @@
 {
   "name": "crazy-select",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Angular 2 component for select with tree items",
   "main": "release/index.js",
   "typings": "release/index.d.ts",
