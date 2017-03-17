@@ -70,7 +70,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
         this.svc.configurationChanged$.subscribe(options => {
         });
         this.svc.itemsChanged$.subscribe(items => {
-            this.onChangeCallback(this.svc.getSelection());
+            //this.onChangeCallback(this.svc.getSelection());
         });
         this.svc.itemSelectionChanged$.subscribe(items => {
         });
