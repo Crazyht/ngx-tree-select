@@ -2,6 +2,7 @@ export class SelectableItem {
     private _selected: boolean = false;
     public children?: SelectableItem[];
     public isOpen: boolean = false;
+    public matchFilter: boolean = true;
 
     constructor(public id: string, public text: string, public data: any) {
     }

@@ -1,8 +1,9 @@
-import { Component, forwardRef, Input, HostListener } from '@angular/core';
+import { Component, forwardRef, Input, OnInit, HostListener } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { SelectableItem } from '../selectable-item';
 import { SelectService } from '../Services/select.service';
 import { SelectOption } from '../Models/SelectOption';
+import { ItemPipe } from '../Pipes/item.pipe'
 
 const noop = () => {
 };
@@ -16,18 +17,22 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 @Component({
     selector: 'cra-select',
     templateUrl: './select.component.html',
-    providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR, SelectService]
+    providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR, SelectService],
+    pipes: [ItemPipe]
 })
 export class TreeSelectComponent implements ControlValueAccessor {
     private _isOpen = false;
     public onTouchedCallback: () => void = noop;
     private onChangeCallback: (_: any) => void = noop;
     private haveFocus = false;
+    private inputFocus = false;
+
 
     @Input()
     public set items(value: any[]) {
         this.svc.setItems(value);
     }
+
 
     @Input()
     public set idField(value: string) {
@@ -61,6 +66,16 @@ export class TreeSelectComponent implements ControlValueAccessor {
         return this.svc.getInternalSelection();
     }
 
+    public get filter(): string {
+        return this.svc.Configuration.filter;
+    }
+    
+    public set filter(value:string) {
+        this.svc.setConfiguration( opt => opt.filter = value, false);
+        for(let i in this.internalItems){
+            this.ProcessMatchFilterTreeItem(this.internalItems[i], this.svc.Configuration.filter);
+        }
+    }
 
     public constructor(
         private svc: SelectService
@@ -96,10 +111,12 @@ export class TreeSelectComponent implements ControlValueAccessor {
     }
 
     clickedOutside() {
+        if(!this.inputFocus){
         if (!this.haveFocus && this.isOpen || this.haveFocus && !this.isOpen) {
-            this.onTouched();
+            this.onTouched();            
         }
         this.haveFocus = false;
+        }
     }
 
     // Set touched on blur
@@ -107,6 +124,13 @@ export class TreeSelectComponent implements ControlValueAccessor {
     onTouched() {
         this.svc.close();
         this.onTouchedCallback();
+    }
+
+    setInputFocus(){
+        this.inputFocus = true;
+    }
+    setInputFocusOut(){
+         this.inputFocus = false;
     }
 
     // Placeholders for the callbacks which are later provided by the Control Value Accessor
@@ -120,5 +144,18 @@ export class TreeSelectComponent implements ControlValueAccessor {
 
     registerOnTouched(fn: any) {
         this.onTouchedCallback = fn;
+    }
+
+    ProcessMatchFilterTreeItem(tree: SelectableItem, filter:string): boolean {
+        let result: boolean = false;
+        if (tree && tree.children && tree.children.length > 0) {
+            for(let i in tree.children){
+                result = this.ProcessMatchFilterTreeItem(tree.children[i], filter) || result;
+            }
+        }
+        tree.matchFilter = (tree.id.indexOf(filter) > -1  || tree.text.indexOf(filter) > -1 || result);
+        console.info(`${tree.id} -> ${tree.text} => ${filter} ==> ${tree.matchFilter}`)
+        
+        return tree.matchFilter;
     }
 }

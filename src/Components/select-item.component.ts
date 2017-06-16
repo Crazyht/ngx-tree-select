@@ -44,4 +44,8 @@ export class TreeSelectItemComponent {
         }
         this.onTouchedCallBack();
     }
+
+    public get filter(): string {
+        return this.svc.Configuration.filter;
+    }
 }

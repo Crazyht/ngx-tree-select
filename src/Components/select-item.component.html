@@ -14,7 +14,7 @@
     <ul *ngIf="haveChildren && isOpen"
         class="ui-select-choices"
         role="menu">
-        <li *ngFor="let o of item.children" role="menuitem">
+        <li *ngFor="let o of item.children | ItemPipe:filter" role="menuitem">
             <cra-select-item [item]="o" (selected)="itemSelected()" [onTouchedCallBack]="onTouchedCallBack"></cra-select-item>
         </li>
     </ul>

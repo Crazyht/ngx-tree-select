@@ -7,6 +7,7 @@ export class SelectOption {
     public items: any[] = [];
     public model: any[] | any;
     public isOpen: boolean = false;
+    public filter: string = '';
 
     public isHierarchy(): boolean {
         return this.childProperty && this.childProperty.trim().length > 0;

@@ -1,7 +1,7 @@
 <div tabindex="0" 
      (keyup)="keyUp($event)" 
-     [cra-off-click]="clickedOutside" 
      class="ui-select-container dropdown open" 
+      [cra-off-click]="clickedOutside"
      (blur)="onTouched()">
     <div [ngClass]="{'ui-disabled': disabled}"></div>
     <!-- Control display -->
@@ -22,12 +22,13 @@
             <i class="caret pull-right"></i>
         </span>
     </div>
-    <!-- options template -->
-    <ul *ngIf="isOpen && internalItems && internalItems.length > 0"
-        class="ui-select-choices dropdown-menu"
-        role="menu">
-        <li *ngFor="let o of internalItems" role="menuitem">
-            <cra-select-item [item]="o" (selected)="itemSelected()" [onTouchedCallBack]="onTouchedCallback"></cra-select-item>
-        </li>
-    </ul>
+    <!-- options template -->                                                   
+            <ul *ngIf="isOpen && internalItems && internalItems.length > 0"
+                class="ui-select-choices dropdown-menu"
+                role="menu">                    
+                <input name="filterText"  type="text" [(ngModel)]="filter" (click)="setInputFocus()"  (blur)="setInputFocusOut()" style="width:100%;" placeholder="Type here ..." [ngModelOptions]="{standalone: true}" />      
+                <li *ngFor="let o of internalItems | ItemPipe: filter " role="menuitem">
+                    <cra-select-item [item]="o" (selected)="itemSelected()" [onTouchedCallBack]="onTouchedCallback"></cra-select-item>
+                </li>
+            </ul>
 </div>
