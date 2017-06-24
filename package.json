@@ -33,8 +33,18 @@
     "package:replace": "node ./config/replace.js",
     "package:css": "node-sass -o release/ src/cra-select.scss",
     "package:minify": "uglifyjs release/index.js --source-map release/index.min.js.map --source-map-url release/index.js.map --compress --mangle --screw-ie8 --output release/index.min.js",
-    "deploy": "node ./config/deploy.js",
+    "deploy": "gh-pages-deploy",
     "profile": "NODE_ENV=production webpack --profile --json > dist/stats.json"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "dist",
+    "prep": [
+      "package",
+      "release"
+    ],
+    "post": [
+    ],
+    "noprompt": false
   },
   "repository": {
     "type": "git",
@@ -96,6 +106,7 @@
     "font-awesome": "^4.7.0",
     "fs-extra": "^1.0.0",
     "gh-pages": "^0.12.0",
+    "gh-pages-deploy": "^0.4.2",
     "html-webpack-plugin": "2.26.0",
     "istanbul-instrumenter-loader": "1.2.0",
     "jasmine-core": "^2.5.2",
