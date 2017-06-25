@@ -4,8 +4,17 @@
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
+        "**/CVS": true,
         "**/.DS_Store": true,
         "**/*.js.map": true,
-        "**/*.js": { "when" : "$(basename).ts" }
-    }
+        "**/*.css.map": true,
+        "**/*.js": { "when": "$(basename).ts" },
+        "**/*.css": { "when": "$(basename).scss" },
+        "npm-debug.log": true,
+        "package-lock.json": true,
+        "out-tsc": true
+    },
+    "editor.renderWhitespace": "boundary",
+    "editor.formatOnPaste": false,
+    "editor.minimap.enabled": false
 }

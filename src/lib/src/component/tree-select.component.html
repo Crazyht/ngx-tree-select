@@ -1,0 +1,52 @@
+<div tabindex="0"
+     (keyup)="keyUp($event)"
+     (blur)="onTouched()"
+     class="dropdown open"
+     [cra-off-click]="clickedOutside">
+
+    <!-- Control display -->
+    <div [class.disabled]="disabled">
+        <span tabindex="-1"
+              class="btn btn-default btn-secondary form-control"
+              [class.selected-container-text]="!multiple"
+              [class.selected-container-item]="multiple"
+              (click)="toggle($event)">
+            <span *ngIf="selection.length <= 0"
+                  class="ui-select-placeholder text-muted">{{placeholder}}</span>
+            <span *ngFor="let itm of selection"
+                  class="pull-left"
+                  [class.selected-item-text]="!multiple"
+                  [class.selected-item-item]="multiple"
+                  [class.btn]="multiple"
+                  [class.btn-default]="multiple"
+                  [class.btn-xs]="multiple">
+                    {{itm.text}}
+                    <a *ngIf="multiple && !disabled"
+                       class="close"
+                       (click)="removeItem($event, itm)">x</a>
+            </span>
+            <i class="caret pull-right"></i>
+        </span>
+    </div>
+    <!-- options template -->
+    <ul *ngIf="!disabled && isOpen && internalItems && internalItems.length > 0"
+        class="dropdown-menu"
+        role="menu">
+        <input name="filterText"
+               *ngIf="allowFilter"
+               type="text"
+               [(ngModel)]="filter"
+               (click)="setInputFocus()"
+               (blur)="setInputFocusOut()"
+               class="form-control"
+               placeholder="{{filterPlaceholder}}"
+               [ngModelOptions]="{standalone: true}" />
+        <li *ngFor="let o of internalItems | ItemPipe: filter "
+            role="menuitem">
+            <tree-select-item [item]="o"
+                             (selected)="itemSelected()"
+                             [onTouchedCallBack]="onTouchedCallback">
+            </tree-select-item>
+        </li>
+    </ul>
+</div>

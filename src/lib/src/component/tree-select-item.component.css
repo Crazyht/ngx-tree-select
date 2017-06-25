@@ -1,0 +1,33 @@
+.item {
+  color: #333;
+}
+
+.item ul {
+  list-style-type: none;
+}
+
+.item > a {
+  clear: both;
+  color: inherit;
+  display: block;
+  font-weight: 400;
+  line-height: 1.42857143;
+  padding: 3px 20px;
+  padding-left: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.item > a:hover {
+  background-color: #357ebd;
+  color: #fff;
+  outline: 0;
+  text-decoration: none;
+}
+
+.item.active {
+  background-color: #428bca;
+  color: #fff;
+  outline: 0;
+  text-decoration: none;
+}

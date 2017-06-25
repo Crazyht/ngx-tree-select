@@ -1,0 +1,26 @@
+<div class='item'
+     [class.active]="item.selected && !needCheckBox"
+     (click)="select($event)">
+    <a href="javascript:void(0)" (click)="toggleOpen($event)">
+            <span>
+                <i class="fa"
+                   [class.fa-plus-square-o]="haveChildren && !isOpen"
+                   [class.fa-minus-square-o]="haveChildren && isOpen"></i>
+            </span>
+            <i class="fa"
+               *ngIf="needCheckBox"
+               [class.fa-check-square-o]="item.selected === true"
+               [class.fa-square-o]="item.selected === false"
+               [class.fa-square]="item.selected === null"
+               (click)="select($event)"></i>
+            {{item.text}}
+    </a>
+    <ul *ngIf="haveChildren && isOpen"
+        class="ui-select-choices"
+        role="menu">
+        <li *ngFor="let o of item.children | ItemPipe:filter" role="menuitem">
+            <tree-select-item [item]="o" (selected)="itemSelected()" [onTouchedCallBack]="onTouchedCallBack"></tree-select-item>
+        </li>
+    </ul>
+</div>
+
