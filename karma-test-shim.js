@@ -103,6 +103,7 @@ function initTesting () {
       return System.import(moduleName);
     })
   )
-  .then( beforeEach((done) => done()) )
   .then(__karma__.start, __karma__.error);
 }
+
+beforeEach((done) => done());
