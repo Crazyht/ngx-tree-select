@@ -16,7 +16,7 @@
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
     "flatModuleOutFile": "ngx-tree-select.js",
-    "flatModuleId": "ngxtreeselect",
+    "flatModuleId": "ngxTreeSelect",
     "genDir": "../../out-tsc/lib-gen-dir/"
   }
 }

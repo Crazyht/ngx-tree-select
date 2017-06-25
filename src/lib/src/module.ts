@@ -23,12 +23,4 @@ import { ItemPipe } from './pipe/item.pipe';
     ]
 })
 export class NgxTreeSelectModule {
-
-  /* optional: in case you need users to override your providers */
-  static forRoot(configuredProviders: Array<any>): ModuleWithProviders {
-    return {
-      ngModule: NgxTreeSelectModule,
-      providers: configuredProviders
-    };
-  }
 }

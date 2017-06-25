@@ -1,3 +1,8 @@
+import { FormsModule } from '@angular/forms';
+import { ItemPipe } from './../pipe/item.pipe';
+import { TreeSelectItemComponent } from './tree-select-item.component';
+import { OffClickDirective } from './../directive/off-click.directive';
+import { SelectService } from './../service/select.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -11,14 +16,18 @@ describe('TreeSelectComponent', function () {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TreeSelectComponent]
+      imports: [FormsModule],
+      declarations: [TreeSelectComponent, OffClickDirective, TreeSelectItemComponent, ItemPipe]
     })
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  // For reasons unknown, not using `done` (even calling it synchronously),
+  // causes Chrome (v58+) to often get disconnected (at least on Windows and Travis).
+  beforeEach( (done: DoneFn) => {
     fixture = TestBed.createComponent(TreeSelectComponent);
     comp = fixture.componentInstance;
+    done();
   });
 
   it('should create component', () => expect(comp).toBeDefined());
