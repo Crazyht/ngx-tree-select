@@ -7,8 +7,8 @@
 - a demo application that consumes the library in JIT mode and runs in watch mode
 - an integration app that consumes the library in JIT and AOT mode and runs e2e tests
 
-[travis-badge]: https://travis-ci.org/crazyht/ngx-tree-select.svg?branch=master
-[travis-badge-url]: https://travis-ci.org/crazyht/ngx-tree-select
+[travis-badge]: https://travis-ci.org/Crazyht/ngx-tree-select.svg?branch=master
+[travis-badge-url]: https://travis-ci.org/Crazyht/ngx-tree-select
 
 ## Installation
 
