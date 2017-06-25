@@ -1,7 +1,7 @@
 {
   "open": false,
   "logLevel": "silent",
-  "port": 1111,
+  "port": 8080,
   "server": {
     "baseDir": "dist",
     "middleware": {

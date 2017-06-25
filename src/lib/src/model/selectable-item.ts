@@ -1,8 +1,8 @@
 export class SelectableItem {
-    private _selected: boolean = false;
+    private _selected = false;
     public children?: SelectableItem[];
-    public isOpen: boolean = false;
-    public matchFilter: boolean = true;
+    public isOpen = false;
+    public matchFilter = true;
 
     constructor(public id: string, public text: string, public data: any) {
     }

@@ -72,10 +72,10 @@ export class TreeSelectComponent implements ControlValueAccessor {
         return this.svc.Configuration.filter;
     }
 
-    public set filter(value:string) {
+    public set filter(value: string) {
         this.svc.setConfiguration( opt => opt.filter = value, false);
-        for(let i in this.internalItems){
-            this.ProcessMatchFilterTreeItem(this.internalItems[i], this.svc.Configuration.filter);
+        for (let item of this.internalItems){
+            this.ProcessMatchFilterTreeItem(item, this.svc.Configuration.filter);
         }
     }
 
@@ -87,7 +87,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
         this.svc.configurationChanged$.subscribe(options => {
         });
         this.svc.itemsChanged$.subscribe(items => {
-            //this.onChangeCallback(this.svc.getSelection());
+            // this.onChangeCallback(this.svc.getSelection());
         });
         this.svc.itemSelectionChanged$.subscribe(items => {
         });
@@ -113,11 +113,11 @@ export class TreeSelectComponent implements ControlValueAccessor {
     }
 
     clickedOutside() {
-        if(!this.inputFocus){
-        if (!this.haveFocus && this.isOpen || this.haveFocus && !this.isOpen) {
-            this.onTouched();
-        }
-        this.haveFocus = false;
+        if (!this.inputFocus) {
+            if (!this.haveFocus && this.isOpen || this.haveFocus && !this.isOpen) {
+                this.onTouched();
+            }
+            this.haveFocus = false;
         }
     }
 
@@ -128,10 +128,10 @@ export class TreeSelectComponent implements ControlValueAccessor {
         this.onTouchedCallback();
     }
 
-    setInputFocus(){
+    setInputFocus() {
         this.inputFocus = true;
     }
-    setInputFocusOut(){
+    setInputFocusOut() {
          this.inputFocus = false;
     }
 
@@ -148,15 +148,15 @@ export class TreeSelectComponent implements ControlValueAccessor {
         this.onTouchedCallback = fn;
     }
 
-    ProcessMatchFilterTreeItem(tree: SelectableItem, filter:string): boolean {
-        let result: boolean = false;
+    ProcessMatchFilterTreeItem(tree: SelectableItem, filter: string): boolean {
+        let result = false;
         if (tree && tree.children && tree.children.length > 0) {
-            for(let i in tree.children){
-                result = this.ProcessMatchFilterTreeItem(tree.children[i], filter) || result;
+            for (let child of tree.children){
+                result = this.ProcessMatchFilterTreeItem(child, filter) || result;
             }
         }
         tree.matchFilter = (tree.id.indexOf(filter) > -1  || tree.text.indexOf(filter) > -1 || result);
-        console.info(`${tree.id} -> ${tree.text} => ${filter} ==> ${tree.matchFilter}`)
+        // console.info(`${tree.id} -> ${tree.text} => ${filter} ==> ${tree.matchFilter}`)
 
         return tree.matchFilter;
     }

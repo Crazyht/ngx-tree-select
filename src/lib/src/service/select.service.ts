@@ -43,30 +43,32 @@ export class SelectService {
         return this._items;
     }
 
-    public setSelection(values: any |any[]): void {
-        let tableValues : any[] = [];
-        if(values && values.length > 0 ){
+    public setSelection(values: any | any[]): void {
+        let tableValues: any[] = [];
+        if (values && values.length > 0) {
             tableValues = values;
         }
-        else if(values){
+        // tslint:disable-next-line:one-line
+        else if (values) {
             tableValues.push(values);
         }
-        let selectedItems : SelectableItem[];
+        let selectedItems: SelectableItem[];
         selectedItems = this.toSelectableItems(tableValues);
-        if(selectedItems && selectedItems.length > 0 ){                         
-            for(let i in this._items){
-                for(let val in selectedItems){
-                    if(this._items[i].hasChild){
-                        for(let c in this._items[i].children){
-                            if(this._items[i].children[c].id === selectedItems[val].id ){
-                                    this._items[i].children[c].selected = true;
+        if (selectedItems && selectedItems.length > 0) {
+            for (let itm of this._items) {
+                for (let val of selectedItems) {
+                    if (itm.hasChild) {
+                        for (let c in itm.children) {
+                            if (itm.children[c].id === val.id) {
+                                itm.children[c].selected = true;
                             }
                         }
                     }
-                    else if(this._items[i].id === selectedItems[val].id){
-                            this._items[i].selected = true;
-                        }    
+                    // tslint:disable-next-line:one-line
+                    else if (itm.id === val.id) {
+                        itm.selected = true;
                     }
+                }
             }
         }
         this.setConfiguration(opt => opt.model = this.getSelection(), false);
@@ -121,10 +123,10 @@ export class SelectService {
         if (sources && Array.isArray(sources)) {
             return sources.map((srcItem) => {
                 let item = new SelectableItem(
-                        (srcItem[this._options.idProperty] || '').toString(),
-                        <string>srcItem[this._options.textProperty],
-                        srcItem
-                    );
+                    (srcItem[this._options.idProperty] || '').toString(),
+                    <string>srcItem[this._options.textProperty],
+                    srcItem
+                );
                 if (this._options.isHierarchy()) {
                     item.children = this.toSelectableItems(srcItem[this._options.childProperty]);
                 }

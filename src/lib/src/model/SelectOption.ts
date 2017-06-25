@@ -1,13 +1,13 @@
 export class SelectOption {
-    public idProperty: string = 'id';
-    public textProperty: string = 'text';
+    public idProperty = 'id';
+    public textProperty = 'text';
     public childProperty: string = null;
-    public allowMultiple: boolean = false;
-    public closeOnSelection: boolean = true;
+    public allowMultiple = false;
+    public closeOnSelection = true;
     public items: any[] = [];
     public model: any[] | any;
-    public isOpen: boolean = false;
-    public filter: string = '';
+    public isOpen = false;
+    public filter = '';
 
     public isHierarchy(): boolean {
         return this.childProperty && this.childProperty.trim().length > 0;
