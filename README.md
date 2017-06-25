@@ -1,14 +1,11 @@
 # Ngx-tree-select
-[![Build Status][travis-badge]][travis-badge-url]
+[![Build Status](https://travis-ci.org/Crazyht/ngx-tree-select.svg?branch=dev)](https://travis-ci.org/Crazyht/ngx-tree-select)
 
 ## Features:
 - a simple example library
 - unit tests for the library
 - a demo application that consumes the library in JIT mode and runs in watch mode
 - an integration app that consumes the library in JIT and AOT mode and runs e2e tests
-
-[travis-badge]: https://travis-ci.org/Crazyht/ngx-tree-select.svg?branch=master
-[travis-badge-url]: https://travis-ci.org/Crazyht/ngx-tree-select
 
 ## Installation
 
