@@ -4,9 +4,11 @@ out-tsc/
 debug.log
 npm-debug.log
 src/**/*.js
+src/**/*.css
 !src/demo/systemjs.config.js
 !src/demo/systemjs.config.lib.js
 !**/*systemjs-angular-loader.js
 *.js.map
+*.css.map
 e2e/**/*.js
 e2e/**/*.js.map
