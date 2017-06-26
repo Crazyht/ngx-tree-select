@@ -1,5 +1,10 @@
 $disable-background-color: #eceeef;
+$error-border-color: #a94442;
 
+:host.ng-invalid:not(.ng-pristine) span.form-control,
+:host.ng-invalid:not(.ng-untouched) span.form-control {
+  border-color: $error-border-color;
+}
 // Fix Bootstrap dropdown position when inside a input-group
 .input-group>.dropdown {
   //Instead of relative

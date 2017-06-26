@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  public selectedItems1: any[] = [];
+  public selectedItems1: any = null;
 
   public selectedItems2: any[] = [
      { id: 1, text: 'item 1'},
