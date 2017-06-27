@@ -13,7 +13,7 @@
               (click)="toggle($event)">
             <span *ngIf="selection.length <= 0"
                   class="ui-select-placeholder text-muted">{{placeholder}}</span>
-            <span *ngFor="let itm of selection"
+            <span *ngFor="let itm of selection | IsVisiblePipe"
                   class="pull-left"
                   [class.selected-item-text]="!multiple"
                   [class.selected-item-item]="multiple"
@@ -25,6 +25,7 @@
                        class="close"
                        (click)="removeItem($event, itm)">x</a>
             </span>
+            <span class="pull-right more-items-icon" (click)="loadMore()" *ngIf="maxVisibleItemCount > 0">(...)</span>
             <i class="caret pull-right"></i>
         </span>
     </div>

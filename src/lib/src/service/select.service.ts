@@ -87,8 +87,20 @@ export class SelectService {
         return null;
     }
 
-    public getInternalSelection(): SelectableItem[] {
-        return this.getSelectedItems(this._items);
+    public getInternalSelection(): SelectableItem[] {        
+        let selectedItems = this.getSelectedItems(this._items);
+        if(this._options.maxVisibleItemCount && this._options.maxVisibleItemCount > 0 && selectedItems && selectedItems.length >0){
+             for(let i=0; i < this._options.maxVisibleItemCount ; i ++){
+                selectedItems[i].isVisible = true;
+            }
+        }
+        else
+        {
+            for(let item in selectedItems){
+                selectedItems[item].isVisible = true;
+            }
+        }
+        return selectedItems;
     }
 
     public toggleItemSelection(item: SelectableItem): void {

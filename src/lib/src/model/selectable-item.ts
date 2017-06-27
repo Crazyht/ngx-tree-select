@@ -3,6 +3,7 @@ export class SelectableItem {
     public children?: SelectableItem[];
     public isOpen = false;
     public matchFilter = true;
+    public isVisible = false;
 
     constructor(public id: string, public text: string, public data: any) {
     }

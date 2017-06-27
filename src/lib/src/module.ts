@@ -6,6 +6,7 @@ import { TreeSelectComponent } from './component/tree-select.component';
 import { TreeSelectItemComponent } from './component/tree-select-item.component';
 import { OffClickDirective } from './directive/off-click.directive';
 import { ItemPipe } from './pipe/item.pipe';
+import { IsVisiblePipe } from './pipe/isVisible.pipe';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ItemPipe } from './pipe/item.pipe';
       TreeSelectComponent,
       TreeSelectItemComponent,
       OffClickDirective,
-      ItemPipe
+      ItemPipe,
+      IsVisiblePipe
     ],
   exports: [
       TreeSelectComponent

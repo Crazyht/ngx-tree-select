@@ -47,6 +47,11 @@ export class TreeSelectComponent implements ControlValueAccessor {
     }
 
     @Input()
+    public set maxVisibleItemCount(value: number){
+        this.svc.setConfiguration(opt => opt.maxVisibleItemCount = value, true);
+    }
+
+    @Input()
     public set childrenField(value: string) {
         this.svc.setConfiguration( opt => opt.childProperty = value, true);
     }
@@ -58,6 +63,10 @@ export class TreeSelectComponent implements ControlValueAccessor {
 
     public get multiple(): boolean {
         return this.svc.Configuration.allowMultiple;
+    }
+
+    public get maxVisibleItemCount() :number{
+        return this.svc.Configuration.maxVisibleItemCount;
     }
 
     public get internalItems(): SelectableItem[] {
@@ -146,6 +155,10 @@ export class TreeSelectComponent implements ControlValueAccessor {
 
     registerOnTouched(fn: any) {
         this.onTouchedCallback = fn;
+    }
+
+    loadMore(){
+          this.svc.setConfiguration(opt => opt.maxVisibleItemCount = 0, false);
     }
 
     ProcessMatchFilterTreeItem(tree: SelectableItem, filter: string): boolean {

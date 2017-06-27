@@ -8,6 +8,7 @@ export class SelectOption {
     public model: any[] | any;
     public isOpen = false;
     public filter = '';
+    public maxVisibleItemCount : number;
 
     public isHierarchy(): boolean {
         return this.childProperty && this.childProperty.trim().length > 0;

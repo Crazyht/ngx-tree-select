@@ -10,7 +10,8 @@ export class AppComponent {
 
   public selectedItems2: any[] = [
      { id: 1, text: 'item 1'},
-     { id: 2, text: 'item 2'}
+     { id: 2, text: 'item 2'},
+     { id: 3, text: 'item 3'}
   ];
 
    public selectedItems3: any = {id: 11, text: 'item 1.1'};
@@ -18,7 +19,9 @@ export class AppComponent {
    public selectedItems4: any[] = [
      {id: 21, text: 'item 2.1'},
      {id: 22, text: 'item 2.2'},
-     {id: 23, text: 'item 2.3'}
+     {id: 23, text: 'item 2.3'},
+     {id: 24, text: 'item 2.3'},
+     {id: 25, text: 'item 2.3'}
   ];
 
   public disabledSelectedItems1: any = { id: 1, text: 'item 1'};
@@ -54,6 +57,7 @@ export class AppComponent {
       {id: 21, text: 'item 2.1'},
       {id: 22, text: 'item 2.2'},
       {id: 23, text: 'item 2.3'},
+      {id: 24, text: 'item 2.4'}
     ]},
     {id: 30, text: 'item 3', children: []},
   ];
