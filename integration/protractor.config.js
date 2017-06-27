@@ -1,5 +1,5 @@
 exports.config = {
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 100000,
   specs: [
     './e2e/**/*.e2e-spec.js'
   ],
@@ -8,5 +8,6 @@ exports.config = {
   },
   directConnect: true,
   baseUrl: 'http://localhost:8080/',
-  framework: 'jasmine'
+  framework: 'jasmine',
+  getPageTimeout: 100000
 };
