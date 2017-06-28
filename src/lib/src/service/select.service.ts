@@ -13,7 +13,6 @@ export interface OptionDelegate {
 export class SelectService {
     private _items: SelectableItem[];
     private _options: SelectOption = new SelectOption();
-
     public itemSelectionChanged$: Subject<SelectableItem> = new Subject<SelectableItem>();
     public itemsChanged$: Subject<SelectableItem[]> = new Subject<SelectableItem[]>();
     public configurationChanged$: Subject<SelectOption> = new Subject<SelectOption>();
@@ -133,12 +132,24 @@ export class SelectService {
 
     private toSelectableItems(sources: any[]): SelectableItem[] {
         if (sources && Array.isArray(sources)) {
+            let i =1;
             return sources.map((srcItem) => {
-                let item = new SelectableItem(
-                    (srcItem[this._options.idProperty] || '').toString(),
-                    <string>srcItem[this._options.textProperty],
-                    srcItem
-                );
+                let item ;
+
+                if(srcItem[this._options.idProperty] && srcItem[this._options.idProperty] != ''  && srcItem[this._options.textProperty] ){
+                    item = new SelectableItem(
+                        (srcItem[this._options.idProperty] || '').toString(),
+                        <string>srcItem[this._options.textProperty],
+                        srcItem
+                    );
+                }else {
+                        item = new SelectableItem(
+                        i.toString(),
+                        <string>srcItem,
+                        srcItem
+                    );
+                    i++;
+                }
                 if (this._options.isHierarchy()) {
                     item.children = this.toSelectableItems(srcItem[this._options.childProperty]);
                 }
