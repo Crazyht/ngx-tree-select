@@ -56,7 +56,10 @@ export class SelectService {
         if (selectedItems && selectedItems.length > 0) {
             for (let itm of this._items) {
                 for (let val of selectedItems) {
-                    if (itm.hasChild) {
+                    if (itm.hasChild) { 
+                        if(itm.id === val.id){
+                            itm.selected = true;
+                        }
                         for (let c in itm.children) {
                             if (itm.children[c].id === val.id) {
                                 itm.children[c].selected = true;
@@ -88,15 +91,16 @@ export class SelectService {
 
     public getInternalSelection(): SelectableItem[] {        
         let selectedItems = this.getSelectedItems(this._items);
-        if(this._options.maxVisibleItemCount && this._options.maxVisibleItemCount > 0 && selectedItems && selectedItems.length >0){
-             for(let i=0; i < this._options.maxVisibleItemCount ; i ++){
-                selectedItems[i].isVisible = true;
-            }
-        }
-        else
-        {
-            for(let item in selectedItems){
-                selectedItems[item].isVisible = true;
+        if(selectedItems && selectedItems.length >0){
+            let i=0;   
+            let max = this._options.maxVisibleItemCount ? this._options.maxVisibleItemCount : 0;
+            
+            for(let item of selectedItems){
+                item.isVisible = (i < max || max === 0) && // Max not reached or not max value
+                                 ( !item.hasChild || item.children.every(child => child.selected === false)); // all my children are unselected
+                if (item.isVisible && max > 0) {
+                    i++;
+                }
             }
         }
         return selectedItems;
@@ -104,8 +108,13 @@ export class SelectService {
 
     public toggleItemSelection(item: SelectableItem): void {
         if (!this.Configuration.allowMultiple) {
-            this._items.forEach(v => v.selected = false);
-        }
+            this._items.forEach(v => {
+                v.selected = false
+                for (let c in v.children){
+                    v.children[c].selected = false;
+                }
+        });
+        }        
         item.selected = !item.selected;
         this.setConfiguration(opt => opt.model = this.getSelection(), false);
         if (this.Configuration.closeOnSelection) {
@@ -135,18 +144,19 @@ export class SelectService {
             let i =1;
             return sources.map((srcItem) => {
                 let item ;
-
                 if(srcItem[this._options.idProperty] && srcItem[this._options.idProperty] != ''  && srcItem[this._options.textProperty] ){
                     item = new SelectableItem(
                         (srcItem[this._options.idProperty] || '').toString(),
                         <string>srcItem[this._options.textProperty],
-                        srcItem
+                        srcItem,
+                        this
                     );
                 }else {
                         item = new SelectableItem(
                         i.toString(),
                         <string>srcItem,
-                        srcItem
+                        srcItem,
+                        this
                     );
                     i++;
                 }
@@ -163,10 +173,21 @@ export class SelectService {
     private getSelectedItems(array: SelectableItem[]): SelectableItem[] {
         let res: SelectableItem[] = [];
         array.forEach(v => {
-            if (v.hasChild) {
-                res = [...res, ...this.getSelectedItems(v.children)];
-            } else if (v.selected === true) {
-                res.push(v);
+            if(v.hasChild && v.selected === true ){
+                
+                 if(this._options.allowMultiple){          
+                    res.push(v);
+                    res = [...res, ...this.getSelectedItems(v.children)];            
+                 }
+                 else if( v.children.every(child => child.selected === false)){     
+                    res = [...res, v];            
+                 }
+            }
+            else if (v.hasChild){
+                  res = [...res, ...this.getSelectedItems(v.children)];
+            }
+             else if (v.selected === true) {
+                 res.push(v);
             }
         });
         return res;
@@ -178,7 +199,7 @@ export class SelectService {
             if (processItems) {
                 this._items = this.toSelectableItems(this.Configuration.items);
                 this.itemsChanged$.next(this._items);
-            }
+            }           
 
             let model = this.getModel();
             let select: SelectableItem[] = [];

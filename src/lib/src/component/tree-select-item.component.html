@@ -1,20 +1,23 @@
 <div class='item'
-     [class.active]="item.selected && !needCheckBox"
      (click)="select($event)">
-    <a href="javascript:void(0)" (click)="toggleOpen($event)">
-            <span>
+     <div class="item" [class.active]="item.selected && !needCheckBox">
+        <a href="javascript:void(0)" (click)="toggleOpen($event)">
+            <!--//;select($event)-->
+                <span>
+                    <i class="fa"
+                    [class.fa-plus-square-o]="haveChildren && !isOpen"
+                    [class.fa-minus-square-o]="haveChildren && isOpen"></i>
+                </span>
                 <i class="fa"
-                   [class.fa-plus-square-o]="haveChildren && !isOpen"
-                   [class.fa-minus-square-o]="haveChildren && isOpen"></i>
-            </span>
-            <i class="fa"
-               *ngIf="needCheckBox"
-               [class.fa-check-square-o]="item.selected === true"
-               [class.fa-square-o]="item.selected === false"
-               [class.fa-square]="item.selected === null"
-               (click)="select($event)"></i>
-            {{item.text}}
-    </a>
+                *ngIf="needCheckBox"
+                [class.fa-check-square-o]="item.checked === true"
+                [class.fa-square-o]="item.checked === false"
+                [class.fa-square]="item.checked === null"
+                (click)="select($event)"></i>
+                    <i class="fa" *ngIf="onlySelectParent" (click)="select($event)" > {{item.text}}</i>
+                    <i class="fa" *ngIf="!onlySelectParent" > {{item.text}}</i>
+        </a>
+     </div>
     <ul *ngIf="haveChildren && isOpen"
         class="ui-select-choices"
         role="menu">

@@ -9,6 +9,7 @@ export class SelectOption {
     public isOpen = false;
     public filter = '';
     public maxVisibleItemCount : number;
+    public onlySelectParent = false;
 
     public isHierarchy(): boolean {
         return this.childProperty && this.childProperty.trim().length > 0;
