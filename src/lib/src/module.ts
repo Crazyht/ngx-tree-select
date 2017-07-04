@@ -1,3 +1,4 @@
+import { TreeSelectDefaultOptions } from './model/tree-select-default-options';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,19 +11,27 @@ import { IsVisiblePipe } from './pipe/isVisible.pipe';
 
 @NgModule({
   imports: [
-      CommonModule,
-      FormsModule
-    ],
+    CommonModule,
+    FormsModule
+  ],
   declarations: [
-      TreeSelectComponent,
-      TreeSelectItemComponent,
-      OffClickDirective,
-      ItemPipe,
-      IsVisiblePipe
-    ],
+    TreeSelectComponent,
+    TreeSelectItemComponent,
+    OffClickDirective,
+    ItemPipe,
+    IsVisiblePipe
+  ],
   exports: [
-      TreeSelectComponent
-    ]
+    TreeSelectComponent
+  ]
 })
 export class NgxTreeSelectModule {
+  static forRoot(options: TreeSelectDefaultOptions): ModuleWithProviders {
+    return {
+      ngModule: NgxTreeSelectModule,
+      providers: [
+        { provide: TreeSelectDefaultOptions, useValue: options }
+      ]
+    };
+  }
 }
