@@ -3,7 +3,8 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { SelectableItem } from '../model/selectable-item';
 import { SelectService } from '../service/select.service';
 import { SelectOption } from '../model/SelectOption';
-import { ItemPipe } from '../pipe/item.pipe'
+import { ItemPipe } from '../pipe/item.pipe';
+import { NgxTreeSelectDefaultOption } from '../model/ngxTreeSelectDefaultOption'
 
 const noop = () => {
 };
@@ -97,8 +98,9 @@ export class TreeSelectComponent implements ControlValueAccessor {
         }
     }
 
-    public constructor(
-        private svc: SelectService
+     constructor(
+        private svc: SelectService,
+        private defaultOption: NgxTreeSelectDefaultOption
     ) {
         this.clickedOutside = this.clickedOutside.bind(this);
 
@@ -112,6 +114,8 @@ export class TreeSelectComponent implements ControlValueAccessor {
         this.svc.modelChanged$.subscribe(result => {
             this.onChangeCallback(this.svc.getSelection());
         });
+        this.maxVisibleItemCount = defaultOption.MaxItems;
+        this.filterPlaceholder = defaultOption.FilterPlaceholder;
     }
 
     keyUp($event: any) { }

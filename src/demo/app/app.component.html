@@ -27,7 +27,7 @@
                 <hr>
 
                 <span>Multiple Tree select : </span>
-                <tree-select [onlySelectParent]="false" maxVisibleItemCount="2" name="multipleTreeSelect" [items]="itemsTree" idField="id" textField="text" childrenField="children" [multiple]="true" [(ngModel)]="selectedItems4"></tree-select>
+                <tree-select [onlySelectParent]="false" maxVisibleItemCount="1" name="multipleTreeSelect" [items]="itemsTree" idField="id" textField="text" childrenField="children" [multiple]="true" [(ngModel)]="selectedItems4"></tree-select>
                 <span>Selected ids :</span>
                 <ul>
                         <li *ngFor="let itm of selectedItems4">{{itm.id}}</li>
