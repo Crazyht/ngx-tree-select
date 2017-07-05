@@ -79,7 +79,7 @@
     "standard-version": "^4.2.0",
     "systemjs": "^0.20.14",
     "tslint": "^5.4.3",
-    "typescript": "^2.3.4",
+    "typescript": "2.3.4",
     "zone.js": "^0.8.12"
   }
 }
