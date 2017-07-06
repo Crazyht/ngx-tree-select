@@ -8,8 +8,7 @@ export class SelectOption {
     public model: any[] | any;
     public isOpen = false;
     public filter = '';
-    public maxVisibleItemCount : number;
-    public onlySelectParent = false;
+    public maxVisibleItemCount: number;
 
     public isHierarchy(): boolean {
         return this.childProperty && this.childProperty.trim().length > 0;
@@ -21,10 +20,10 @@ export class SelectOption {
 
     public isValid(): boolean {
         return this.idProperty &&
-               this.idProperty.trim().length > 0 &&
-               this.textProperty &&
-               this.textProperty.trim().length > 0 &&
-               this.items &&
-               Array.isArray(this.items);
+            this.idProperty.trim().length > 0 &&
+            this.textProperty &&
+            this.textProperty.trim().length > 0 &&
+            this.items &&
+            Array.isArray(this.items);
     }
 }

@@ -8,10 +8,11 @@ const ngc = require('@angular/compiler-cli/src/main').main;
 const rollup = require('rollup');
 const uglify = require('rollup-plugin-uglify');
 const sourcemaps = require('rollup-plugin-sourcemaps');
+const commonjs = require('rollup-plugin-commonjs');
+const nodeResolve = require('rollup-plugin-node-resolve');
 const execa = require('execa');
 
 const inlineResources = require('./inline-resources');
-
 
 const libName = require('./package.json').name;
 const rootFolder = path.join(__dirname);
@@ -30,12 +31,16 @@ return Promise.resolve()
     .then(() => console.log('Inlining succeeded.'))
   )
   // Compile to ES2015.
-  .then(() => ngc({ project: `${tempLibFolder}/tsconfig.lib.json` })
+  .then(() => ngc({
+      project: `${tempLibFolder}/tsconfig.lib.json`
+    })
     .then(exitCode => exitCode === 0 ? Promise.resolve() : Promise.reject())
     .then(() => console.log('ES2015 compilation succeeded.'))
   )
   // Compile to ES5.
-  .then(() => ngc({ project: `${tempLibFolder}/tsconfig.es5.json` })
+  .then(() => ngc({
+      project: `${tempLibFolder}/tsconfig.es5.json`
+    })
     .then(exitCode => exitCode === 0 ? Promise.resolve() : Promise.reject())
     .then(() => console.log('ES5 compilation succeeded.'))
   )
@@ -61,17 +66,25 @@ return Promise.resolve()
         // the window object.
         // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals for more.
         '@angular/core': 'ng.core',
+        '@angular/common': 'ng.common',
         '@angular/forms': 'ng.forms'
       },
       external: [
         // List of dependencies
         // See https://github.com/rollup/rollup/wiki/JavaScript-API#external for more.
         '@angular/core',
-        '@angular/forms',
-        'rxjs/Rx'
+        '@angular/common',
+        '@angular/forms'
       ],
       plugins: [
-        sourcemaps()
+        sourcemaps(),
+        nodeResolve({
+          jsnext: true,
+          module: true
+        }),
+        commonjs({
+          include: ['node_modules/rxjs/**']
+        }),
       ]
     };
 
@@ -131,7 +144,10 @@ return Promise.resolve()
 // Copy files maintaining relative paths.
 function _relativeCopy(fileGlob, from, to) {
   return new Promise((resolve, reject) => {
-    glob(fileGlob, { cwd: from, nodir: true }, (err, files) => {
+    glob(fileGlob, {
+      cwd: from,
+      nodir: true
+    }, (err, files) => {
       if (err) reject(err);
       files.forEach(file => {
         const origin = path.join(from, file);

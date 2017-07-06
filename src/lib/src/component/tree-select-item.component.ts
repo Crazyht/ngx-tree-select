@@ -33,9 +33,6 @@ export class TreeSelectItemComponent {
     get needCheckBox(): boolean {
         return this.svc.Configuration.isHierarchy() && this.svc.Configuration.allowMultiple;
     }
-    get onlySelectParent(): boolean {
-        return this.svc.Configuration.onlySelectParent;
-    }
 
     public get haveChildren(): boolean {
         return this.item && this.item.children && this.item.children.length > 0;
@@ -43,7 +40,7 @@ export class TreeSelectItemComponent {
 
     public select($event: any): void {
         $event.stopPropagation();
-        if (this.svc.Configuration.allowMultiple || !this.haveChildren || this.svc.Configuration.onlySelectParent) {
+        if (this.svc.Configuration.allowMultiple || !this.haveChildren) {
             this.svc.toggleItemSelection(this.item);
         }
         this.onTouchedCallBack();

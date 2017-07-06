@@ -1,3 +1,5 @@
+import { TreeSelectDefaultOptions } from './../model/tree-select-default-options';
+import { IsVisiblePipe } from './../pipe/isVisible.pipe';
 import { FormsModule } from '@angular/forms';
 import { ItemPipe } from './../pipe/item.pipe';
 import { TreeSelectItemComponent } from './tree-select-item.component';
@@ -17,7 +19,8 @@ describe('TreeSelectComponent', function () {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [TreeSelectComponent, OffClickDirective, TreeSelectItemComponent, ItemPipe]
+      declarations: [TreeSelectComponent, OffClickDirective, TreeSelectItemComponent, ItemPipe, IsVisiblePipe],
+      providers: [{ provide: TreeSelectDefaultOptions, useValue: {} }]
     })
     .compileComponents();
   }));

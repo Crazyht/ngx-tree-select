@@ -6,8 +6,12 @@ import { NgxTreeSelectModule } from 'ngx-tree-select';
 import { AppComponent }  from './app.component';
 
 @NgModule({
+<<<<<<< HEAD
   imports:      [ BrowserModule, FormsModule, NgxTreeSelectModule.forRoot({ FilterPlaceholder : 'Filter...',
     MaxItems : 2})],
+=======
+  imports:      [ BrowserModule, FormsModule, NgxTreeSelectModule.forRoot({ filterPlaceholder: 'test' })],
+>>>>>>> dev
   declarations: [ AppComponent ],
   bootstrap:    [ AppComponent ]
 })
