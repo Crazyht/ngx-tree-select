@@ -100,13 +100,6 @@ export class SelectService {
                 if (item.isVisible && max > 0) {
                     i++;
                 }
-                // if (this._options.maxVisibleItemCount && this._options.maxVisibleItemCount > 0 && selectedItems && selectedItems.length > 0) {
-                //     for (let i = 0; i < this._options.maxVisibleItemCount; i++) {
-                //         selectedItems[i].isVisible = true;
-                //     }
-                // } else {
-                //     for (let item of selectedItems) {
-                //         item.isVisible = true;
             }
         }
         return selectedItems;
@@ -121,8 +114,6 @@ export class SelectService {
                 }
             });
         }
-        //     this._items.forEach(v => v.selected = false);
-        // }
         item.selected = !item.selected;
         this.setConfiguration(opt => opt.model = this.getSelection(), false);
         if (this.Configuration.closeOnSelection) {
@@ -196,10 +187,6 @@ export class SelectService {
             }
             else if (v.selected === true) {
                 res.push(v);
-                // if (v.hasChild) {
-                //     res = [...res, ...this.getSelectedItems(v.children)];
-                // } else if (v.selected === true) {
-                //     res.push(v);
             }
         });
         return res;
