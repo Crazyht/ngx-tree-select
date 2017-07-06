@@ -1,6 +1,6 @@
 {
   "name": "ngx-tree-select",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "Library QuickStart package.json from the documentation, supplemented with testing support",
   "main": "./bundles/ngx-tree-select.umd.js",
   "module": "./ngx-tree-select.es5.js",
