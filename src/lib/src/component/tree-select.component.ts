@@ -90,15 +90,9 @@ export class TreeSelectComponent implements ControlValueAccessor {
         }
     }
 
-<<<<<<< HEAD
-     constructor(
-        private svc: SelectService,
-        private defaultOption: NgxTreeSelectDefaultOption
-=======
     public constructor(
         private svc: SelectService,
         private defaultOpts: TreeSelectDefaultOptions
->>>>>>> dev
     ) {
         this.clickedOutside = this.clickedOutside.bind(this);
 
@@ -112,13 +106,8 @@ export class TreeSelectComponent implements ControlValueAccessor {
         this.svc.modelChanged$.subscribe(result => {
             this.onChangeCallback(this.svc.getSelection());
         });
-<<<<<<< HEAD
-        this.maxVisibleItemCount = defaultOption.MaxItems;
-        this.filterPlaceholder = defaultOption.FilterPlaceholder;
-=======
         this.maxVisibleItemCount = (defaultOpts.maxVisibleItemCount || 0);
         this.filterPlaceholder = (defaultOpts.filterPlaceholder || 'Type here for filtering items...');
->>>>>>> dev
     }
 
     keyUp($event: any) { }

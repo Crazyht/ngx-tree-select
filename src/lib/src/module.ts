@@ -12,41 +12,6 @@ import { NgxTreeSelectDefaultOption } from './model/ngxTreeSelectDefaultOption';
 
 @NgModule({
   imports: [
-<<<<<<< HEAD
-      CommonModule,
-      FormsModule
- ],
-  declarations: [
-      TreeSelectComponent,
-      TreeSelectItemComponent,
-      OffClickDirective,
-      ItemPipe,
-      IsVisiblePipe
-     ],
-  exports: [
-      TreeSelectComponent
-    ],
-  providers : [ 
-      NgxTreeSelectDefaultOption
-     ]
-})
-export class NgxTreeSelectModule {
-
-    static forRoot(options:NgxTreeSelectDefaultOption): ModuleWithProviders {
-      let opt= new NgxTreeSelectDefaultOption();
-      if(options){
-        opt.FilterPlaceholder = (options.FilterPlaceholder ? options.FilterPlaceholder : opt.FilterPlaceholder);
-        opt.MaxItems = (options.MaxItems ? options.MaxItems : opt.MaxItems);
-      }
-      return {
-        ngModule: NgxTreeSelectModule,
-        providers: [
-          {provide: NgxTreeSelectDefaultOption, useValue: opt } 
-        ]
-      };
-  }
-
-=======
     CommonModule,
     FormsModule
   ],
@@ -61,6 +26,7 @@ export class NgxTreeSelectModule {
     TreeSelectComponent
   ]
 })
+
 export class NgxTreeSelectModule {
   static forRoot(options: TreeSelectDefaultOptions): ModuleWithProviders {
     return {
@@ -70,5 +36,5 @@ export class NgxTreeSelectModule {
       ]
     };
   }
->>>>>>> dev
+
 }
