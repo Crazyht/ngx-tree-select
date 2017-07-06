@@ -9,7 +9,7 @@
                 <hr>
 
                 <span>Multiple select : </span>
-                <tree-select name="multipleSelect" [items]="items" idField="id" textField="text" multiple="true" [(ngModel)]="selectedItems2" filterPlaceholder="Type item filter..." required=true minlength="2" maxlength="4" #multipleSelect="ngModel"></tree-select>
+                <tree-select name="multipleSelect" [items]="items" idField="id" textField="text" [multiple]="true" [(ngModel)]="selectedItems2" filterPlaceholder="Type item filter..." required=true minlength="2" maxlength="4" #multipleSelect="ngModel"></tree-select>
                 <div *ngIf="multipleSelect.errors && (multipleSelect.dirty || multipleSelect.touched)" class="alert alert-danger">
                         <div [hidden]="!multipleSelect.errors.required">Multiple select is required</div>
                         <div [hidden]="!multipleSelect.errors.minlength">You must choose at least 2 items on Multiple select</div>
@@ -28,7 +28,7 @@
 
                 <span>Multiple Tree select : </span>
 
-                <tree-select  maxVisibleItemCount="0" name="multipleTreeSelect" [items]="itemsTree" idField="id" textField="text" childrenField="children" multiple="true" [(ngModel)]="selectedItems4"></tree-select>
+                <tree-select  [onlySelectParent]="true" name="multipleTreeSelect" [items]="itemsTree" idField="id" textField="text" childrenField="children" [multiple]="true" [(ngModel)]="selectedItems4"></tree-select>
                 
                 <span>Selected ids :</span>
                 <ul>
@@ -42,7 +42,7 @@
         <hr>
 
         <span>Disabled Multiple select : </span>
-        <tree-select [items]="items" disabled="true" idField="id" textField="text" multiple="true" [(ngModel)]="disabledSelectedItems2"></tree-select>
+        <tree-select [items]="items" disabled="true" idField="id" textField="text" [multiple]="true" [(ngModel)]="disabledSelectedItems2"></tree-select>
         <hr>
 
         <span>Simple Tree select : </span>
@@ -50,6 +50,6 @@
         <hr>
 
         <span>Multiple Tree select : </span>
-        <tree-select [items]="itemsTree" disabled="true" idField="id" textField="text" childrenField="children" multiple="true" [(ngModel)]="disabledSelectedItems4"></tree-select>
+        <tree-select [items]="itemsTree" disabled="true" idField="id" textField="text" childrenField="children" [multiple]="true" [(ngModel)]="disabledSelectedItems4"></tree-select>
         <hr>
 </div>

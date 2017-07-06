@@ -8,6 +8,7 @@ export class SelectOption {
     public model: any[] | any;
     public isOpen = false;
     public filter = '';
+    public onlySelectParent = false;
     public maxVisibleItemCount: number;
 
     public isHierarchy(): boolean {

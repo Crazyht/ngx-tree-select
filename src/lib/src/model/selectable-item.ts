@@ -1,3 +1,5 @@
+import { SelectService } from '../service/select.service'; 
+
 export class SelectableItem {
     private _selected = false;
     public children?: SelectableItem[];
@@ -5,30 +7,52 @@ export class SelectableItem {
     public matchFilter = true;
     public isVisible = false;
 
-    constructor(public id: string, public text: string, public data: any) {
-    }
-
-    get hasChild(): boolean {
-        return this.children && this.children.length > 0;
-    }
-    get selected(): boolean {
-        if (this.hasChild) {
-            if (this.children.every(child => child.selected)) {
-                return true;
-            } else if (this.children.every(child => child.selected === false)) {
-                return false;
-            }
-            return null;
-        }
-        return this._selected;
-    }
-    set selected(value: boolean) {
-        if (this.hasChild) {
-            if (value !== null) {
-                this.children.forEach(child => child.selected = value);
-            }
-        } else {
-            this._selected = value;
-        }
-    }
-}
+    constructor(public id: string, public text: string, public data: any, public svc: SelectService) { 
+    } 
+ 
+    get hasChild(): boolean { 
+        return this.children && this.children.length > 0; 
+    } 
+    get checked(): boolean { 
+        if (this.hasChild && this.svc.Configuration.allowMultiple) { 
+            if(this.children.every(child => child.selected)){ 
+                return true; 
+            } 
+            else if (this.children.every(child => child.selected === false)) { 
+                return this._selected; 
+            }          
+            return null; 
+        } 
+        return this._selected; 
+    } 
+    get selected(): boolean { 
+        if (this.hasChild && this.svc.Configuration.allowMultiple) { 
+            if(this.children.some(child => child.selected)){ 
+                if(this.svc.Configuration.onlySelectParent){ 
+                    this._selected = false;                 
+                } 
+                return true; 
+            } 
+            else if (this.children.every(child => child.selected === false)) { 
+                return this._selected; 
+            }     
+            return false; 
+        } 
+        else if(this.hasChild && this._selected === true) { 
+                for(let i in this.children){ 
+                    this.children[i].selected = false; 
+                } 
+        } 
+ 
+        return this._selected; 
+    } 
+    set selected(value: boolean) { 
+                if (this.hasChild && !this.svc.Configuration.onlySelectParent) { 
+                    if (value !== null ) { 
+                        this.children.forEach(child => child.selected = value); 
+                    } 
+                } else { 
+                    this._selected = value; 
+                } 
+    } 
+} 
