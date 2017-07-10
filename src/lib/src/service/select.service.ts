@@ -54,20 +54,20 @@ export class SelectService {
         selectedItems = this.toSelectableItems(tableValues);
         if (selectedItems && selectedItems.length > 0) {
             for (let val of selectedItems) {
-                this.getChild(this._items, val.id)
+                this.setSelectedItemOrChild(this._items, val.id)
             }
         }
 
         this.setConfiguration(opt => opt.model = this.getSelection(), false);
     }
 
-    public getChild(items: SelectableItem[], destination: string) {
+    public setSelectedItemOrChild(items: SelectableItem[], destination: string) {
         for (let itm of items) {
             if (itm.hasChild) {
                 if (itm.id === destination) {
                     itm.selected = true;
                 }
-                this.getChild(itm.children, destination)
+                this.setSelectedItemOrChild(itm.children, destination)
             }
             else if (itm.id === destination) {
                 itm.selected = true;
@@ -107,17 +107,24 @@ export class SelectService {
 
     public toggleItemSelection(item: SelectableItem): void {
         if (!this.Configuration.allowMultiple) {
-            this._items.forEach(v => {
-                v.selected = false
-                for (let c in v.children) {
-                    v.children[c].selected = false;
-                }
-            });
+            this.setAllUnselected(this._items);
         }
         item.selected = !item.selected;
         this.setConfiguration(opt => opt.model = this.getSelection(), false);
         if (this.Configuration.closeOnSelection) {
             this.setConfiguration(opt => opt.isOpen = false, false);
+        }
+    }
+
+        public setAllUnselected(items: SelectableItem[]) {
+        for (let itm of items) {
+            if (itm.hasChild) {
+                    itm.selected = false;
+                this.setAllUnselected(itm.children)
+            }
+            else {
+                itm.selected = false;
+            }
         }
     }
 
@@ -205,7 +212,7 @@ export class SelectService {
             model.forEach(v => {
                 select = [...select, ...this.getItemForModel(v, this._items)];
             });
-            select.forEach(v => v.selected = true);
+            select.forEach(v => v._selected = true);
         }
     }
 
