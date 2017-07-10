@@ -182,8 +182,11 @@ export class SelectService {
             if (v.hasChild && v.selected === true) {
 
                 if (this._options.allowMultiple) {
-                    res.push(v);
-                    res = [...res, ...this.getSelectedItems(v.children)];
+                    if (v.children.every(child => child.selected === false)) {
+                        res = [...res, v];
+                    } else {
+                        res = [...res, ...this.getSelectedItems(v.children)];
+                    }
                 }
                 else if (v.children.every(child => child.selected === false)) {
                     res = [...res, v];
@@ -193,7 +196,7 @@ export class SelectService {
                 res = [...res, ...this.getSelectedItems(v.children)];
             }
             else if (v.selected === true) {
-                res.push(v);
+                res = [...res, v];
             }
         });
         return res;
