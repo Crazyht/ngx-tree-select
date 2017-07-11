@@ -1,4 +1,5 @@
-import { Directive, HostListener, Input, OnInit, OnDestroy } from '@angular/core';
+import { Directive, HostListener, Input, OnInit, OnDestroy, PLATFORM_ID, Inject } from '@angular/core';
+import {isPlatformBrowser} from '@angular/common';
 
 @Directive({
     selector: '[cra-off-click]'
@@ -8,16 +9,18 @@ export class OffClickDirective implements OnInit, OnDestroy {
     @Input('cra-off-click')
     public offClickHandler: any;
     /* tslint:enable */
-    // @HostListener('click', ['$event'])
-    // public onClick($event: MouseEvent): void {
-    //     $event.stopPropagation();
-    // }
+
+    constructor(@Inject(PLATFORM_ID) private platformId: string) {}
 
     public ngOnInit(): any {
-        setTimeout(() => { document.addEventListener('click', this.offClickHandler); }, 0);
+        if (isPlatformBrowser(this.platformId)) {
+            setTimeout(() => { document.addEventListener('click', this.offClickHandler); }, 0);
+        }
     }
 
     public ngOnDestroy(): any {
-        document.removeEventListener('click', this.offClickHandler);
+        if (isPlatformBrowser(this.platformId)) {
+            document.removeEventListener('click', this.offClickHandler);
+        }
     }
 }

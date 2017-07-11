@@ -32,7 +32,10 @@ import {NgxTreeSelectModule} from 'ngx-tree-select';
   imports: [
     BrowserModule,
     ....,
-    NgxTreeSelectModule
+    NgxTreeSelectModule.forRoot({
+      filterPlaceholder: 'Type your filter here...', 
+      maxVisibleItemCount: 5
+    })
 ],
 })
 export class AppModule { }
@@ -77,7 +80,6 @@ Then we can use the Tree Select like this:
 </ul>
 <hr>
 ```
-
 
 # Running the Demo Application
 This command will build and start the demo application:
