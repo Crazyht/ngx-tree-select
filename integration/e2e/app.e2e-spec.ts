@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-describe('QuickStart Lib E2E Tests', function () {
+describe('ngx-tree-select Lib E2E Tests', function () {
 
   beforeEach(() => browser.get(''));
 
