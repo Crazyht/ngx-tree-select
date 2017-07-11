@@ -1,6 +1,6 @@
 module.exports = function (config) {
 
-  var libBase = 'src/lib/';       // transpiled app JS and map files
+  var libBase = 'src/lib/'; // transpiled app JS and map files
 
   config.set({
     basePath: '',
@@ -9,7 +9,9 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter')
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage'),
+      require('karma-remap-coverage')
     ],
 
     client: {
@@ -43,29 +45,74 @@ module.exports = function (config) {
       'node_modules/zone.js/dist/fake-async-test.js',
 
       // RxJs
-      { pattern: 'node_modules/rxjs/**/*.js', included: false, watched: false },
-      { pattern: 'node_modules/rxjs/**/*.js.map', included: false, watched: false },
+      {
+        pattern: 'src/datas/*.js',
+        included: false,
+        watched: false
+      },
+      {
+        pattern: 'node_modules/rxjs/**/*.js',
+        included: false,
+        watched: false
+      },
+      {
+        pattern: 'node_modules/rxjs/**/*.js.map',
+        included: false,
+        watched: false
+      },
 
       // Paths loaded via module imports:
       // Angular itself
-      { pattern: 'node_modules/@angular/**/*.js', included: false, watched: false },
-      { pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false },
+      {
+        pattern: 'node_modules/@angular/**/*.js',
+        included: false,
+        watched: false
+      },
+      {
+        pattern: 'node_modules/@angular/**/*.js.map',
+        included: false,
+        watched: false
+      },
 
-      { pattern: 'src/demo/systemjs-angular-loader.js', included: false, watched: false },
+      {
+        pattern: 'src/demo/systemjs-angular-loader.js',
+        included: false,
+        watched: false
+      },
 
       'karma-test-shim.js', // optionally extend SystemJS mapping e.g., with barrels
 
       // transpiled application & spec code paths loaded via module imports
-      { pattern: libBase + '**/*.js', included: false, watched: true },
+      {
+        pattern: libBase + '**/*.js',
+        included: false,
+        watched: true
+      },
 
       // Asset (HTML & CSS) paths loaded via Angular's component compiler
       // (these paths need to be rewritten, see proxies section)
-      { pattern: libBase + '**/*.html', included: false, watched: true },
-      { pattern: libBase + '**/*.css', included: false, watched: true },
+      {
+        pattern: libBase + '**/*.html',
+        included: false,
+        watched: true
+      },
+      {
+        pattern: libBase + '**/*.css',
+        included: false,
+        watched: true
+      },
 
       // Paths for debugging with source maps in dev tools
-      { pattern: libBase + '**/*.ts', included: false, watched: false },
-      { pattern: libBase + '**/*.js.map', included: false, watched: false }
+      {
+        pattern: libBase + '**/*.ts',
+        included: false,
+        watched: false
+      },
+      {
+        pattern: libBase + '**/*.js.map',
+        included: false,
+        watched: false
+      }
     ],
 
     // Proxied base paths for loading assets
@@ -76,18 +123,29 @@ module.exports = function (config) {
     },
 
     exclude: [],
-    preprocessors: {},
-    reporters: ['progress', 'kjhtml'],
+    preprocessors: {
+      './src/lib/**/!(*spec).js': 'coverage'
+    },
+    reporters: ['progress', 'kjhtml', 'coverage', 'remap-coverage'],
 
+    coverageReporter: {
+      type: 'in-memory'
+    },
+
+    remapCoverageReporter: {
+      'text-summary': null,
+      html: './coverage/html',
+      cobertura: './coverage/coverage.xml'
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
     captureTimeout: 60000, // it was already there
-    browserDisconnectTimeout : 10000,
-    browserDisconnectTolerance : 1,
-    browserNoActivityTimeout : 60000,//by default 10000
+    browserDisconnectTimeout: 10000,
+    browserDisconnectTolerance: 1,
+    browserNoActivityTimeout: 60000, //by default 10000
     singleRun: false
   })
 }

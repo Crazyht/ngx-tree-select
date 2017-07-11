@@ -22,14 +22,14 @@
                 <hr>
 
                 <span>Simple Tree select : </span>
-                <tree-select name="simpleTreeSelect" [items]="itemsTree" idField="id" textField="text" childrenField="children" [(ngModel)]="selectedItems3"></tree-select>
+                <tree-select name="simpleTreeSelect" [items]="itemsTree" idField="id" textField="name" childrenField="children" [(ngModel)]="selectedItems3"></tree-select>
                 <span>Selected id : {{selectedItems3?.id}}</span>
                 <hr>
 
                 <span>Multiple Tree select : </span>
 
-                <tree-select  [onlySelectParent]="true" name="multipleTreeSelect" [items]="itemsTree" idField="id" textField="text" childrenField="children" [multiple]="true" [(ngModel)]="selectedItems4"></tree-select>
-                
+                <tree-select  [onlySelectParent]="true" name="multipleTreeSelect" [items]="itemsTree" idField="id" textField="name" childrenField="children" [multiple]="true" [(ngModel)]="selectedItems4"></tree-select>
+
                 <span>Selected ids :</span>
                 <ul>
                         <li *ngFor="let itm of selectedItems4">{{itm.id}}</li>

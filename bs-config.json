@@ -3,7 +3,8 @@
     "baseDir": "src/demo",
     "routes": {
       "/node_modules": "node_modules",
-      "/ngx-tree-select": "src/lib"
+      "/ngx-tree-select": "src/lib",
+      "/datas": "src/datas"
     }
   }
 }

@@ -73,8 +73,7 @@ export class SelectService {
           itm.selected = true;
         }
         this.setSelectedItemOrChild(itm.children, destination)
-      }
-      else if (itm.id === destination) {
+      } else if (itm.id === destination) {
         itm.selected = true;
       }
     }
@@ -126,8 +125,7 @@ export class SelectService {
       if (itm.hasChild) {
         itm.selected = false;
         this.setAllUnselected(itm.children)
-      }
-      else {
+      } else {
         itm.selected = false;
       }
     }
@@ -186,20 +184,17 @@ export class SelectService {
       let res: SelectableItem[] = [];
       array.forEach(v => {
         if (v.hasChild && v.selected === true) {
-
           if (this._options.allowMultiple) {
-            res.push(v);
-            res = [...res, ...this.getSelectedItems(v.children)];
+            if (v.children.every(child => child.selected === false)) {
+              res = [...res, v];
+            } else {
+              res = [...res, ...this.getSelectedItems(v.children)];
+            }
           }
-          else if (v.children.every(child => child.selected === false)) {
-            res = [...res, v];
-          }
-        }
-        else if (v.hasChild) {
+        } else if (v.hasChild) {
           res = [...res, ...this.getSelectedItems(v.children)];
-        }
-        else if (v.selected === true) {
-          res.push(v);
+        } else if (v.selected === true) {
+          res = [...res, v];
         }
       });
       return res;

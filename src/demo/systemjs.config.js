@@ -12,6 +12,7 @@
     map: {
       // our app is within the app folder
       app: 'app',
+      datas: 'datas',
 
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -24,7 +25,7 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
       // other libraries
-      'rxjs': 'npm:rxjs',
+      'rxjs': 'npm:rxjs'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -35,6 +36,9 @@
             loader: 'systemjs-angular-loader.js'
           }
         }
+      },
+      datas: {
+        defaultExtension: 'js'
       },
       rxjs: {
         defaultExtension: 'js'
