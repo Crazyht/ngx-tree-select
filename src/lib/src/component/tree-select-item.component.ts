@@ -5,7 +5,7 @@ import { SelectService } from '../service/select.service';
 @Component({
     selector: 'tree-select-item',
     templateUrl: './tree-select-item.component.html',
-    styleUrls: [ './tree-select-item.component.css' ]
+    styleUrls: ['./tree-select-item.component.css']
 })
 export class TreeSelectItemComponent {
     public get isOpen() {
@@ -19,7 +19,7 @@ export class TreeSelectItemComponent {
 
     public constructor(
         private svc: SelectService
-    ) {}
+    ) { }
 
     toggleOpen($event: any) {
         $event.stopPropagation();
@@ -30,10 +30,10 @@ export class TreeSelectItemComponent {
         }
     }
 
-    get onlySelectParent(): boolean { 
-        return this.svc.Configuration.onlySelectParent; 
-    }  
-    
+    get onlySelectParent(): boolean {
+        return this.svc.Configuration.onlySelectParent;
+    }
+
     get needCheckBox(): boolean {
         return this.svc.Configuration.isHierarchy() && this.svc.Configuration.allowMultiple;
     }

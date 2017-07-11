@@ -25,6 +25,7 @@ export class SelectOption {
             this.textProperty &&
             this.textProperty.trim().length > 0 &&
             this.items &&
-            Array.isArray(this.items);
+            Array.isArray(this.items)
+            && this.items.length > 0;
     }
 }

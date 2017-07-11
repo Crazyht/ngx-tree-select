@@ -1,4 +1,4 @@
-import { TreeSelectDefaultOptions } from './../model/tree-select-default-options'; 
+import { TreeSelectDefaultOptions } from './../model/tree-select-default-options';
 import { Component, forwardRef, Input, OnInit, HostListener } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { SelectableItem } from '../model/selectable-item';
@@ -53,10 +53,10 @@ export class TreeSelectComponent implements ControlValueAccessor {
         this.svc.setConfiguration(opt => opt.maxVisibleItemCount = value, true);
     }
 
-    @Input() 
-    public set onlySelectParent(value: boolean){ 
-        this.svc.setConfiguration(opt => opt.onlySelectParent = value, true); 
-    } 
+    @Input()
+    public set onlySelectParent(value: boolean) {
+        this.svc.setConfiguration(opt => opt.onlySelectParent = value, true);
+    }
 
     @Input()
     public set childrenField(value: string) {
@@ -72,9 +72,9 @@ export class TreeSelectComponent implements ControlValueAccessor {
         return this.svc.Configuration.allowMultiple;
     }
 
-    public get onlySelectParent():boolean { 
-        return this.svc.Configuration.onlySelectParent; 
-    } 
+    public get onlySelectParent(): boolean {
+        return this.svc.Configuration.onlySelectParent;
+    }
     public get maxVisibleItemCount(): number {
         return this.svc.Configuration.maxVisibleItemCount;
     }

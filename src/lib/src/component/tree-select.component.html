@@ -25,7 +25,7 @@
                        class="close"
                        (click)="removeItem($event, itm)">x</a>
             </span>
-            <span class="pull-right more-items-icon" (click)="loadMore()" *ngIf="maxVisibleItemCount > 0">(...)</span>
+            <span class="pull-right more-items-icon" (click)="loadMore()" *ngIf="(selection.length - maxVisibleItemCount) > 0">(...)</span>
             <i class="caret pull-right"></i>
         </span>
     </div>
