@@ -1,43 +1,43 @@
 <div class="container">
-        <span>Simple select : </span>
-        <tree-select [items]="items" idField="id" textField="text" [allowFilter]="false" [(ngModel)]="selectedItems1"></tree-select>
-        <span>Selected id : {{selectedItems1?.id}}</span>
-        <hr>
+  <span>Simple select : </span>
+  <tree-select [items]="items" idField="id" textField="text" [allowFilter]="false" [(ngModel)]="selectedItems1"></tree-select>
+  <span>Selected id : {{selectedItems1?.id}}</span>
+  <hr>
 
-        <span>Multiple select : </span>
-        <tree-select [items]="items" idField="id" textField="text" multiple="true" [(ngModel)]="selectedItems2" filterPlaceholder="Type item filter..."></tree-select>
-        <span>Selected ids :</span>
-        <ul>
-                <li *ngFor="let itm of selectedItems2">{{itm.id}}</li>
-        </ul>
-        <hr>
+  <span>Multiple select : </span>
+  <tree-select [items]="items" idField="id" textField="text" multiple="true" [(ngModel)]="selectedItems2" filterPlaceholder="Type item filter..."></tree-select>
+  <span>Selected ids :</span>
+  <ul>
+    <li *ngFor="let itm of selectedItems2">{{itm.id}}</li>
+  </ul>
+  <hr>
 
-        <span>Simple Tree select : </span>
-        <tree-select [items]="itemsTree" idField="id" textField="text" childrenField="children" [(ngModel)]="selectedItems3"></tree-select>
-        <span>Selected id : {{selectedItems3?.id}}</span>
-        <hr>
+  <span>Simple Tree select : </span>
+  <tree-select [items]="itemsTree" idField="id" textField="text" childrenField="children" [(ngModel)]="selectedItems3"></tree-select>
+  <span>Selected id : {{selectedItems3?.id}}</span>
+  <hr>
 
-        <span>Multiple Tree select : </span>
-        <tree-select [items]="itemsTree" idField="id" textField="text" childrenField="children" multiple="true" [(ngModel)]="selectedItems4"></tree-select>
-        <span>Selected ids :</span>
-        <ul>
-                <li *ngFor="let itm of selectedItems4">{{itm.id}}</li>
-        </ul>
-        <hr>
+  <span>Multiple Tree select : </span>
+  <tree-select [items]="itemsTree" idField="id" textField="text" childrenField="children" multiple="true" [(ngModel)]="selectedItems4"></tree-select>
+  <span>Selected ids :</span>
+  <ul>
+    <li *ngFor="let itm of selectedItems4">{{itm.id}}</li>
+  </ul>
+  <hr>
 
-        <span>Disabled Simple select : </span>
-        <tree-select [items]="items" disabled="true" idField="id" textField="text" [(ngModel)]="disabledSelectedItems1"></tree-select>
-        <hr>
+  <span>Disabled Simple select : </span>
+  <tree-select [items]="items" disabled="true" idField="id" textField="text" [(ngModel)]="disabledSelectedItems1"></tree-select>
+  <hr>
 
-        <span>Disabled Multiple select : </span>
-        <tree-select [items]="items" disabled="true" idField="id" textField="text" multiple="true" [(ngModel)]="disabledSelectedItems2"></tree-select>
-        <hr>
+  <span>Disabled Multiple select : </span>
+  <tree-select [items]="items" disabled="true" idField="id" textField="text" multiple="true" [(ngModel)]="disabledSelectedItems2"></tree-select>
+  <hr>
 
-        <span>Simple Tree select : </span>
-        <tree-select [items]="itemsTree" disabled="true" idField="id" textField="text" childrenField="children" [(ngModel)]="disabledSelectedItems3"></tree-select>
-        <hr>
+  <span>Simple Tree select : </span>
+  <tree-select [items]="itemsTree" disabled="true" idField="id" textField="text" childrenField="children" [(ngModel)]="disabledSelectedItems3"></tree-select>
+  <hr>
 
-        <span>Multiple Tree select : </span>
-        <tree-select [items]="itemsTree" disabled="true" idField="id" textField="text" childrenField="children" multiple="true" [(ngModel)]="disabledSelectedItems4"></tree-select>
-        <hr>
+  <span>Multiple Tree select : </span>
+  <tree-select [items]="itemsTree" disabled="true" idField="id" textField="text" childrenField="children" multiple="true" [(ngModel)]="disabledSelectedItems4"></tree-select>
+  <hr>
 </div>

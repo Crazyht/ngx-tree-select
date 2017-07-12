@@ -134,7 +134,7 @@ export class SelectService {
       let i = 1;
       return sources.map((srcItem) => {
         let item;
-        if (srcItem[this._options.idProperty] && srcItem[this._options.idProperty] != '' && srcItem[this._options.textProperty]) {
+        if (srcItem[this._options.idProperty] && srcItem[this._options.idProperty] !== '' && srcItem[this._options.textProperty]) {
           item = new SelectableItem(
             (srcItem[this._options.idProperty] || '').toString(),
             <string>srcItem[this._options.textProperty],

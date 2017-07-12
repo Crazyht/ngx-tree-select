@@ -5,7 +5,6 @@ import { SelectableItem } from '../model/selectable-item';
 import { SelectService } from '../service/select.service';
 import { SelectOption } from '../model/SelectOption';
 import { ItemPipe } from '../pipe/item.pipe';
-import { NgxTreeSelectDefaultOption } from '../model/ngxTreeSelectDefaultOption'
 
 const noop = () => {
 };
