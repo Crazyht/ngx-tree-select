@@ -25,19 +25,19 @@ export class AppComponent {
 
   public selectedItems4: any[] = [
     {
-    id: 'LU',
-    name: 'Luxembourg',
-    capital: 'Luxembourg',
-    phone: '352',
-    currency: 'EUR'
-  },
-  {
-    id: 'FR',
-    name: 'France',
-    capital: 'Paris',
-    phone: '33',
-    currency: 'EUR'
-  }
+      id: 'LU',
+      name: 'Luxembourg',
+      capital: 'Luxembourg',
+      phone: '352',
+      currency: 'EUR'
+    },
+    {
+      id: 'FR',
+      name: 'France',
+      capital: 'Paris',
+      phone: '33',
+      currency: 'EUR'
+    }
   ];
 
   public disabledSelectedItems1: any = { id: 1, text: 'item 1' };

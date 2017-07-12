@@ -10,7 +10,7 @@ export class SelectOption {
   public filter = '';
   public onlySelectParent = false;
   public maxVisibleItemCount: number;
-  public loadAllItems: boolean = false;
+  public loadAllItems = false;
 
   public isHierarchy(): boolean {
     return this.childProperty && this.childProperty.trim().length > 0;

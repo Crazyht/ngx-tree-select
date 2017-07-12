@@ -46,8 +46,7 @@ export class SelectService {
   public setSelection(values: any | any[]): void {
     if (this._options.childProperty) {
       this.setConfiguration(opt => opt.model = values, true);
-    }
-    else {
+    } else {
       let tableValues: any[] = [];
       if (values && values.length > 0) {
         tableValues = values;
@@ -153,7 +152,7 @@ export class SelectService {
       let i = 1;
       return sources.map((srcItem) => {
         let item;
-        if (srcItem[this._options.idProperty] && srcItem[this._options.idProperty] != '' && srcItem[this._options.textProperty]) {
+        if (srcItem[this._options.idProperty] && srcItem[this._options.idProperty] !== '' && srcItem[this._options.textProperty]) {
           item = new SelectableItem(
             (srcItem[this._options.idProperty] || '').toString(),
             <string>srcItem[this._options.textProperty],

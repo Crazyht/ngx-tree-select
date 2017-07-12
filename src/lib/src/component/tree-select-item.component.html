@@ -1,20 +1,20 @@
 <div class='item' (click)="select($event)">
-    <div class="item" [class.active]="item.selected && !needCheckBox">
-        <a href="javascript:void(0)" (click)="toggleOpen($event)">
-            <span> 
-                    <i class="fa" 
-                    [class.fa-plus-square-o]="haveChildren && !isOpen" 
-                    [class.fa-minus-square-o]="haveChildren && isOpen"></i> 
+  <div class="item" [class.active]="item.selected && !needCheckBox">
+    <a href="javascript:void(0)" (click)="toggleOpen($event)">
+            <span>
+                    <i class="fa"
+                    [class.fa-plus-square-o]="haveChildren && !isOpen"
+                    [class.fa-minus-square-o]="haveChildren && isOpen"></i>
                 </span>
             <i class="fa" *ngIf="needCheckBox" [class.fa-check-square-o]="item.checked === true" [class.fa-square-o]="item.checked === false"
                 [class.fa-square]="item.checked === null" (click)="select($event)"></i>
             <i class="fa" *ngIf="onlySelectParent" (click)="select($event)"> {{item.text}}</i>
             <i class="fa" *ngIf="!onlySelectParent"> {{item.text}}</i>
         </a>
-    </div>
-    <ul *ngIf="haveChildren && isOpen" class="ui-select-choices" role="menu">
-        <li *ngFor="let o of item.children | ItemPipe:filter" role="menuitem">
-            <tree-select-item [item]="o" (selected)="itemSelected()" [onTouchedCallBack]="onTouchedCallBack"></tree-select-item>
-        </li>
-    </ul>
+  </div>
+  <ul *ngIf="haveChildren && isOpen" class="ui-select-choices" role="menu">
+    <li *ngFor="let o of item.children | ItemPipe:filter" role="menuitem">
+      <tree-select-item [item]="o" (selected)="itemSelected()" [onTouchedCallBack]="onTouchedCallBack"></tree-select-item>
+    </li>
+  </ul>
 </div>
