@@ -220,14 +220,16 @@ export class SelectService {
 
   private getItemForModel(value: any, array: SelectableItem[]): SelectableItem[] {
     let result: SelectableItem[] = [];
-    array.forEach(v => {
-      if (v.id === value[this.Configuration.idProperty].toString()) {
-        result.push(v);
+    for (let v of array) {
+      if (value && value[this.Configuration.idProperty]) {
+        if (v.id === (value[this.Configuration.idProperty] || '').toString()) {
+          result.push(v);
+        }
       }
       if (this.Configuration.isHierarchy() && v.children && v.children.length > 0) {
         result = [...result, ...this.getItemForModel(value, v.children)];
       }
-    });
+    };
     return result;
   }
 }
