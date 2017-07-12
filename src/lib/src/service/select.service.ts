@@ -44,26 +44,7 @@ export class SelectService {
   }
 
   public setSelection(values: any | any[]): void {
-    if (this._options.childProperty) {
-      this.setConfiguration(opt => opt.model = values, true);
-    }
-    else {
-      let tableValues: any[] = [];
-      if (values && values.length > 0) {
-        tableValues = values;
-      } else if (values) {
-        tableValues.push(values);
-      }
-      let selectedItems: SelectableItem[];
-      selectedItems = this.toSelectableItems(tableValues);
-      if (selectedItems && selectedItems.length > 0) {
-        for (let val of selectedItems) {
-          this.setSelectedItemOrChild(this._items, val.id)
-        }
-      }
-
-      this.setConfiguration(opt => opt.model = this.getSelection(), false);
-    }
+    this.setConfiguration(opt => opt.model = values, true);
   }
 
   public setSelectedItemOrChild(items: SelectableItem[], destination: string) {
@@ -240,7 +221,7 @@ export class SelectService {
   private getItemForModel(value: any, array: SelectableItem[]): SelectableItem[] {
     let result: SelectableItem[] = [];
     array.forEach(v => {
-      if (v.id === value[this.Configuration.idProperty]) {
+      if (v.id === value[this.Configuration.idProperty].toString()) {
         result.push(v);
       }
       if (this.Configuration.isHierarchy() && v.children && v.children.length > 0) {
