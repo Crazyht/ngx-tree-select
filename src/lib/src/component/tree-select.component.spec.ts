@@ -59,7 +59,7 @@ describe('TreeSelectComponent', function() {
         expect(fixture.componentInstance.select.isOpen).toBe(false);
     });
 
-    it('should contain selected', () => {
+    it('should contains selected', () => {
         expect(comp.selectedCountry).toBeDefined();
         expect(comp.selectedCountry.id).toBe('LU');
         fixture.detectChanges();
