@@ -1,59 +1,23 @@
-<div class="container">
-  <form novalidate>
-    <span>Simple select : </span>
-    <tree-select name="simpleSelect" [items]="items" idField="id" textField="text" [allowFilter]="false" [(ngModel)]="selectedItems1"
-      required=true #simpleSelect="ngModel"></tree-select>
-    <div *ngIf="simpleSelect.errors && (simpleSelect.dirty || simpleSelect.touched)" class="alert alert-danger">
-      <div [hidden]="!simpleSelect.errors.required">Simple select is required</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Ngx-tree-select</a>
     </div>
-    <span>Selected id : {{selectedItems1?.id}}</span>
-    <hr>
 
-    <span>Multiple select : </span>
-    <tree-select name="multipleSelect" [items]="items" idField="id" textField="text" [multiple]="true" [(ngModel)]="selectedItems2"
-      filterPlaceholder="Type item filter..." required=true minlength="2" maxlength="4" #multipleSelect="ngModel"></tree-select>
-    <div *ngIf="multipleSelect.errors && (multipleSelect.dirty || multipleSelect.touched)" class="alert alert-danger">
-      <div [hidden]="!multipleSelect.errors.required">Multiple select is required</div>
-      <div [hidden]="!multipleSelect.errors.minlength">You must choose at least 2 items on Multiple select</div>
-      <div [hidden]="!multipleSelect.errors.maxlength">You must choose maximum 4 items on Multiple select</div>
-    </div>
-    <span>Selected ids :</span>
-    <ul>
-      <li *ngFor="let itm of selectedItems2">{{itm.id}}</li>
-    </ul>
-    <hr>
-
-    <span>Simple Tree select : </span>
-    <tree-select name="simpleTreeSelect" [items]="itemsTree" idField="id" textField="name" childrenField="children" [(ngModel)]="selectedItems3"></tree-select>
-    <span>Selected id : {{selectedItems3?.id}}</span>
-    <hr>
-
-    <span>Multiple Tree select : </span>
-
-    <tree-select [onlySelectParent]="true" name="multipleTreeSelect" [items]="itemsTree" idField="id" textField="name" childrenField="children"
-      [multiple]="true" [(ngModel)]="selectedItems4"></tree-select>
-
-    <span>Selected ids :</span>
-    <ul>
-      <li *ngFor="let itm of selectedItems4">{{itm.id}}</li>
-    </ul>
-    <hr>
-
-  </form>
-  <span>Disabled Simple select : </span>
-  <tree-select [items]="items" disabled="true" idField="id" textField="text" [(ngModel)]="disabledSelectedItems1"></tree-select>
-  <hr>
-
-  <span>Disabled Multiple select : </span>
-  <tree-select [items]="items" disabled="true" idField="id" textField="text" [multiple]="true" [(ngModel)]="disabledSelectedItems2"></tree-select>
-  <hr>
-
-  <span>Simple Tree select : </span>
-  <tree-select [items]="itemsTree" disabled="true" idField="id" textField="text" childrenField="children" [(ngModel)]="disabledSelectedItems3"></tree-select>
-  <hr>
-
-  <span>Multiple Tree select : </span>
-  <tree-select [items]="itemsTree" disabled="true" idField="id" textField="text" childrenField="children" [multiple]="true"
-    [(ngModel)]="disabledSelectedItems4"></tree-select>
-  <hr>
-</div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/flat">Flat</a></li>
+        <li routerLinkActive="active"><a routerLink="/hierarchical">hierarchical</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<router-outlet></router-outlet>

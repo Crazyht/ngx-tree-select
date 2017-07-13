@@ -117,7 +117,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
     this.svc.itemSelectionChanged$.subscribe(items => {
     });
     this.svc.modelChanged$.subscribe(result => {
-      this.onChangeCallback(this.svc.getSelection());
+      this.onChangeCallback(result);
     });
     this.maxVisibleItemCount = (defaultOpts.maxVisibleItemCount || 0);
     this.filterPlaceholder = (defaultOpts.filterPlaceholder || 'Type here for filtering items...');
