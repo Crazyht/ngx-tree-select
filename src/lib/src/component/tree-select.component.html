@@ -40,7 +40,7 @@
            placeholder="{{filterPlaceholder}}"
            [ngModelOptions]="{standalone: true}" />
     <li *ngFor="let o of internalItems | ItemPipe: filter " role="menuitem">
-      <tree-select-item [item]="o" (selected)="itemSelected()" [onTouchedCallBack]="onTouchedCallback"></tree-select-item>
+      <tree-select-item [item]="o" [onTouchedCallBack]="onTouchedCallback"></tree-select-item>
     </li>
   </ul>
 </div>

@@ -14,9 +14,6 @@ export class SelectService {
   private _items: SelectableItem[];
   private _options: SelectOption = new SelectOption();
 
-  public itemSelectionChanged$: Subject<SelectableItem> = new Subject<SelectableItem>();
-  public itemsChanged$: Subject<SelectableItem[]> = new Subject<SelectableItem[]>();
-  public configurationChanged$: Subject<SelectOption> = new Subject<SelectOption>();
   public modelChanged$: Subject<any> = new Subject<any>();
 
   public close(): void {
@@ -115,7 +112,6 @@ export class SelectService {
   public setConfiguration(delegate: OptionDelegate, processItems: boolean): void {
     let modelBck = this._options.model;
     delegate(this._options);
-    this.configurationChanged$.next(this._options);
     if (this._options.isValid()) {
       this.reconfigure(processItems);
     }
@@ -187,7 +183,6 @@ export class SelectService {
       this.checkConfig();
       if (processItems) {
         this._items = this.toSelectableItems(this.Configuration.items);
-        this.itemsChanged$.next(this._items);
       }
 
       let model = this.getModel();

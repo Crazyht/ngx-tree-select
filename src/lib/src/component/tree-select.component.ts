@@ -79,10 +79,6 @@ export class TreeSelectComponent implements ControlValueAccessor {
     return this.svc.Configuration.maxVisibleItemCount;
   }
 
-  public get loadAllItems(): boolean {
-    return this.svc.Configuration.loadAllItems;
-  }
-
   public get internalItems(): SelectableItem[] {
     return this.svc.getInternalItems() || [];
   }
@@ -109,13 +105,6 @@ export class TreeSelectComponent implements ControlValueAccessor {
   ) {
     this.clickedOutside = this.clickedOutside.bind(this);
 
-    this.svc.configurationChanged$.subscribe(options => {
-    });
-    this.svc.itemsChanged$.subscribe(items => {
-      // this.onChangeCallback(this.svc.getSelection());
-    });
-    this.svc.itemSelectionChanged$.subscribe(items => {
-    });
     this.svc.modelChanged$.subscribe(result => {
       this.onChangeCallback(result);
     });
@@ -135,6 +124,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
     $event.stopPropagation();
     this.svc.toggleItemSelection(item);
   }
+
   public get isOpen(): boolean {
     return this.svc.Configuration.isOpen;
   }
@@ -162,23 +152,56 @@ export class TreeSelectComponent implements ControlValueAccessor {
     this.inputFocus = false;
   }
 
-  // Placeholders for the callbacks which are later provided by the Control Value Accessor
-  writeValue(value: any) {
+  /**
+   * Write a new value to the element.
+   *
+   * @param {*} value
+   * @memberof TreeSelectComponent
+   */
+  writeValue(value: any): void {
     this.svc.setSelection(value);
   }
 
-  registerOnChange(fn: any) {
+  /**
+   * Set the function to be called when the control receives a change event.
+   *
+   * @param {*} fn
+   * @memberof TreeSelectComponent
+   */
+  registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any) {
+  /**
+   * Set the function to be called when the control receives a touch event.
+   *
+   * @param {*} fn
+   * @memberof TreeSelectComponent
+   */
+  registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 
+  /**
+   * This function is called when the control status changes to or from "DISABLED".
+   * Depending on the value, it will enable or disable the appropriate DOM element.
+   *
+   * @param {boolean} isDisabled
+   * @memberof TreeSelectComponent
+   */
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  /**
+   * This finction is called when user click on show more link.
+   *
+   * @param {*} $event
+   * @memberof TreeSelectComponent
+   */
   loadMore($event: any) {
     $event.stopPropagation();
     this.moreLoaded = !this.moreLoaded;
-    //this.svc.setConfiguration(opt => opt.maxVisibleItemCount = 0, false);
   }
 
   ProcessMatchFilterTreeItem(tree: SelectableItem, filter: string): boolean {
@@ -189,7 +212,6 @@ export class TreeSelectComponent implements ControlValueAccessor {
       }
     }
     tree.matchFilter = (tree.id.indexOf(filter) > -1 || tree.text.indexOf(filter) > -1 || result);
-    // console.info(`${tree.id} -> ${tree.text} => ${filter} ==> ${tree.matchFilter}`)
 
     return tree.matchFilter;
   }
