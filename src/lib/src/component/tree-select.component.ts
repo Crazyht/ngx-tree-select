@@ -109,6 +109,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
       this.onChangeCallback(result);
     });
     this.maxVisibleItemCount = (defaultOpts.maxVisibleItemCount || 0);
+    this.allowFilter = (defaultOpts.allowFilter === undefined || defaultOpts.allowFilter === null ? true : defaultOpts.allowFilter)
     this.filterPlaceholder = (defaultOpts.filterPlaceholder || 'Type here for filtering items...');
   }
 
