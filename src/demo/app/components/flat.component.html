@@ -17,7 +17,7 @@
                         [filterPlaceholder]="FilterPlaceholder"
                         [allowFilter]="ShowFilter"
                         [disabled]="Disabled"
-                        [onlySelectParent]="CanSelectParent"></tree-select>
+                        [allowParentSelection]="AllowParentSelection"></tree-select>
             <div *ngIf="simpleSelect.errors && (simpleSelect.dirty || simpleSelect.touched)" class="alert alert-danger">
               <div [hidden]="!simpleSelect.errors.required">Simple select is required</div>
             </div>
@@ -42,7 +42,7 @@
                       required=true
                       minlength="2"
                       maxlength="4"
-                      [onlySelectParent]="CanSelectParent"
+                      [allowParentSelection]="AllowParentSelection"
                       #multipleSelect="ngModel"
                       [filterPlaceholder]="FilterPlaceholder"
                       [maxVisibleItemCount]="MaxDisplayed"

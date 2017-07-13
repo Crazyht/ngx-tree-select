@@ -30,8 +30,8 @@ export class TreeSelectItemComponent {
     }
   }
 
-  get onlySelectParent(): boolean {
-    return this.svc.Configuration.onlySelectParent;
+  get allowParentSelection(): boolean {
+    return this.svc.Configuration.allowParentSelection;
   }
 
   get needCheckBox(): boolean {
@@ -44,7 +44,7 @@ export class TreeSelectItemComponent {
 
   public select($event: any): void {
     $event.stopPropagation();
-    if (this.svc.Configuration.allowMultiple || !this.haveChildren || this.svc.Configuration.onlySelectParent) {
+    if (this.svc.Configuration.allowMultiple || !this.haveChildren || this.svc.Configuration.allowParentSelection) {
       this.svc.toggleItemSelection(this.item);
     }
     this.onTouchedCallBack();

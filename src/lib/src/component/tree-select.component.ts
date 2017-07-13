@@ -50,8 +50,8 @@ export class TreeSelectComponent implements ControlValueAccessor {
   }
 
   @Input()
-  public set onlySelectParent(value: boolean) {
-    this.svc.setConfiguration(opt => opt.onlySelectParent = value, true);
+  public set allowParentSelection(value: boolean) {
+    this.svc.setConfiguration(opt => opt.allowParentSelection = value, true);
   }
 
   @Input()
@@ -72,8 +72,8 @@ export class TreeSelectComponent implements ControlValueAccessor {
     return this.svc.Configuration.allowMultiple;
   }
 
-  public get onlySelectParent(): boolean {
-    return this.svc.Configuration.onlySelectParent;
+  public get allowParentSelection(): boolean {
+    return this.svc.Configuration.allowParentSelection;
   }
   public get maxVisibleItemCount(): number {
     return this.svc.Configuration.maxVisibleItemCount;

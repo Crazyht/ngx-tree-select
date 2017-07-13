@@ -27,12 +27,12 @@ export class SelectableItem {
   get selected(): boolean {
     if (this.hasChild && this.svc.Configuration.allowMultiple) {
       if (this.children.some(child => child.selected)) {
-        if (this.svc.Configuration.onlySelectParent) {
+        if (this.svc.Configuration.allowParentSelection) {
           this._selected = false;
         }
         return true;
       } else if (this.children.every(child => child.selected === false)) {
-        if (this.svc.Configuration.onlySelectParent) {
+        if (this.svc.Configuration.allowParentSelection) {
           return this._selected;
         } else {
           return this._selected = false;
@@ -48,7 +48,7 @@ export class SelectableItem {
     return this._selected;
   }
   set selected(value: boolean) {
-    if (this.hasChild && !this.svc.Configuration.onlySelectParent) {
+    if (this.hasChild && !this.svc.Configuration.allowParentSelection) {
       if (value !== null) {
         this.children.forEach(child => child.selected = value);
       }

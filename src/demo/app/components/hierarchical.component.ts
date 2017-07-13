@@ -8,7 +8,7 @@ import { HierarchicalCountries } from '../../../datas';
 export class HierarchicalComponent {
   public items = HierarchicalCountries;
 
-  public CanSelectParent = true;
+  public AllowParentSelection = true;
   public ShowFilter = true;
   public Disabled = false;
   public FilterPlaceholder = 'Type here to filter elements...';
