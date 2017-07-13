@@ -18,7 +18,7 @@
     "e2e": "concurrently \"npm run serve:e2e\" \"npm run protractor\" --kill-others --success first",
     "pree2e:aot": "npm run build:e2e && npm run build:aot",
     "e2e:aot": "concurrently \"npm run serve:e2e-aot\" \"npm run protractor\" --kill-others --success first",
-    "preprotractor": "webdriver-manager update",
+    "preprotractor": "webdriver-manager update --gecko false",
     "protractor": "protractor protractor.config.js"
   },
   "keywords": [],
