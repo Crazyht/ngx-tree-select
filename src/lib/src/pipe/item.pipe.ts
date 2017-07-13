@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core'
+import { Pipe, PipeTransform } from '@angular/core';
 import { SelectableItem } from '../model/selectable-item';
 
 @Pipe({ name: 'ItemPipe' })

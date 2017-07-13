@@ -50,7 +50,7 @@ export class SelectService {
         if (itm.id === destination) {
           itm.selected = true;
         }
-        this.setSelectedItemOrChild(itm.children, destination)
+        this.setSelectedItemOrChild(itm.children, destination);
       } else if (itm.id === destination) {
         itm.selected = true;
       }
@@ -102,7 +102,7 @@ export class SelectService {
     for (let itm of items) {
       if (itm.hasChild) {
         itm.selected = false;
-        this.setAllUnselected(itm.children)
+        this.setAllUnselected(itm.children);
       } else {
         itm.selected = false;
       }

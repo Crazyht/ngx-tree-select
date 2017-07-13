@@ -23,6 +23,49 @@ const tempLibFolder = path.join(compilationFolder, 'lib');
 const es5OutputFolder = path.join(compilationFolder, 'lib-es5');
 const es2015OutputFolder = path.join(compilationFolder, 'lib-es2015');
 
+
+
+// Recursively create a dir.
+function _recursiveMkDir(dir) {
+  if (!fs.existsSync(dir)) {
+    _recursiveMkDir(path.dirname(dir));
+    fs.mkdirSync(dir);
+  }
+}
+
+// Copy files maintaining relative paths.
+function _relativeCopy(fileGlob, from, to) {
+  return new Promise((resolve, reject) => {
+    glob(fileGlob, {
+      cwd: from,
+      nodir: true
+    }, (err, files) => {
+      if (err) { reject(err); }
+      files.forEach((file) => {
+        const origin = path.join(from, file);
+        const dest = path.join(to, file);
+        const data = fs.readFileSync(origin, 'utf-8');
+        _recursiveMkDir(path.dirname(dest));
+        fs.writeFileSync(dest, data);
+        resolve();
+      });
+    });
+  });
+}
+
+function compileSassFiles() {
+  return execa('node-sass', [
+    tempLibFolder,
+    '-o', tempLibFolder,
+    '--output-style',
+    'compressed',
+    '--source-map',
+    true,
+    '--source-map-contents'
+  ]);
+}
+
+
 return Promise.resolve()
   // Copy library to temporary folder, compile sass files and inline html/css.
   .then(() => _relativeCopy(`**/*`, srcFolder, tempLibFolder)
@@ -34,14 +77,14 @@ return Promise.resolve()
   .then(() => ngc({
       project: `${tempLibFolder}/tsconfig.lib.json`
     })
-    .then(exitCode => exitCode === 0 ? Promise.resolve() : Promise.reject())
+    .then( (exitCode) => exitCode === 0 ? Promise.resolve() : Promise.reject() )
     .then(() => console.log('ES2015 compilation succeeded.'))
   )
   // Compile to ES5.
   .then(() => ngc({
       project: `${tempLibFolder}/tsconfig.es5.json`
     })
-    .then(exitCode => exitCode === 0 ? Promise.resolve() : Promise.reject())
+    .then( (exitCode) => exitCode === 0 ? Promise.resolve() : Promise.reject() )
     .then(() => console.log('ES5 compilation succeeded.'))
   )
   // Copy typings and metadata to `dist/` folder.
@@ -122,10 +165,10 @@ return Promise.resolve()
       minifiedUmdConfig,
       fesm5config,
       fesm2015config
-    ].map(cfg => rollup.rollup(cfg).then(bundle => bundle.write(cfg)));
+    ].map((cfg) => rollup.rollup(cfg).then((bundle) => bundle.write(cfg)));
 
     return Promise.all(allBundles)
-      .then(() => console.log('All bundles generated successfully.'))
+      .then(() => console.log('All bundles generated successfully.'));
   })
   // Copy package files
   .then(() => Promise.resolve()
@@ -134,49 +177,8 @@ return Promise.resolve()
     .then(() => _relativeCopy('README.md', rootFolder, distFolder))
     .then(() => console.log('Package files copy succeeded.'))
   )
-  .catch(e => {
+  .catch((e) => {
     console.error('\Build failed. See below for errors.\n');
     console.error(e);
     process.exit(1);
   });
-
-
-// Copy files maintaining relative paths.
-function _relativeCopy(fileGlob, from, to) {
-  return new Promise((resolve, reject) => {
-    glob(fileGlob, {
-      cwd: from,
-      nodir: true
-    }, (err, files) => {
-      if (err) reject(err);
-      files.forEach(file => {
-        const origin = path.join(from, file);
-        const dest = path.join(to, file);
-        const data = fs.readFileSync(origin, 'utf-8');
-        _recursiveMkDir(path.dirname(dest));
-        fs.writeFileSync(dest, data);
-        resolve();
-      })
-    })
-  });
-}
-
-// Recursively create a dir.
-function _recursiveMkDir(dir) {
-  if (!fs.existsSync(dir)) {
-    _recursiveMkDir(path.dirname(dir));
-    fs.mkdirSync(dir);
-  }
-}
-
-function compileSassFiles() {
-  return execa('node-sass', [
-    tempLibFolder,
-    '-o', tempLibFolder,
-    '--output-style',
-    'compressed',
-    '--source-map',
-    true,
-    '--source-map-contents'
-  ]);
-}
