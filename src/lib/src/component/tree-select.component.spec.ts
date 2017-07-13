@@ -1,6 +1,5 @@
 import { NgxTreeSelectModule } from '../../index';
 import { TreeSelectDefaultOptions } from './../model/tree-select-default-options';
-import { IsVisiblePipe } from './../pipe/isVisible.pipe';
 import { ItemPipe } from './../pipe/item.pipe';
 import { TreeSelectItemComponent } from './tree-select-item.component';
 import { OffClickDirective } from './../directive/off-click.directive';
