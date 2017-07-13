@@ -175,7 +175,8 @@ export class TreeSelectComponent implements ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
-  loadMore() {
+  loadMore($event: any) {
+    $event.stopPropagation();
     this.svc.setConfiguration(opt => opt.loadAllItems = false, false);
     this.svc.setConfiguration(opt => opt.maxVisibleItemCount = 0, false);
   }

@@ -13,7 +13,7 @@
                        class="close"
                        (click)="removeItem($event, itm)">x</a>
             </span>
-    <span class="pull-right more-items-icon" (click)="loadMore()" *ngIf="loadAllItems">(...)</span>
+    <span class="pull-right more-items-icon" (click)="loadMore($event)" *ngIf="loadAllItems">(...)</span>
     <i class="caret pull-right"></i>
     </span>
   </div>
