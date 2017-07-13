@@ -6,7 +6,7 @@ import { NgxTreeSelectModule } from 'ngx-tree-select';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
-import { FlatComponent } from "app/components/flat.component";
+import { FlatComponent } from "./components/flat.component";
 import { HierarchicalComponent } from './components/hierarchical.component';
 import { AppRoutes } from './app.routes';
 
@@ -16,7 +16,7 @@ import { AppRoutes } from './app.routes';
     FormsModule,
     RouterModule.forRoot(AppRoutes),
     Ng2BootstrapModule.forRoot(),
-    NgxTreeSelectModule.forRoot({ filterPlaceholder: 'test', maxVisibleItemCount: 3 })
+    NgxTreeSelectModule.forRoot({ idField: 'id', textField: 'name' })
   ],
   declarations: [
     AppComponent,
