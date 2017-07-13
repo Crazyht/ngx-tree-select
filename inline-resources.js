@@ -29,44 +29,6 @@ const readFile = promiseify(fs.readFile);
 const writeFile = promiseify(fs.writeFile);
 
 /**
- * Inline resources in a tsc/ngc compilation.
- * @param projectPath {string} Path to the project.
- */
-function inlineResources(projectPath) {
-
-  // Match only TypeScript files in projectPath.
-  const files = glob.sync('**/*.ts', {cwd: projectPath});
-
-  // For each file, inline the templates and styles under it and write the new file.
-  return Promise.all(files.map(filePath => {
-    const fullFilePath = path.join(projectPath, filePath);
-    return readFile(fullFilePath, 'utf-8')
-      .then(content => inlineResourcesFromString(content, url => {
-        // Resolve the template url.
-        return path.join(path.dirname(fullFilePath), url);
-      }))
-      .then(content => writeFile(fullFilePath, content))
-      .catch(err => {
-        console.error('An error occured: ', err);
-      });
-  }));
-}
-
-/**
- * Inline resources from a string content.
- * @param content {string} The source file's content.
- * @param urlResolver {Function} A resolver that takes a URL and return a path.
- * @returns {string} The content with resources inlined.
- */
-function inlineResourcesFromString(content, urlResolver) {
-  // Curry through the inlining functions.
-  return [
-    inlineTemplate,
-    inlineStyle
-  ].reduce((content, fn) => fn(content, urlResolver), content);
-}
-
-/**
  * Inline the templates for a source file. Simply search for instances of `templateUrl: ...` and
  * replace with `template: ...` (with the content of the file included).
  * @param content {string} The source file's content.
@@ -84,7 +46,6 @@ function inlineTemplate(content, urlResolver) {
   });
 }
 
-
 /**
  * Inline the styles for a source file. Simply search for instances of `styleUrls: [...]` and
  * replace with `styles: [...]` (with the content of the file included).
@@ -96,7 +57,7 @@ function inlineStyle(content, urlResolver) {
   return content.replace(/styleUrls:\s*(\[[\s\S]*?\])/gm, function (m, styleUrls) {
     const urls = eval(styleUrls);
     return 'styles: ['
-      + urls.map(styleUrl => {
+      + urls.map( (styleUrl) => {
         const styleFile = urlResolver(styleUrl);
         const styleContent = fs.readFileSync(styleFile, 'utf-8');
         const shortenedStyle = styleContent
@@ -107,6 +68,44 @@ function inlineStyle(content, urlResolver) {
         .join(',\n')
       + ']';
   });
+}
+
+/**
+ * Inline resources from a string content.
+ * @param content {string} The source file's content.
+ * @param urlResolver {Function} A resolver that takes a URL and return a path.
+ * @returns {string} The content with resources inlined.
+ */
+function inlineResourcesFromString(content, urlResolver) {
+  // Curry through the inlining functions.
+  return [
+    inlineTemplate,
+    inlineStyle
+  ].reduce((content, fn) => fn(content, urlResolver), content);
+}
+
+/**
+ * Inline resources in a tsc/ngc compilation.
+ * @param projectPath {string} Path to the project.
+ */
+function inlineResources(projectPath) {
+
+  // Match only TypeScript files in projectPath.
+  const files = glob.sync('**/*.ts', {cwd: projectPath});
+
+  // For each file, inline the templates and styles under it and write the new file.
+  return Promise.all(files.map( (filePath) => {
+    const fullFilePath = path.join(projectPath, filePath);
+    return readFile(fullFilePath, 'utf-8')
+      .then((content) => inlineResourcesFromString(content, (url) => {
+        // Resolve the template url.
+        return path.join(path.dirname(fullFilePath), url);
+      }))
+      .then( (content) => writeFile(fullFilePath, content))
+      .catch((err) => {
+        console.error('An error occured: ', err);
+      });
+  }));
 }
 
 module.exports = inlineResources;

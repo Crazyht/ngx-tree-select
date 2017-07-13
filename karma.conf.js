@@ -147,5 +147,5 @@ module.exports = function (config) {
     browserDisconnectTolerance: 1,
     browserNoActivityTimeout: 60000, //by default 10000
     singleRun: false
-  })
-}
+  });
+};

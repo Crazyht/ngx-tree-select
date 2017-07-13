@@ -14,7 +14,7 @@ var builtPaths = (__karma__.config.builtPaths || ['src/'])
 __karma__.loaded = function () { };
 
 function isJsFile(path) {
-  return path.slice(-3) == '.js';
+  return path.slice(-3) === '.js';
 }
 
 function isSpecFile(path) {
@@ -78,14 +78,11 @@ System.config({
   }
 });
 
-initTestBed().then(initTesting);
-
 function initTestBed(){
   return Promise.all([
     System.import('@angular/core/testing'),
     System.import('@angular/platform-browser-dynamic/testing')
   ])
-
   .then(function (providers) {
     var coreTesting    = providers[0];
     var browserTesting = providers[1];
@@ -93,7 +90,7 @@ function initTestBed(){
     coreTesting.TestBed.initTestEnvironment(
       browserTesting.BrowserDynamicTestingModule,
       browserTesting.platformBrowserDynamicTesting());
-  })
+  });
 }
 
 // Import all spec files and start karma
@@ -105,5 +102,8 @@ function initTesting () {
   )
   .then(__karma__.start, __karma__.error);
 }
+
+initTestBed().then(initTesting);
+
 
 beforeEach((done) => done());
