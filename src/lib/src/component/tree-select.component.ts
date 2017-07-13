@@ -27,6 +27,8 @@ export class TreeSelectComponent implements ControlValueAccessor {
   private onChangeCallback: (_: any) => void = noop;
   private haveFocus = false;
   private inputFocus = false;
+  public showMoreLink = false;
+  public moreLoaded = false;
 
   @Input() public disabled = false;
   @Input() public filterPlaceholder = 'Type here for filtering items...';
@@ -86,9 +88,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
   }
 
   public get selection(): SelectableItem[] {
-    if (this.maxVisibleItemCount && ((this.svc.getInternalSelection().length - this.maxVisibleItemCount) > 0)) {
-      this.svc.setConfiguration(opt => opt.loadAllItems = true, false);
-    }
+    this.showMoreLink = (this.maxVisibleItemCount > 0 && ((this.svc.getInternalSelection().length - this.maxVisibleItemCount) > 0));
     return this.svc.getInternalSelection();
   }
 
@@ -177,8 +177,8 @@ export class TreeSelectComponent implements ControlValueAccessor {
 
   loadMore($event: any) {
     $event.stopPropagation();
-    this.svc.setConfiguration(opt => opt.loadAllItems = false, false);
-    this.svc.setConfiguration(opt => opt.maxVisibleItemCount = 0, false);
+    this.moreLoaded = !this.moreLoaded;
+    //this.svc.setConfiguration(opt => opt.maxVisibleItemCount = 0, false);
   }
 
   ProcessMatchFilterTreeItem(tree: SelectableItem, filter: string): boolean {
