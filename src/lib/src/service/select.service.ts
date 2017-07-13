@@ -163,21 +163,19 @@ export class SelectService {
   private getSelectedItems(array: SelectableItem[]): SelectableItem[] {
     if (this.Configuration.isValid()) {
       let res: SelectableItem[] = [];
-      array.forEach(v => {
+      for (let v of array) {
         if (v.hasChild && v.selected === true) {
-          if (this._options.allowMultiple) {
             if (v.children.every(child => child.selected === false)) {
               res = [...res, v];
             } else {
               res = [...res, ...this.getSelectedItems(v.children)];
             }
-          }
         } else if (v.hasChild) {
           res = [...res, ...this.getSelectedItems(v.children)];
         } else if (v.selected === true) {
           res = [...res, v];
         }
-      });
+      };
       return res;
     } else {
       return [];
