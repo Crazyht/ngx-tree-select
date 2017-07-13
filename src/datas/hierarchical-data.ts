@@ -1,6 +1,6 @@
 export const HierarchicalCountries = [
   {
-    id: 'AF',
+    id: 'Cont_AF',
     name: 'Africa',
     children: [
       {
@@ -412,7 +412,7 @@ export const HierarchicalCountries = [
     ]
   },
   {
-    id: 'AN',
+    id: 'Cont_AN',
     name: 'Antarctica',
     children: [
       {
@@ -453,7 +453,7 @@ export const HierarchicalCountries = [
     ]
   },
   {
-    id: 'AS',
+    id: 'Cont_AS',
     name: 'Asia',
     children: [
       {
@@ -823,7 +823,7 @@ export const HierarchicalCountries = [
     ]
   },
   {
-    id: 'EU',
+    id: 'Cont_EU',
     name: 'Europe',
     children: [
       {
@@ -1200,7 +1200,7 @@ export const HierarchicalCountries = [
     ]
   },
   {
-    id: 'NA',
+    id: 'Cont_NA',
     name: 'North America',
     children: [
       {
@@ -1493,7 +1493,7 @@ export const HierarchicalCountries = [
     ]
   },
   {
-    id: 'OC',
+    id: 'Cont_OC',
     name: 'Oceania',
     children: [
       {
@@ -1688,7 +1688,7 @@ export const HierarchicalCountries = [
     ]
   },
   {
-    id: 'SA',
+    id: 'Cont_SA',
     name: 'South America',
     children: [
       {
