@@ -214,14 +214,23 @@ export class SelectService {
   private getItemForModel(value: any, array: SelectableItem[]): SelectableItem[] {
     let result: SelectableItem[] = [];
     for (let v of array) {
-      if (value && value[this.Configuration.idProperty]) {
-        if (v.id === (value[this.Configuration.idProperty] || '').toString()) {
-          result.push(v);
+      if (value) {
+        if (typeof value !== 'object') {
+          if (v.data === value) {
+            result.push(v);
+          }
+        } else {
+          if (value[this.Configuration.idProperty]) {
+            if (v.id === (value[this.Configuration.idProperty] || '').toString()) {
+              result.push(v);
+            }
+          }
+          if (this.Configuration.isHierarchy() && v.children && v.children.length > 0) {
+            result = [...result, ...this.getItemForModel(value, v.children)];
+          }
         }
       }
-      if (this.Configuration.isHierarchy() && v.children && v.children.length > 0) {
-        result = [...result, ...this.getItemForModel(value, v.children)];
-      }
+
     };
     return result;
   }
