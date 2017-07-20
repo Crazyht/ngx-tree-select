@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { FlatComponent } from './components/flat.component';
 import { HierarchicalComponent } from './components/hierarchical.component';
 import { AppRoutes } from './app.routes';
+import { SimpleValueComponent } from './components/simple-value.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { AppRoutes } from './app.routes';
   declarations: [
     AppComponent,
     FlatComponent,
-    HierarchicalComponent
+    HierarchicalComponent,
+    SimpleValueComponent
   ],
   bootstrap: [AppComponent]
 })
