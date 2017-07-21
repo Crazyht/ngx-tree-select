@@ -19,7 +19,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   selector: 'tree-select',
   templateUrl: './tree-select.component.html',
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR, SelectService],
-  styleUrls: ['./tree-select.component.css']
+  styleUrls: ['./tree-select.component.scss']
 })
 export class TreeSelectComponent implements ControlValueAccessor {
   private _isOpen = false;

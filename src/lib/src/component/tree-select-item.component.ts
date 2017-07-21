@@ -5,7 +5,7 @@ import { SelectService } from '../service/select.service';
 @Component({
   selector: 'tree-select-item',
   templateUrl: './tree-select-item.component.html',
-  styleUrls: ['./tree-select-item.component.css']
+  styleUrls: ['./tree-select-item.component.scss']
 })
 export class TreeSelectItemComponent {
   public get isOpen() {

@@ -17,13 +17,14 @@
     "clean": "rimraf out-tsc dist/* \"src/lib/**/*.js\" \"src/lib/**/*.map\"",
     "prebuild": "npm run clean",
     "build": "node build.js",
-    "build-demo": "tsc -p src/demo/",
+    "build-demo": "ng build",
     "build-demo:watch": "tsc -p src/demo/ -w",
     "build-scss": "node-sass src/lib -o src/lib --output-style expanded",
     "build-scss:watch": "node-sass src/lib -o src/lib --output-style expanded -w",
-    "serve": "lite-server -c=bs-config.json",
+    "serve": "ng serve",
     "prestart": "npm run build-demo && npm run build-scss",
-    "start": "concurrently \"npm run build-scss:watch\" \"npm run build-demo:watch\" \"npm run serve\"",
+    "start:once": "npm run serve",
+    "start": "ng serve --hmr -e=hmr",
     "build-test": "tsc -p src/lib/tsconfig.spec.json",
     "build-test:watch": "tsc -p src/lib/tsconfig.spec.json -w",
     "pretest": "npm run build-test",
@@ -36,16 +37,24 @@
     "integration:aot": "cd integration && npm run e2e:aot",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "changelog": "standard-version",
-    "release": "npm run build && npm run test:once && npm run integration && npm publish dist"
+    "release": "npm run build && npm run test:once && npm run integration && npm publish dist",
+    "ghpages": "ng build --prod && angular-cli-ghpages",
+    "angular-cli-ghpages": "angular-cli-ghpages",
+    "ng": "ng",
+    "demo:test": "ng test",
+    "demo:lint": "ng lint",
+    "demo:e2e": "ng e2e"
   },
   "peerDependencies": {
     "@angular/core": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
     "@angular/forms": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0"
   },
   "devDependencies": {
+    "@angular/cli": "1.2.1",
     "@angular/common": "~4.2.6",
     "@angular/compiler": "~4.2.6",
     "@angular/compiler-cli": "~4.2.6",
+    "@angular/language-service": "^4.0.0",
     "@angular/core": "~4.2.6",
     "@angular/forms": "~4.2.6",
     "@angular/router": "~4.2.6",
@@ -84,6 +93,17 @@
     "systemjs": "^0.20.14",
     "tslint": "^5.4.3",
     "typescript": "^2.4.1",
-    "zone.js": "^0.8.12"
+    "zone.js": "^0.8.12",
+    "@types/jasminewd2": "~2.0.2",
+    "codelyzer": "~3.0.1",
+    "jasmine-spec-reporter": "~4.1.0",
+    "karma-coverage-istanbul-reporter": "^1.2.1",
+    "protractor": "~5.1.2",
+    "ts-node": "~3.0.4"
+  },
+  "dependencies": {
+    "@types/bootstrap": "^3.3.35",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0"
   }
 }

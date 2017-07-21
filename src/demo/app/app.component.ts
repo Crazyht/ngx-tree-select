@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { HierarchicalCountries } from '../../datas/hierarchical-data';
-import { FlatCountries } from '../../datas/flat-data';
 
 @Component({
-  selector: 'demo-app',
-  templateUrl: './app.component.html'
+  selector: 'demo-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
+  title = 'demo';
 }

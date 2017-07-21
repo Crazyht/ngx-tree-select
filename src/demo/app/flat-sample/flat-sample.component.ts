@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { FlatCountries } from '../../../datas';
 
 @Component({
-  selector: 'flat-sample',
-  templateUrl: './flat.component.html'
+  selector: 'demo-flat-sample',
+  templateUrl: './flat-sample.component.html',
+  styleUrls: ['./flat-sample.component.scss']
 })
-export class FlatComponent {
+export class FlatSampleComponent {
   public items = FlatCountries;
 
   public ShowFilter = true;

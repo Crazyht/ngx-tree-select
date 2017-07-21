@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { HierarchicalCountries } from '../../../datas';
 
 @Component({
-  selector: 'hierarchical-sample',
-  templateUrl: './hierarchical.component.html'
+  selector: 'demo-hierarchical-sample',
+  templateUrl: './hierarchical-sample.component.html',
+  styleUrls: ['./hierarchical-sample.component.scss']
 })
-export class HierarchicalComponent {
+export class HierarchicalSampleComponent {
   public items = HierarchicalCountries;
 
   public AllowParentSelection = true;

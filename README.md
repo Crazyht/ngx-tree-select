@@ -23,7 +23,6 @@ or
 yarn add ngx-tree-select
 ```
 
-
 And on your application module:
 
 ```ts
@@ -128,9 +127,7 @@ When you place **tree-select** on HTML template you can define :
 - **childrenField** : determine which property of yours items contains children items
 - **allowParentSelection** : if set to **true**, you can select parent, else when you select parent all children are selected
 
-
 **tree-select** component use default options define when you call ```NgxTreeSelectModule.forRoot``` except if you override it with attribute on HTML template.
-
 
 # Running the Demo Application
 This command will build and start the demo application:
@@ -147,7 +144,6 @@ First let's build the library using this command:
 npm run build
 ```
 
-
 Then let's link it:
 
 ```bash
@@ -155,13 +151,11 @@ cd dist
 npm link
 ```
 
-
 On another folder on the same machine where we have for example a running Angular CLI, we then do:
 
 ```bash
 npm link ngx-tree-select
 ```
-
 
 # Running the Tests
 
@@ -202,10 +196,8 @@ packages: {
     main: 'index.js',
     defaultExtension: 'js'
   }
-
 }
 ```
-
 
 # License
 
