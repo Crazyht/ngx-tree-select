@@ -1,4 +1,6 @@
 # Ngx-tree-select
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Crazyht/ngx-tree-select.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/Crazyht/ngx-tree-select.svg?branch=dev)](https://travis-ci.org/Crazyht/ngx-tree-select)
 
 ## Features:
