@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Exemple ngx-tree-select with flat datas</h1>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Simple select</div>
+    <div class="panel-body">
+      <form novalidate>
+        <tree-select name="simpleSelect" [items]="items" childrenField="children" [(ngModel)]="simpleSelected" required=true #simpleSelect="ngModel"
+          [filterPlaceholder]="FilterPlaceholder" [allowFilter]="ShowFilter" [disabled]="Disabled"></tree-select>
+        <div *ngIf="simpleSelect.errors && (simpleSelect.dirty || simpleSelect.touched)" class="alert alert-danger">
+          <div [hidden]="!simpleSelect.errors.required">Simple select is required</div>
+        </div>
+      </form>
+      <div class="col-md-12">
+        {{simpleSelected}}
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Multiple select</div>
+    <div class="panel-body">
+      <form novalidate>
+        <tree-select name="multipleSelect" [items]="items" childrenField="children" [multiple]="true" [(ngModel)]="multipleSelected"
+          filterPlaceholder="Type item filter..." required=true minlength="2" maxlength="4"
+          #multipleSelect="ngModel" [filterPlaceholder]="FilterPlaceholder" [maxVisibleItemCount]="MaxDisplayed" [allowFilter]="ShowFilter"
+          [disabled]="Disabled">
+        </tree-select>
+        <div *ngIf="multipleSelect.errors && (multipleSelect.dirty || multipleSelect.touched)" class="alert alert-danger">
+          <div [hidden]="!multipleSelect.errors.required">Multiple select is required</div>
+          <div [hidden]="!multipleSelect.errors.minlength">You must choose at least 2 items on Multiple select</div>
+          <div [hidden]="!multipleSelect.errors.maxlength">You must choose maximum 4 items on Multiple select</div>
+        </div>
+      </form>
+      <div class="col-md-12">
+        <li *ngFor="let itm of multipleSelected">{{itm}}</li>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Options</div>
+    <div class="panel-body">
+      <form class="form-horizontal" style="margin:15px">
+        <div class="form-group">
+          <label for="MaxDisplayed">Max elements displayed</label>
+          <input id="MaxDisplayed" type="number" name="MaxDisplayed" [(ngModel)]="MaxDisplayed" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="FilterPlaceholder">Filter</label>
+          <input id="FilterPlaceholder" type="text" name="FilterPlaceholder" [(ngModel)]="FilterPlaceholder" [disabled]="!ShowFilter"
+            class="form-control">
+        </div>
+        <div class="checkbox">
+          <label>
+              <input type="checkbox" [checked]="ShowFilter" (change)="ShowFilter = $event.target.checked"> Show filter
+            </label>
+        </div>
+        <div class="checkbox">
+          <label>
+              <input type="checkbox" [checked]="Disabled" (change)="Disabled = $event.target.checked"> Disabled
+            </label>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,24 +1,52 @@
-dist: trusty
 sudo: false
+dist: trusty
 language: node_js
-node_js:
-  - "6"
-os:
-  - linux
-before_install:
-  # Use a virtual display.
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  # Install latest chrome.
-  - export CHROME_BIN=chromium-browser
+
 cache:
   directories:
-  - node_modules
-  - integration/node_modules
+    - node_modules
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+node_js:
+  - "6"
+  - "7"
+  - "node"
+
+matrix:
+  fast_finish: true
+
+before_install:
+  - npm prune
+  - npm update
+
 install:
   - npm install
+
+after_install:
+  - npm rebuild node-sass
+  - ./node_modules/protractor/bin/webdriver-manager update
+
+before_script:
+  - npm rebuild node-sass
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3
+
 script:
-  - npm run build
-  - npm run lint
-  - npm run test:once
-  - npm run integration
+  - npm run ci:travis
+  - npm run github-deploy:prod
+
+deploy:
+  provider: pages
+  local_dir: dist
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  node_js: "node"
+  on:
+    branch: dev

@@ -1,31 +1,30 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgxTreeSelectModule } from 'ngx-tree-select';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
-import { NgxTreeSelectModule } from '../../lib';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FlatSampleComponent } from './flat-sample/flat-sample.component';
-import { HierarchicalSampleComponent } from './hierarchical-sample/hierarchical-sample.component';
-import { SimpleItemsComponent } from './simple-items/simple-items.component';
+import { FlatComponent } from './flat/flat.component';
+import { HierarchicalComponent } from './hierarchical/hierarchical.component';
+import { AppRoutes } from './app.routes';
+import { SimpleValueComponent } from './simple-value/simple-value.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FlatSampleComponent,
-    HierarchicalSampleComponent,
-    SimpleItemsComponent
-  ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
+    RouterModule.forRoot(AppRoutes),
     Ng2BootstrapModule.forRoot(),
     NgxTreeSelectModule.forRoot({ idField: 'id', textField: 'name' })
   ],
-  providers: [],
+  declarations: [
+    AppComponent,
+    FlatComponent,
+    HierarchicalComponent,
+    SimpleValueComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

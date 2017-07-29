@@ -1,11 +1,13 @@
 # Ngx-tree-select
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Crazyht/ngx-tree-select.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/Crazyht/ngx-tree-select.svg?branch=dev)](https://travis-ci.org/Crazyht/ngx-tree-select)
 [![npm version](https://badge.fury.io/js/ngx-tree-select.svg)](https://badge.fury.io/js/ngx-tree-select)
 ## Features:
 - Dropdown with 'flat' items (Like normal select)
 - Dropdown with hierarchical items
 - Simple or multiple selected items
-- With hierarchical datas you can force child selection or allow select parent 
+- With hierarchical datas you can force child selection or allow select parent
 - ngModel & standard validation compliant
 - Can limit displayed selected items (... link allow your user to see entire selection)
 
@@ -35,9 +37,9 @@ import {NgxTreeSelectModule} from 'ngx-tree-select';
     ....,
     NgxTreeSelectModule.forRoot({
       allowFilter: true,
-      filterPlaceholder: 'Type your filter here...', 
+      filterPlaceholder: 'Type your filter here...',
       maxVisibleItemCount: 5,
-      idField: 'id', 
+      idField: 'id',
       textField: 'name',
       childrenField: 'children',
       allowParentSelection: true
@@ -51,11 +53,11 @@ See below for SystemJs / UMD installation.
 
 # Default options
 
-When you call ```NgxTreeSelectModule.forRoot``` you must pass default options. This options can be empty object "{}" or you can add one or more settings : 
+When you call ```NgxTreeSelectModule.forRoot``` you must pass default options. This options can be empty object "{}" or you can add one or more settings :
 
 - **allowFilter** : display filter input on dropdown
 - **filterPlaceholder** : determine placeholder text for filter
-- **maxVisibleItemCount** : determine maximum number of items are displayed on multiple select 
+- **maxVisibleItemCount** : determine maximum number of items are displayed on multiple select
 - **idField** : determine which property of your items is used as unique identifier
 - **textField** : determine which property of your items is displayed
 - **childrenField** : determine which property of yours items contains children items
@@ -114,14 +116,14 @@ Then we can use the Tree Select like this:
 
 # Component attributes
 
-When you place **tree-select** on HTML template you can define : 
+When you place **tree-select** on HTML template you can define :
 
 - **items** : list of items
 - **multiple** : allow multiple selection
-- **disabled** : disable component 
+- **disabled** : disable component
 - **allowFilter** : display filter input on dropdown
 - **filterPlaceholder** : determine placeholder text for filter
-- **maxVisibleItemCount** : determine maximum number of items are displayed on multiple select 
+- **maxVisibleItemCount** : determine maximum number of items are displayed on multiple select
 - **idField** : determine which property of your items is used as unique identifier
 - **textField** : determine which property of your items is displayed
 - **childrenField** : determine which property of yours items contains children items
@@ -141,15 +143,17 @@ npm start
 First let's build the library using this command:
 
 ```bash
-npm run build
+npm run lib:build
 ```
+
 
 Then let's link it:
 
 ```bash
-cd dist
+cd dist_package\ngx-tree-select
 npm link
 ```
+
 
 On another folder on the same machine where we have for example a running Angular CLI, we then do:
 
@@ -157,13 +161,14 @@ On another folder on the same machine where we have for example a running Angula
 npm link ngx-tree-select
 ```
 
+
 # Running the Tests
 
 The tests can be executed with the following commands:
 
 ```bash
-npm test
-npm integration
+npm run test
+npm run e2e
 ```
 
 ## Using SystemJs via the UMD bundle ?
@@ -187,7 +192,7 @@ map: {
 }
 ```
 
-And in your packages property:
+And in our packages property:
 
 ```javascript
 packages: {
@@ -196,8 +201,10 @@ packages: {
     main: 'index.js',
     defaultExtension: 'js'
   }
+
 }
 ```
+
 
 # License
 

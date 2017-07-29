@@ -1,0 +1,14 @@
+{
+  "name": "ngx-tree-select",
+  "version": "1.0.0",
+  "description": "Angular component for select with tree items.",
+  "keywords": [
+    "angular4",
+    "treeview",
+    "dropdown",
+    "select"
+  ],
+  "libConfig": {
+    "inlineResources": true
+  }
+}
