@@ -6,10 +6,10 @@ import { NgxTreeSelectModule } from 'ngx-tree-select';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
-import { FlatComponent } from './components/flat.component';
-import { HierarchicalComponent } from './components/hierarchical.component';
+import { FlatComponent } from './flat/flat.component';
+import { HierarchicalComponent } from './hierarchical/hierarchical.component';
 import { AppRoutes } from './app.routes';
-import { SimpleValueComponent } from './components/simple-value.component';
+import { SimpleValueComponent } from './simple-value/simple-value.component';
 
 @NgModule({
   imports: [

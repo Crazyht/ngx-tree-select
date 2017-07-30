@@ -1,61 +1,55 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>Ngx-Tree-Select - Angular component for select with tree items</title>
-  <base href="/">
-  <meta charset="UTF-8">
-  <!-- Name of web application (only should be used if the website is used as an app) -->
-  <meta name="application-name" content="ngx-tree-select">
-
-  <!-- Short description of the page (limit to 150 characters) -->
-  <meta name="description" content="Angular  component for select with tree items." />
-
-  <!-- Short description of your site's subject -->
-  <meta name="subject" content="Angular  component for select with tree items">
-
-  <!-- Very short (10 words or less) description. Primarily for academic papers -->
-  <meta name="abstract" content="Angular (2+) select with tree items">
-
-  <!-- Crawling: All Search Engines -->
-  <meta name="robots" content="index,follow,noodp">
-
-  <!-- Crawling: Google Specific -->
-  <meta name="googlebot" content="index,follow">
-
-  <!-- Scaling -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- IE -->
+  <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta http-equiv="cleartype" content="on">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
+  <!-- base url -->
+  <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
+  <% if (webpackConfig.htmlElements.headTags) { %>
+  <!-- Configured Head Tags  -->
+  <%= webpackConfig.htmlElements.headTags %>
+  <% } %>
 
-  <!-- Add to Home Screen: iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Crazy select">
 
-  <!-- Add to Home Screen: Android -->
-  <meta name="mobile-web-app-capable" content="yes">
+  <%= htmlWebpackPlugin.files.webpackManifest %>
 
-  <!--link to bootstrap.css-->
+  <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
+  <!-- Webpack Dev Server reload -->
+  <script src="/webpack-dev-server.js"></script>
+  <% } %>
+
+  <!-- Async Google Analytics: change UA-63876680-2 to be your site's ID -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-63876680-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+  <!-- End Google Analytics -->
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <!-- CSS will be injected by webpack here -->
+  <!-- Preload link tags will be injected by webpack here -->
 
-  <!-- Polyfill(s) for older browsers -->
-  <script src="node_modules/core-js/client/shim.min.js"></script>
-
-  <script src="node_modules/zone.js/dist/zone.js"></script>
-  <script src="node_modules/systemjs/dist/system.src.js"></script>
-
-  <script src="systemjs.config.js"></script>
-  <script>
-    System.import('main.js').catch(function (err) { console.error(err); });
-  </script>
 </head>
 
 <body>
-  <demo-app>Loading...</demo-app>
-</body>
 
+  <demo-app>
+    Loading...
+  </demo-app>
+
+  <!-- Scripts will be injected by webpack here -->
+</body>
 </html>

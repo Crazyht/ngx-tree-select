@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.11.0"></a>
+# [0.11.0](https://github.com/crazyht/ngx-tree-select/compare/v0.10.0...v0.11.0) (2017-07-30)
+
+
+### Bug Fixes
+
+* initial select is not displayed when list of items contains string value ([280e61c](https://github.com/crazyht/ngx-tree-select/commit/280e61c))
+* set gecko false for webdriver manager. See https://github.com/angular/webdriver-manager/issues/216 ([4c87d6b](https://github.com/crazyht/ngx-tree-select/commit/4c87d6b))
+
+
+
 <a name="0.10.1"></a>
 ## [0.10.1](https://github.com/Crazyht/crazy-select/compare/v0.10.0...v0.10.1) (2017-07-19)
 
