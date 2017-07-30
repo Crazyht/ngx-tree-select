@@ -39,14 +39,26 @@ before_script:
   - sleep 3
 
 script:
-  - npm run ci:travis
+  - npm run lib:sync
+  - npm run lib:build
+  - npm run lib:test
+  - npm run lint
+  - npm run test
+  - npm run build:aot
+  - npm run e2e:travis
   - npm run github-deploy:prod
 
 deploy:
-  provider: pages
-  local_dir: dist
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-  on:
-    branch: dev
-    node: "node"
+  - provider: pages
+    local_dir: dist
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+    on:
+      branch: master
+      node: "node"
+  - provider: npm
+    email: "crazyht24@hotmail.com"
+    api_key: $NPM_TOKEN
+    on:
+      branch: master
+      node: "node"
