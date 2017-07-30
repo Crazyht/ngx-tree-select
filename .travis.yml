@@ -22,6 +22,7 @@ matrix:
   fast_finish: true
 
 before_install:
+  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
   - npm prune
   - npm update
 
@@ -47,10 +48,6 @@ script:
   - npm run build:aot
   - npm run e2e:travis
   - npm run github-deploy:prod
-
-before_deploy:
-  - npm login --registry http://registry.npmjs.org
-  - npm run ci-npm-login
 
 deploy:
   - provider: pages
