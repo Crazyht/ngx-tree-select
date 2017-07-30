@@ -30,7 +30,7 @@ install:
 
 after_install:
   - npm rebuild node-sass
-  - ./node_modules/protractor/bin/webdriver-manager update
+  - ./node_modules/protractor/bin/webdriver-manager update --gecko false
 
 before_script:
   - npm rebuild node-sass
