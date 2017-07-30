@@ -58,6 +58,7 @@ deploy:
       branch: master
       node: "node"
   - provider: script
+    skip_cleanup: true
     script: npm publish dist_package/ngx-tree-select || true
     on:
       branch: master
