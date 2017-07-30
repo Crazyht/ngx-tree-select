@@ -15,13 +15,28 @@
             "webRoot": "${workspaceRoot}"
         },
         {
-            "name": "Attach to Chrome, with sourcemaps",
-            "type": "chrome",
-            "request": "attach",
-            "url": "http://localhost:3000/*",
-            "port": 9222,
-            "sourceMaps": true,
-            "webRoot": "${workspaceRoot}"
+          "name": "Attach to Chrome, with sourcemaps",
+          "type": "chrome",
+          "request": "attach",
+          "url": "http://localhost:3000/*",
+          "port": 9222,
+          "sourceMaps": true,
+          "webRoot": "${workspaceRoot}"
+        },
+        {
+          "name": "tests",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+          "stopOnEntry": false,
+          "args": [
+            "--runInBand",
+            "--config",
+            "jest.library.config.json"
+          ],
+          "cwd": "${workspaceRoot}",
+          "preLaunchTask": null,
+          "console": "internalConsole"
         }
     ]
 }
