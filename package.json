@@ -76,7 +76,8 @@
     "webdriver:start": "npm run webdriver-manager start",
     "webdriver:update": "webdriver-manager update",
     "webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js"
+    "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
+    "ci-npm-login": "node node_modules/npm-utils/bin/set-auth-token-var-name.js"
   },
   "devDependencies": {
     "@angular/animations": "^4.3.2",
@@ -156,6 +157,7 @@
     "ngx-bootstrap": "^1.8.1",
     "node-sass": "^4.5.2",
     "npm-run-all": "^4.0.2",
+    "npm-utils": "^2.0.0",
     "optimize-js-plugin": "0.0.4",
     "parse5": "^3.0.2",
     "preload-webpack-plugin": "^1.2.3",

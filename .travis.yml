@@ -48,6 +48,10 @@ script:
   - npm run e2e:travis
   - npm run github-deploy:prod
 
+before_deploy:
+  - npm login --registry http://registry.npmjs.org
+  - npm run ci-npm-login
+
 deploy:
   - provider: pages
     local_dir: dist
@@ -56,9 +60,8 @@ deploy:
     on:
       branch: master
       node: "node"
-  - provider: npm
-    email: "crazyht24@hotmail.com"
-    api_key: $NPM_TOKEN
+  - provider: script
+    script: npm publish dist_package/ngx-tree-select || true
     on:
       branch: master
       node: "node"
