@@ -26,8 +26,8 @@ function createTag(tagName, attrMap, publicPath) {
   }
 
   const attributes = Object.getOwnPropertyNames(attrMap)
-    .filter(function(name) { return name[0] !== '='; } )
-    .map(function(name) {
+    .filter((name) => name[0] !== '=')
+    .map((name) => {
       var value = attrMap[name];
 
       if (publicPath) {

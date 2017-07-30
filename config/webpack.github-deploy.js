@@ -46,12 +46,8 @@ module.exports = function (options) {
        this.plugin('done', function(stats) {
          console.log('Starting deployment to GitHub.');
 
-         const logger = function (msg) {
-           console.log(msg);
-         };
-
          const options = {
-           logger: logger,
+           logger: (msg) => { console.log(msg); },
            remote: GIT_REMOTE_NAME,
            message: COMMIT_MESSAGE,
            dotfiles: true // for .nojekyll
