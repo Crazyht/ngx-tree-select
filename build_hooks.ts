@@ -8,7 +8,14 @@ const globals = {
   '@angular/http': 'ng.http',
   '@angular/platform-browser': 'ng.platformBrowser',
   '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
-  '@angular/platform-browser/animations': 'ng.platformBrowser.animations'
+  '@angular/platform-browser/animations': 'ng.platformBrowser.animations',
+  '@angular/router': 'ng.router',
+  '@ng-bootstrap/ng-bootstrap': 'bootstrap',
+  'rxjs/Rx': 'Rx',
+  'rxjs/ReplaySubject': 'Rx.ReplaySubject',
+  'rxjs/BehaviorSubject': 'Rx.BehaviorSubject',
+  'rxjs/Subject': 'Rx.Subject',
+  'rxjs/Observable': 'Rx.Observable'
 };
 
 export function jestConfig(config): void {
