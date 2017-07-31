@@ -77,7 +77,7 @@
     "webdriver:update": "webdriver-manager update",
     "webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
-    "ci-npm-login": "node node_modules/npm-utils/bin/set-auth-token-var-name.js"
+    "travis-publish": "npm publish dist_package/ngx-tree-select"
   },
   "devDependencies": {
     "@angular/animations": "^4.3.2",
