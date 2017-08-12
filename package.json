@@ -95,7 +95,7 @@
     "@angularclass/hmr-loader": "~3.0.4",
     "@types/chalk": "^0.4.31",
     "@types/deep-equal": "^1.0.0",
-    "@types/del": "^2.2.32",
+    "@types/del": "^3.0.0",
     "@types/gulp": "^4.0.4",
     "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "2.5.53",
