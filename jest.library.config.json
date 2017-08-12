@@ -7,7 +7,7 @@
   "transform": {
     "^.+\\.(ts|js|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js"
   },
-  "testRegex": "src\/(?!demo).+\/.+\\.spec\\.ts$",
+  "testRegex": "src/(?!demo).+/.+\\.spec\\.ts$",
   "moduleFileExtensions": [
     "ts",
     "js",

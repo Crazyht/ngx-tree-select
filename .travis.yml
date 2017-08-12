@@ -59,7 +59,7 @@ deploy:
       node: "node"
   - provider: script
     skip_cleanup: true
-    script: $(npm publish dist_package/ngx-tree-select)
+    script: npm run travis-publish
     on:
       branch: master
       node: "node"

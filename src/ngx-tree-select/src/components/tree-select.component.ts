@@ -160,12 +160,12 @@ export class TreeSelectComponent implements ControlValueAccessor {
       }
       this.haveFocus = false;
     }
-    this.svc.close();
   }
 
   // Set touched on blur
   @HostListener('blur')
   public onTouched() {
+    this.svc.close();
     this.onTouchedCallback();
   }
 
