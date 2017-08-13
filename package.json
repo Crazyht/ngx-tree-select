@@ -166,7 +166,7 @@
     "reflect-metadata": "^0.1.10",
     "require-dir": "^0.3.2",
     "rimraf": "~2.6.1",
-    "rollup": "^0.46.0",
+    "rollup": "^0.47.1",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-stream": "^1.23.1",
