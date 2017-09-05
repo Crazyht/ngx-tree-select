@@ -1,0 +1,75 @@
+:host.ng-invalid:not(.ng-pristine) span.form-control,
+:host.ng-invalid:not(.ng-untouched) span.form-control {
+  border-color: #a94442;
+}
+
+.input-group > .dropdown {
+  position: static;
+}
+
+.disabled > span {
+  background-color: #eceeef;
+  cursor: not-allowed;
+}
+
+.disabled .btn {
+  padding-right: 5px;
+}
+
+ul {
+  height: auto;
+  list-style-type: none;
+  margin-top: 0;
+  max-height: 200px;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.selected-container-text {
+  padding-left: 7px;
+}
+
+.selected-container-item {
+  padding-left: 2px;
+}
+
+.selected-item-text {
+  font-size: 14px;
+  margin: 3px;
+}
+
+.selected-item-item {
+  font-size: 14px;
+  margin: 2px;
+  outline: 0;
+}
+
+.more-items-icon {
+  opacity: 0.5;
+  height: 10px;
+  margin-top: -2px;
+  position: absolute;
+  right: 20px;
+  top: 30%;
+}
+
+.close {
+  font-size: 18px;
+  line-height: .75;
+  margin-left: 5px;
+  padding-top: 3px;
+  position: absolute;
+}
+
+.caret {
+  height: 10px;
+  margin-top: -2px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+}
+
+.btn {
+  display: table;
+  padding-right: 20px;
+}
