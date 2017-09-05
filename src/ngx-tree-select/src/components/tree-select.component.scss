@@ -20,8 +20,15 @@ $error-border-color: #a94442;
   }
 
   .btn {
-    padding-right: 5px;
+    border-color: #ccc;
   }
+}
+
+.enabled {
+  &>span {
+    cursor: context-menu;
+  }
+
 }
 
 ul {
