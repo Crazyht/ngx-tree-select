@@ -99,7 +99,7 @@
     "@types/gulp": "^4.0.4",
     "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "2.5.53",
-    "@types/jest": "^20.0.6",
+    "@types/jest": "^21.1.0",
     "@types/mkdirp": "^0.3.29",
     "@types/node": "^8.0.18",
     "@types/rollup": "^0.41.1",
