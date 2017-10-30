@@ -9,4 +9,5 @@ export class TreeSelectDefaultOptions {
   public idField?: string;
   public textField?: string;
   public childrenField?: string;
+  public filterCaseSensitive?: boolean;
 }

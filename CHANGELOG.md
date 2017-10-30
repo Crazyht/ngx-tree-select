@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.12.0"></a>
+# [0.12.0](https://github.com/crazyht/ngx-tree-select/compare/v0.10.0...v0.12.0) (2017-10-30)
+
+
+### Bug Fixes
+
+* Disable autocomplete on filter  ([0a5ea4f](https://github.com/crazyht/ngx-tree-select/commit/0a5ea4f))
+* Dropdown no open when click on tree-select ([5213370](https://github.com/crazyht/ngx-tree-select/commit/5213370))
+* initial select is not displayed when list of items contains string value ([280e61c](https://github.com/crazyht/ngx-tree-select/commit/280e61c))
+* set gecko false for webdriver manager. See https://github.com/angular/webdriver-manager/issues/216 ([4c87d6b](https://github.com/crazyht/ngx-tree-select/commit/4c87d6b))
+* Simple Select where undefined at init value ([498112e](https://github.com/crazyht/ngx-tree-select/commit/498112e))
+* Add class for Bootstrap 4 beta 6
+
+### Features
+
+* Add option filterCaseSensitive ([2edfe7d](https://github.com/crazyht/ngx-tree-select/commit/2edfe7d))
+
+
+
 <a name="0.11.1"></a>
 ## [0.11.1](https://github.com/crazyht/ngx-tree-select/compare/v0.11.0...v0.11.1) (2017-07-31)
 

@@ -179,7 +179,7 @@ Make sure to add this to your `map` configuration, if you need the module served
 map: {
 
    ...
-   'ngx-tree-select': 'https://unpkg.com/ngx-tree-select@<version number>/ngx-tree-select.umd.min.js'
+   'ngx-tree-select': 'https://unpkg.com/ngx-tree-select@<version number>/ngx-tree-select.rollup.umd.min.js'
 }
 ```
 

@@ -1,34 +1,19 @@
-$disable-background-color: #eceeef;
-$error-border-color: #a94442;
-
 :host.ng-invalid:not(.ng-pristine) span.form-control,
-:host.ng-invalid:not(.ng-untouched) span.form-control
-{
-  border-color: $error-border-color;
+:host.ng-invalid:not(.ng-untouched) span.form-control {
+  border-color: #a94442;
 }
 
-// Fix Bootstrap dropdown position when inside a input-group
-.input-group>.dropdown {
-  //Instead of relative
+.input-group > .dropdown {
   position: static;
 }
 
-.disabled {
-  &>span {
-    background-color: $disable-background-color;
-    cursor: not-allowed;
-  }
-
-  .btn {
-    border-color: #ccc;
-  }
+.disabled > span {
+  background-color: #eceeef;
+  cursor: not-allowed;
 }
 
-.enabled {
-  &>span {
-    cursor: context-menu;
-  }
-
+.disabled .btn {
+  padding-right: 5px;
 }
 
 ul {
@@ -60,12 +45,12 @@ ul {
 }
 
 .more-items-icon {
-  bottom: 23px;
+  opacity: 0.5;
   height: 10px;
-  opacity: .5;
+  margin-top: -2px;
   position: absolute;
   right: 20px;
-  z-index: 100;
+  top: 30%;
 }
 
 .close {
@@ -74,7 +59,6 @@ ul {
   margin-left: 5px;
   padding-top: 3px;
   position: absolute;
-  z-index: 50;
 }
 
 .caret {
