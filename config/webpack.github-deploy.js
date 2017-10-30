@@ -50,6 +50,7 @@ module.exports = function (options) {
            logger: (msg) => { console.log(msg); },
            remote: GIT_REMOTE_NAME,
            message: COMMIT_MESSAGE,
+
            dotfiles: true // for .nojekyll
          };
          /**
@@ -61,14 +62,14 @@ module.exports = function (options) {
          fs.writeFileSync(path.join(webpackConfig.output.path, '.nojekyll'), '');
          console.log(webpackConfig.output.path);
          const ghpages = require('gh-pages');
-         ghpages.publish(webpackConfig.output.path, options, function(err) {
+         /*ghpages.publish(webpackConfig.output.path, options, function(err) {
            if (err) {
              console.log('GitHub deployment done. STATUS: ERROR. (' + err + ')');
              throw err;
            } else {
              console.log('GitHub deployment done. STATUS: SUCCESS.');
            }
-         });
+         });*/
        });
      }
    ]

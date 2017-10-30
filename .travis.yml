@@ -51,6 +51,13 @@ script:
   - npm run github-deploy:prod
 
 deploy:
+ - provider: pages
+    local_dir: dist
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+    on:
+      branch: master
+      node: "node"
   - provider: script
     skip_cleanup: true
     script: npm run travis-publish
