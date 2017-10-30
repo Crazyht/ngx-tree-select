@@ -29,9 +29,6 @@ before_install:
 install:
   - npm install
 
-after_install:
-  - npm rebuild node-sass
-  - ./node_modules/protractor/bin/webdriver-manager update --gecko false
 
 before_script:
   - npm rebuild node-sass
@@ -51,6 +48,13 @@ script:
   - npm run github-deploy:prod
 
 deploy:
+  - provider: pages
+    skip_cleanup: true
+    local_dir: dist
+    github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+    on:
+      branch: master
+      node: "node"
   - provider: script
     skip_cleanup: true
     script: npm run travis-publish
