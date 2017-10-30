@@ -78,6 +78,14 @@ export class TreeSelectComponent implements ControlValueAccessor {
   }
 
   @Input()
+  public set filterCaseSensitive(value: boolean) {
+    this.svc.setConfiguration((opt) => opt.filterCaseSensitive = value, true);
+  }
+  public get filterCaseSensitive(): boolean {
+    return this.svc.Configuration.filterCaseSensitive;
+  }
+
+  @Input()
   public set maxVisibleItemCount(value: number) {
     this.svc.setConfiguration((opt) => opt.maxVisibleItemCount = value, true);
   }
@@ -128,6 +136,11 @@ export class TreeSelectComponent implements ControlValueAccessor {
       (defaultOpts.allowFilter === undefined || defaultOpts.allowFilter === null) ?
         true :
         defaultOpts.allowFilter
+    );
+    this.filterCaseSensitive = (
+      (defaultOpts.filterCaseSensitive === undefined || defaultOpts.filterCaseSensitive === null) ?
+        false :
+        defaultOpts.filterCaseSensitive
     );
     this.filterPlaceholder = (defaultOpts.filterPlaceholder || 'Type here for filtering items...');
     this.idField = (defaultOpts.idField || 'id');
@@ -235,7 +248,9 @@ export class TreeSelectComponent implements ControlValueAccessor {
         result = this.ProcessMatchFilterTreeItem(child, filter) || result;
       }
     }
-    tree.matchFilter = (tree.id.indexOf(filter) > -1 || tree.text.indexOf(filter) > -1 || result);
+    tree.matchFilter = this.filterCaseSensitive ? 
+                       (tree.id.indexOf(filter) > -1 || tree.text.indexOf(filter) > -1 || result) :
+                       (tree.id.toLowerCase().indexOf(filter.toLowerCase()) > -1 || tree.text.toLowerCase().indexOf(filter.toLowerCase()) > -1 || result);
 
     return tree.matchFilter;
   }
