@@ -248,9 +248,16 @@ export class TreeSelectComponent implements ControlValueAccessor {
         result = this.ProcessMatchFilterTreeItem(child, filter) || result;
       }
     }
-    tree.matchFilter = this.filterCaseSensitive ? 
-                       (tree.id.indexOf(filter) > -1 || tree.text.indexOf(filter) > -1 || result) :
-                       (tree.id.toLowerCase().indexOf(filter.toLowerCase()) > -1 || tree.text.toLowerCase().indexOf(filter.toLowerCase()) > -1 || result);
+    tree.matchFilter = this.filterCaseSensitive ?
+                      (
+                        tree.id.indexOf(filter) > -1 ||
+                        tree.text.indexOf(filter) > -1 ||
+                        result) :
+                      (
+                        tree.id.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
+                        tree.text.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
+                        result
+                      );
 
     return tree.matchFilter;
   }
