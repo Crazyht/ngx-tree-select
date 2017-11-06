@@ -97,7 +97,7 @@
     "@types/del": "^3.0.0",
     "@types/gulp": "^4.0.4",
     "@types/hammerjs": "^2.0.35",
-    "@types/jasmine": "2.6.2",
+    "@types/jasmine": "2.6.3",
     "@types/jest": "^21.1.5",
     "@types/mkdirp": "^0.5.1",
     "@types/node": "^8.0.47",
