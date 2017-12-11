@@ -138,7 +138,7 @@
     "istanbul-instrumenter-loader": "^3.0.0",
     "jasmine-core": "^2.8.0",
     "jest": "20.0.4",
-    "jest-preset-angular": "2.0.5",
+    "jest-preset-angular": "4.0.2",
     "json-loader": "^0.5.7",
     "jsonfile": "^4.0.0",
     "karma": "^1.7.1",
