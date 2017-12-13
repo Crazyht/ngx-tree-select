@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ExpandMode } from './expand-mode';
 
 @Injectable()
 export class TreeSelectDefaultOptions {
@@ -10,4 +11,5 @@ export class TreeSelectDefaultOptions {
   public textField?: string;
   public childrenField?: string;
   public filterCaseSensitive?: boolean;
+  public expandMode = ExpandMode.None;
 }

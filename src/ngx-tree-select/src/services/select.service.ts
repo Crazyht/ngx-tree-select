@@ -1,7 +1,8 @@
-import { Subject } from 'rxjs/Rx';
+import { Subject } from 'rxjs/Subject';
 import { SelectableItem } from '../models/selectable-item';
 import { SelectOption } from '../models/select-option';
 import { Injectable } from '@angular/core';
+import { ExpandMode } from '../models/expand-mode';
 
 export type OptionDelegate = (options: SelectOption) => void;
 
@@ -28,16 +29,24 @@ export class SelectService {
     this.setConfiguration((opt) => opt.isOpen = !opt.isOpen, false);
   }
 
+  /*
+    Call when list of items is set.
+  */
   public setItems(value: any[]) {
     this.setConfiguration((opt) => opt.items = value, true);
+    this.setExpand();
   }
 
   public getInternalItems(): SelectableItem[] {
     return this._items;
   }
 
+  /*
+    Call when ng-model is set
+  */
   public setSelection(values: any | any[]): void {
     this.setConfiguration((opt) => opt.model = values, true);
+    this.setExpand();
   }
 
   public setSelectedItemOrChild(items: SelectableItem[], destination: string) {
@@ -115,7 +124,13 @@ export class SelectService {
       this.reconfigure(processItems);
     }
     // if model changed, raise event
-    if ((modelBck && this._options.model !== modelBck) || (!modelBck && this._options.model)) {
+    if (
+      !processItems &&
+      (
+        (modelBck && this._options.model !== modelBck) ||
+        (!modelBck && this._options.model)
+      )
+    ) {
       this.modelChanged$.next(this._options.model);
     }
   }
@@ -124,11 +139,25 @@ export class SelectService {
     return this._options;
   }
 
+  public setExpand() {
+    if (this._items) {
+      for (const item of this._items) {
+        if (this._options.expandMode === ExpandMode.All) {
+          item.isOpen = true;
+        } else if (this._options.expandMode === ExpandMode.Selection && item.children) {
+          item.isOpen = item.children.some((itm: SelectableItem) => itm.isOpen || itm.selected);
+        } else {
+          item.isOpen = false;
+        }
+      }
+    }
+  }
+
   private toSelectableItems(sources: any[]): SelectableItem[] {
     if (sources && Array.isArray(sources)) {
       let i = 1;
       return sources.map((srcItem) => {
-        let item;
+        let item: SelectableItem;
         if (srcItem[this._options.idProperty] &&
             srcItem[this._options.idProperty] !== '' &&
             srcItem[this._options.textProperty]) {
