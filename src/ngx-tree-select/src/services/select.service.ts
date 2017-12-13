@@ -124,7 +124,13 @@ export class SelectService {
       this.reconfigure(processItems);
     }
     // if model changed, raise event
-    if ((modelBck && this._options.model !== modelBck) || (!modelBck && this._options.model)) {
+    if (
+      !processItems &&
+      (
+        (modelBck && this._options.model !== modelBck) ||
+        (!modelBck && this._options.model)
+      )
+    ) {
       this.modelChanged$.next(this._options.model);
     }
   }
