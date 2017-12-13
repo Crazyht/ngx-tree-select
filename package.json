@@ -100,7 +100,7 @@
     "@types/jasmine": "2.6.2",
     "@types/jest": "21.1.5",
     "@types/mkdirp": "0.5.1",
-    "@types/node": "8.0.47",
+    "@types/node": "8.5.0",
     "@types/rollup": "0.41.1",
     "@types/source-map": "0.5.2",
     "@types/uglify-js": "2.6.29",
