@@ -62,6 +62,7 @@ When you call ```NgxTreeSelectModule.forRoot``` you must pass default options. T
 - **textField** : determine which property of your items is displayed
 - **childrenField** : determine which property of yours items contains children items
 - **allowParentSelection** : if set to **true**, you can select parent, else when you select parent all children are selected
+- **expandMode** : Define which item are expand at initilization. Possible value are : **None**, **Selection** or **All**
 
 # Using the Tree Select
 
@@ -84,7 +85,8 @@ Then we can use the Tree Select like this:
               [filterPlaceholder]="FilterPlaceholder"
               [allowFilter]="ShowFilter"
               [disabled]="Disabled"
-              [allowParentSelection]="AllowParentSelection"></tree-select>
+              [allowParentSelection]="AllowParentSelection"
+              expandMode="all"></tree-select>
   <div *ngIf="simpleSelect.errors && (simpleSelect.dirty || simpleSelect.touched)" class="alert alert-danger">
     <div [hidden]="!simpleSelect.errors.required">Simple select is required</div>
   </div>
@@ -128,6 +130,7 @@ When you place **tree-select** on HTML template you can define :
 - **textField** : determine which property of your items is displayed
 - **childrenField** : determine which property of yours items contains children items
 - **allowParentSelection** : if set to **true**, you can select parent, else when you select parent all children are selected
+- **expandMode** : Define which item are expand at initilization. Possible value are : **None**, **Selection** or **All**
 
 **tree-select** component use default options define when you call ```NgxTreeSelectModule.forRoot``` except if you override it with attribute on HTML template.
 

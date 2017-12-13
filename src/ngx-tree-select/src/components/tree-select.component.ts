@@ -11,6 +11,7 @@ import { SelectableItem } from '../models/selectable-item';
 import { SelectOption } from '../models/select-option';
 import { SelectService } from '../services/select.service';
 import { TreeSelectDefaultOptions } from '../models/tree-select-default-options';
+import { ExpandMode } from '../models/expand-mode';
 
 // tslint:disable-next-line:no-empty
 const noop = () => {};
@@ -86,6 +87,15 @@ export class TreeSelectComponent implements ControlValueAccessor {
   }
 
   @Input()
+  public set expandMode(value: string) {
+    this.svc.setConfiguration((opt) => opt.expandMode = value, true);
+    this.svc.setExpand();
+  }
+  public get expandMode(): string {
+    return this.svc.Configuration.expandMode;
+  }
+
+  @Input()
   public set maxVisibleItemCount(value: number) {
     this.svc.setConfiguration((opt) => opt.maxVisibleItemCount = value, true);
   }
@@ -146,6 +156,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
     this.idField = (defaultOpts.idField || 'id');
     this.textField = (defaultOpts.textField || 'id');
     this.childrenField = (defaultOpts.childrenField || '');
+    this.expandMode = (defaultOpts.expandMode || ExpandMode.None);
   }
 
   // tslint:disable-next-line:no-empty

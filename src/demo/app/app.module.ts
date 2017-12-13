@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgxTreeSelectModule } from 'ngx-tree-select';
+import { ExpandMode, NgxTreeSelectModule } from 'ngx-tree-select';
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -17,7 +17,12 @@ import { SimpleValueComponent } from './simple-value/simple-value.component';
     FormsModule,
     RouterModule.forRoot(AppRoutes),
     Ng2BootstrapModule.forRoot(),
-    NgxTreeSelectModule.forRoot({ idField: 'id', textField: 'name' })
+    NgxTreeSelectModule.forRoot(
+      {
+        idField: 'id',
+        textField: 'name',
+        expandMode: ExpandMode.Selection
+      })
   ],
   declarations: [
     AppComponent,
