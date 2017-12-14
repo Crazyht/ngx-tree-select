@@ -153,7 +153,7 @@
     "mv": "2.1.1",
     "ng-router-loader": "2.1.0",
     "ngc-webpack": "3.2.2",
-    "ngx-bootstrap": "1.9.3",
+    "ngx-bootstrap": "2.0.0-rc.0",
     "node-sass": "4.5.3",
     "npm-run-all": "4.1.1",
     "npm-utils": "2.0.0",
