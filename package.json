@@ -98,7 +98,7 @@
     "@types/gulp": "4.0.4",
     "@types/hammerjs": "2.0.35",
     "@types/jasmine": "2.6.2",
-    "@types/jest": "21.1.5",
+    "@types/jest": "21.1.9",
     "@types/mkdirp": "0.5.1",
     "@types/node": "8.0.47",
     "@types/rollup": "0.41.1",
