@@ -162,7 +162,7 @@
     "preload-webpack-plugin": "2.0.0",
     "protractor": "5.2.0",
     "raw-loader": "0.5.1",
-    "reflect-metadata": "0.1.10",
+    "reflect-metadata": "0.1.12",
     "require-dir": "0.3.2",
     "rimraf": "2.6.2",
     "rollup": "0.50.0",
