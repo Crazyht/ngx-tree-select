@@ -166,7 +166,7 @@
     "require-dir": "0.3.2",
     "rimraf": "2.6.2",
     "rollup": "0.50.0",
-    "rollup-plugin-commonjs": "8.2.6",
+    "rollup-plugin-commonjs": "8.3.0",
     "rollup-plugin-node-resolve": "3.0.0",
     "rollup-stream": "1.24.1",
     "run-sequence": "2.2.0",
