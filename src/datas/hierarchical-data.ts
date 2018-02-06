@@ -8,7 +8,23 @@ export const HierarchicalCountries = [
         name: 'Angola',
         capital: 'Luanda',
         phone: '244',
-        currency: 'AOA'
+        currency: 'AOA',
+        children: [
+          {
+            id: 'TT',
+            name: 'Test',
+            capital: 'Luanda',
+            phone: '244',
+            currency: 'AOA',
+            children: [
+              {
+                id: 'TU',
+                name: 'Test2',
+                capital: 'Luanda',
+                phone: '244',
+                currency: 'AOA'
+              }]
+          }]
       },
       {
         id: 'BF',
