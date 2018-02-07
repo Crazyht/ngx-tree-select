@@ -155,7 +155,7 @@ export class SelectService {
       for (const item of this._items) {
         if (this._options.expandMode === ExpandMode.All) {
           item.isOpen = true;
-          if(item.hasChild){
+          if (item.hasChild) {
             this.setAllOpoen(item.children);
           }
         } else if (this._options.expandMode === ExpandMode.Selection && item.children) {
