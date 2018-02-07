@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.13.2"></a>
+## [0.13.2](https://github.com/crazyht/ngx-tree-select/compare/v0.12.0...v0.13.2) (2018-02-07)
+
+
+### Bug Fixes
+
+* Change Angular version support ([5605bdc](https://github.com/crazyht/ngx-tree-select/commit/5605bdc))
+* Click on caret not open dropdown ([d705968](https://github.com/crazyht/ngx-tree-select/commit/d705968))
+* Expand items during search (if match) ([14f3c35](https://github.com/crazyht/ngx-tree-select/commit/14f3c35))
+* isDirty is always set to true ([db24dd1](https://github.com/crazyht/ngx-tree-select/commit/db24dd1))
+* lint error ([8ec7b7c](https://github.com/crazyht/ngx-tree-select/commit/8ec7b7c))
+
+
+### Features
+
+* Add expand mode  ([72a9c01](https://github.com/crazyht/ngx-tree-select/commit/72a9c01))
+
+
+
 <a name="0.13.1"></a>
 ## [0.13.1](https://github.com/crazyht/ngx-tree-select/compare/v0.13.0...v0.13.1) (2018-02-07)
 
