@@ -117,6 +117,17 @@ export class SelectService {
     }
   }
 
+  public setAllOpoen(items: SelectableItem[]) {
+    for (const itm of items) {
+      if (itm.hasChild) {
+        itm.isOpen = true;
+        this.setAllOpoen(itm.children);
+      } else {
+        itm.isOpen = true;
+      }
+    }
+  }
+
   public setConfiguration(delegate: OptionDelegate, processItems: boolean): void {
     const modelBck = this._options.model;
     delegate(this._options);
@@ -144,6 +155,9 @@ export class SelectService {
       for (const item of this._items) {
         if (this._options.expandMode === ExpandMode.All) {
           item.isOpen = true;
+          if (item.hasChild) {
+            this.setAllOpoen(item.children);
+          }
         } else if (this._options.expandMode === ExpandMode.Selection && item.children) {
           item.isOpen = item.children.some((itm: SelectableItem) => itm.isOpen || itm.selected);
         } else {
