@@ -268,10 +268,9 @@ export class TreeSelectComponent implements ControlValueAccessor {
                         tree.text.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
                         result
                       );
-    if (filter != '') {
+    if (filter !== '') {
       tree.isOpen = true;
-    }
-    else {
+    } else {
       tree.isOpen = false;
     }
     return tree.matchFilter;
