@@ -19,8 +19,7 @@ export class SelectOption {
     return this.childProperty && this.childProperty.trim().length > 0;
   }
 
-  public get filterExpandMode(): ExpandMode
-  {
+  public get filterExpandMode(): ExpandMode {
      if (this.filter !== '') {
         return ExpandMode.All;
      } else {
