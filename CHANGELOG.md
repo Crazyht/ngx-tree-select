@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.13.3"></a>
+## [0.13.3](https://github.com/crazyht/ngx-tree-select/compare/v0.13.2...v0.13.3) (2018-02-09)
+
+
+### Bug Fixes
+
+* build ([eb68c2c](https://github.com/crazyht/ngx-tree-select/commit/eb68c2c))
+* Expand items during search (if match) ([48d14e0](https://github.com/crazyht/ngx-tree-select/commit/48d14e0))
+* tree select expandMode ([586c71b](https://github.com/crazyht/ngx-tree-select/commit/586c71b))
+
+
+
 <a name="0.13.2"></a>
 ## [0.13.2](https://github.com/crazyht/ngx-tree-select/compare/v0.12.0...v0.13.2) (2018-02-07)
 
