@@ -19,6 +19,14 @@ export class SelectOption {
     return this.childProperty && this.childProperty.trim().length > 0;
   }
 
+  public get filterExpandMode(): ExpandMode {
+     if (this.filter !== '') {
+        return ExpandMode.All;
+     } else {
+       return this.expandMode;
+     }
+  }
+
   public displayCheckbox(): boolean {
     return this.allowMultiple && this.isHierarchy();
   }
