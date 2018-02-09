@@ -124,6 +124,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
     for (const item of this.internalItems) {
       this.ProcessMatchFilterTreeItem(item, this.svc.Configuration.filter);
     }
+    this.svc.setExpand();
   }
 
   public constructor(
@@ -268,11 +269,6 @@ export class TreeSelectComponent implements ControlValueAccessor {
                         tree.text.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
                         result
                       );
-    if (filter !== '') {
-      tree.isOpen = true;
-    } else {
-      tree.isOpen = false;
-    }
     return tree.matchFilter;
   }
 }
