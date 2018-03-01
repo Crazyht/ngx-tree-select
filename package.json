@@ -182,7 +182,7 @@
     "tsconfig": "7.0.0",
     "tslib": "1.8.0",
     "tslint": "5.8.0",
-    "tslint-loader": "3.5.3",
+    "tslint-loader": "3.6.0",
     "typedoc": "0.9.0",
     "typescript": "2.5.3",
     "uglify-js": "3.1.6",
