@@ -114,7 +114,7 @@
     "codelyzer": "3.2.2",
     "convert-source-map": "1.5.0",
     "copy-webpack-plugin": "4.2.0",
-    "core-js": "2.5.1",
+    "core-js": "2.5.4",
     "cross-env": "5.1.1",
     "css-loader": "0.28.7",
     "deep-equal": "1.0.1",
