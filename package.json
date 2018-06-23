@@ -129,7 +129,7 @@
     "gh-pages": "1.0.0",
     "gulp": "3.9.1",
     "gulp-rename": "1.2.2",
-    "gulpclass": "0.1.2",
+    "gulpclass": "0.2.0",
     "html-webpack-plugin": "2.30.1",
     "http-server": "0.10.0",
     "ie-shim": "0.1.0",
