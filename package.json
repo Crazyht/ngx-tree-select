@@ -96,7 +96,7 @@
     "@types/deep-equal": "1.0.1",
     "@types/del": "3.0.0",
     "@types/gulp": "4.0.4",
-    "@types/hammerjs": "2.0.35",
+    "@types/hammerjs": "2.0.36",
     "@types/jasmine": "2.6.2",
     "@types/jest": "21.1.5",
     "@types/mkdirp": "0.5.1",
