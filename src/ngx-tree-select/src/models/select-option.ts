@@ -12,6 +12,7 @@ export class SelectOption {
   public filter = '';
   public filterCaseSensitive = false;
   public allowParentSelection = false;
+  public restructureWhenChildSameName = false;
   public maxVisibleItemCount: number;
   public expandMode = ExpandMode.None;
 

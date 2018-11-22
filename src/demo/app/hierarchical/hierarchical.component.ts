@@ -9,6 +9,7 @@ export class HierarchicalComponent {
   public items = HierarchicalCountries;
 
   public AllowParentSelection = true;
+  public RestructureWhenChildSameName = false;
   public ShowFilter = true;
   public Disabled = false;
   public FilterPlaceholder = 'Type here to filter elements...';
