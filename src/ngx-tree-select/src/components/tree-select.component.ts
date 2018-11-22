@@ -66,9 +66,8 @@ export class TreeSelectComponent implements ControlValueAccessor {
     return this.svc.Configuration.allowParentSelection;
   }
 
-  
   @Input()
-  public set restructureWhenChildSameName(value: boolean){
+  public set restructureWhenChildSameName(value: boolean) {
     this.svc.setConfiguration((opt) => opt.restructureWhenChildSameName = value, true);
   }
 

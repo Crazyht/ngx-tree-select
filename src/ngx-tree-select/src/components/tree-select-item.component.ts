@@ -48,8 +48,8 @@ export class TreeSelectItemComponent {
   }
 
   public get haveChildren(): boolean {
-    if(this.restructureWhenChildSameName && this.item && this.item.children && this.item.children.length == 1 && this.item.text == this.item.children[0].text)
-    {
+    if (this.restructureWhenChildSameName && this.item && this.item.children
+       && this.item.children.length === 1 && this.item.text === this.item.children[0].text) {
       this.item = this.item.children[0];
     }
     return this.item && this.item.children && this.item.children.length > 0;
