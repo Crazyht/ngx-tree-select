@@ -8,7 +8,7 @@
       <form novalidate>
         <tree-select name="simpleSelect" [items]="items" idField="id" textField="name" childrenField="children" [(ngModel)]="simpleSelected"
           required=true #simpleSelect="ngModel" [filterPlaceholder]="FilterPlaceholder" [allowFilter]="ShowFilter" [disabled]="Disabled"
-          [allowParentSelection]="AllowParentSelection"></tree-select>
+          [allowParentSelection]="AllowParentSelection" [restructureWhenChildSameName]="RestructureWhenChildSameName"></tree-select>
         <div *ngIf="simpleSelect.errors && (simpleSelect.dirty || simpleSelect.touched)" class="alert alert-danger">
           <div [hidden]="!simpleSelect.errors.required">Simple select is required</div>
         </div>
@@ -25,7 +25,7 @@
         <tree-select name="multipleSelect" [items]="items" idField="id" textField="name" childrenField="children" [multiple]="true"
           [(ngModel)]="multipleSelected" filterPlaceholder="Type item filter..." required=true minlength="2" maxlength="4"
           [allowParentSelection]="AllowParentSelection" #multipleSelect="ngModel" [filterPlaceholder]="FilterPlaceholder" [maxVisibleItemCount]="MaxDisplayed"
-          [allowFilter]="ShowFilter" [disabled]="Disabled" expandMode="All">
+          [allowFilter]="ShowFilter" [disabled]="Disabled" expandMode="All" [restructureWhenChildSameName]="RestructureWhenChildSameName">
         </tree-select>
         <div *ngIf="multipleSelect.errors && (multipleSelect.dirty || multipleSelect.touched)" class="alert alert-danger">
           <div [hidden]="!multipleSelect.errors.required">Multiple select is required</div>

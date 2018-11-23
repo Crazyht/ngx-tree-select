@@ -39,11 +39,19 @@ export class TreeSelectItemComponent {
     return this.svc.Configuration.allowParentSelection;
   }
 
+  get restructureWhenChildSameName(): boolean {
+    return this.svc.Configuration.restructureWhenChildSameName;
+  }
+
   get needCheckBox(): boolean {
     return this.svc.Configuration.isHierarchy() && this.svc.Configuration.allowMultiple;
   }
 
   public get haveChildren(): boolean {
+    if (this.restructureWhenChildSameName && this.item && this.item.children
+       && this.item.children.length === 1 && this.item.text === this.item.children[0].text) {
+      this.item = this.item.children[0];
+    }
     return this.item && this.item.children && this.item.children.length > 0;
   }
 
