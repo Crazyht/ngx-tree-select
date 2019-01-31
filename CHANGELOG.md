@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.14.0"></a>
+# [0.14.0](https://github.com/crazyht/ngx-tree-select/compare/v0.12.0...v0.14.0) (2019-01-31)
+
+
+### Bug Fixes
+
+* build ([eb68c2c](https://github.com/crazyht/ngx-tree-select/commit/eb68c2c))
+* Change Angular version support ([5605bdc](https://github.com/crazyht/ngx-tree-select/commit/5605bdc))
+* Click on caret not open dropdown ([d705968](https://github.com/crazyht/ngx-tree-select/commit/d705968))
+* Expand items during search (if match) ([48d14e0](https://github.com/crazyht/ngx-tree-select/commit/48d14e0))
+* Expand items during search (if match) ([14f3c35](https://github.com/crazyht/ngx-tree-select/commit/14f3c35))
+* isDirty is always set to true ([db24dd1](https://github.com/crazyht/ngx-tree-select/commit/db24dd1))
+* lint ([8c03623](https://github.com/crazyht/ngx-tree-select/commit/8c03623))
+* lint error ([8ec7b7c](https://github.com/crazyht/ngx-tree-select/commit/8ec7b7c))
+* tree select expandMode ([586c71b](https://github.com/crazyht/ngx-tree-select/commit/586c71b))
+
+
+### Features
+
+* Add expand mode  ([72a9c01](https://github.com/crazyht/ngx-tree-select/commit/72a9c01))
+* restructure hierarchy when item and child have same name ([29ac95f](https://github.com/crazyht/ngx-tree-select/commit/29ac95f))
+
+
+
 <a name="0.13.3"></a>
 ## [0.13.3](https://github.com/crazyht/ngx-tree-select/compare/v0.13.2...v0.13.3) (2018-02-09)
 
