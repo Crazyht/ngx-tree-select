@@ -22,7 +22,7 @@ matrix:
   fast_finish: true
 
 before_install:
-  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc; fi'
   - npm prune
   - npm update
 
