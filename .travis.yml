@@ -54,10 +54,10 @@ deploy:
     github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
     on:
       branch: master
-      node: "node"
+      node: "10"
   - provider: script
     skip_cleanup: true
     script: npm run travis-publish
     on:
       branch: master
-      node: "node"
+      node: "10"
