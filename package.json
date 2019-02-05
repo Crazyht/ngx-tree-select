@@ -18,7 +18,6 @@
     "build:docker": "npm run build:prod && docker build -t angular2-webpack-start:latest .",
     "build:prod": "npm run clean:dist && npm run webpack -- --config config/webpack.prod.js  --progress --profile --bail",
     "build": "npm run build:dev",
-    "prepare": "npm run build",
     "ci:aot": "npm run lint && npm run test && npm run build:aot && npm run e2e",
     "ci:jit": "npm run lint && npm run test && npm run build:prod && npm run e2e",
     "ci:nobuild": "npm run lint && npm test && npm run e2e",
