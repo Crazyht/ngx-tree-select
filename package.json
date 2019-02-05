@@ -48,7 +48,7 @@
     "lint": "npm run tslint \"src/**/*.ts\" -- -e \"src/demo/custom-typings.d.ts\"",
     "node": "node",
     "npm-run-all": "npm-run-all",
-    "postinstall": "npm run webdriver:update",
+    "postinstall": "npm run build",
     "postversion": "git push && git push --tags",
     "preclean:install": "npm run clean",
     "preversion": "npm test",
