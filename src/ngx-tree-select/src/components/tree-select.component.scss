@@ -89,3 +89,24 @@ ul {
   display: table;
   padding-right: 20px;
 }
+
+.btn-icon {
+  padding: 0;
+  box-shadow: none;
+  border: none;
+  &:not(&.caret) {
+    background: none;
+  }
+  .fa {
+    &.fa-minus-square-o,
+    &.fa-plus-square-o,
+    &.fa-minus-check-square-o,
+    &.fa-plus-check-square-o {
+      vertical-align: middle;
+    }
+  }
+}
+
+.dropdown-menu {
+  padding: 10px;
+}
