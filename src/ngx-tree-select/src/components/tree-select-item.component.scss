@@ -6,7 +6,6 @@ $hover-text-color: #fff;
 
 .item {
   color: $text-color;
-
   ul {
     list-style-type: none;
   }
@@ -35,5 +34,12 @@ $hover-text-color: #fff;
     color: $active-text-color;
     outline: 0;
     text-decoration: none;
+  }
+
+  .btn-icon {
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    border: none;
   }
 }

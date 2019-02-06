@@ -28,11 +28,11 @@ export class TreeSelectItemComponent {
 
   public toggleOpen($event: any) {
     $event.stopPropagation();
-    if (this.haveChildren) {
-      this.item.isOpen = !this.item.isOpen;
-    } else {
-      this.select($event);
-    }
+      if (this.haveChildren) {
+        this.item.isOpen = !this.item.isOpen;
+      } else {
+        this.select($event);
+      }
   }
 
   get allowParentSelection(): boolean {

@@ -1,20 +1,34 @@
-<div class='item' (click)="select($event)">
-  <div class="item" [class.active]="item.selected && !needCheckBox">
-    <a href="javascript:void(0)" (click)="toggleOpen($event)">
-            <span>
-                    <i class="fa"
-                    [class.fa-plus-square-o]="haveChildren && !isOpen"
-                    [class.fa-minus-square-o]="haveChildren && isOpen"></i>
-                </span>
-            <i class="fa" *ngIf="needCheckBox" [class.fa-check-square-o]="item.checked === true" [class.fa-square-o]="item.checked === false"
-                [class.fa-square]="item.checked === null" (click)="select($event)"></i>
-            <span *ngIf="allowParentSelection" (click)="select($event)"> {{item.text}}</span>
-            <span *ngIf="!allowParentSelection"> {{item.text}}</span>
-        </a>
-  </div>
-  <ul *ngIf="haveChildren && isOpen" class="ui-select-choices" role="menu">
-    <li *ngFor="let o of item.children | itemPipe:filter" role="menuitem">
-      <tree-select-item [item]="o" [onTouchedCallBack]="onTouchedCallBack"></tree-select-item>
-    </li>
-  </ul>
+<div tabindex="0"
+     class="item"
+     [class.active]="item.selected && !needCheckBox"
+     (click)="select($event)"
+     (keyup.enter)="select($event)">
+    <button class="btn-icon"
+            (click)="toggleOpen($event)"
+            (keyup.enter)="toggleOpen($event)"
+            [attr.aria-expanded]="isOpen"
+            aria-label="Toggle">
+        <i class="fa"
+           [class.fa-plus-square-o]="haveChildren && !isOpen"
+           [class.fa-minus-square-o]="haveChildren && isOpen">
+        </i>
+    </button>
+    <button role="checkbox"
+            [attr.aria-checked]="item.checked"
+            class="btn-icon"
+            (click)="select($event)"
+            aria-label="Select">
+        <i class="fa" *ngIf="needCheckBox"
+           [class.fa-check-square-o]="item.checked === true"
+           [class.fa-square-o]="item.checked === false"
+           [class.fa-square]="item.checked === null">
+        </i>
+    </button>
+    <button *ngIf="allowParentSelection" class="btn-icon" (click)="select($event)"> {{item.text}}</button>
+    <span *ngIf="!allowParentSelection"> {{item.text}}</span>
 </div>
+<ul *ngIf="haveChildren && isOpen" class="ui-select-choices" role="menu">
+    <li *ngFor="let o of item.children | itemPipe:filter" role="menuitem">
+        <tree-select-item [item]="o" [onTouchedCallBack]="onTouchedCallBack"></tree-select-item>
+    </li>
+</ul>
