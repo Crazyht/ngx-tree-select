@@ -35,7 +35,7 @@ Thumbs.db
 /bower_components/
 npm-debug.log
 /npm-debug.log.*
-packages-lock.json
+package-lock.json
 
 # Coverage #
 /coverage/
