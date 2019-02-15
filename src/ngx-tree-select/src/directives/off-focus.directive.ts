@@ -59,9 +59,9 @@ export class OffFocusDirective {
             var nextItem = this.elem.parentElement.parentElement.nextElementSibling;
 
             this.elem.addEventListener('keyup', function(event) {
+                var dropdown = this.parentElement.parentElement.parentElement.parentElement.parentElement;
                 if (event.keyCode === 32) {
-                    (nextItem) ? nextItem.children[0].querySelector('.close').focus() :
-                        this.closest('.dropdown').querySelector('.caret').focus();
+                    (nextItem) ? nextItem.children[0].querySelector('.close').focus() : dropdown.querySelector('.caret').focus();
                     onselect.emit(this);
                 }
             })
