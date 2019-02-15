@@ -4,7 +4,7 @@
   <div tabindex="0"
        [class.disabled]="disabled"
        (click)="toggle($event)"
-       (keyup.enter)="toggle($event)"
+       (keydown.enter)="toggle($event)"
        [attr.aria-expanded]="isOpen"
        [off-click]="clickedOutside">
     <span class="btn btn-default btn-secondary form-control"
@@ -12,7 +12,7 @@
           [class.selected-container-item]="multiple">
       <span *ngIf="selection.length <= 0" class="ui-select-placeholder text-muted">{{placeholder}}</span>
       <span *ngFor="let itm of selection; let idx=index">
-        <span tabindex="0" *ngIf="moreLoaded || maxVisibleItemCount == 0 || idx<maxVisibleItemCount"
+        <span *ngIf="moreLoaded || maxVisibleItemCount == 0 || idx<maxVisibleItemCount"
               class="pull-left"
               [class.selected-item-text]="!multiple"
               [class.selected-item-item]="multiple"
@@ -21,9 +21,10 @@
               [class.btn-xs]="multiple">
           {{itm.text}}
           <button *ngIf="multiple && !disabled"
-             class="close btn-icon"
-             (click)="removeItem($event, itm)"
-             aria-label="Remove">
+              class="close btn-icon"
+              [off-focus]="'button'"
+              (onSelect)="removeItem($event, itm)"
+              aria-label="Remove">
             <i class="fa fa-close"></i>
           </button>
         </span>
@@ -42,6 +43,8 @@
 
   <!-- options template -->
   <ul *ngIf="!disabled && isOpen && internalItems && internalItems.length > 0"
+      [off-focus]="'dropdown'"
+      [off-click]="clickedOutside"
       tabindex="0"
       class="dropdown-menu"
       role="menu"
