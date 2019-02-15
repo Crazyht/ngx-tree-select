@@ -142,6 +142,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
     private defaultOpts: TreeSelectDefaultOptions
   ) {
     this.clickedOutside = this.clickedOutside.bind(this);
+    this.removeItem = this.removeItem.bind(this);
 
     this.svc.modelChanged$.subscribe((result) => {
       this.onChangeCallback(result);
@@ -179,8 +180,7 @@ export class TreeSelectComponent implements ControlValueAccessor {
     this.svc.toggleOpen();
   }
 
-  public removeItem($event: any, item: SelectableItem): void {
-    $event.stopPropagation();
+  public removeItem($event:Event, item: SelectableItem): void {
     this.svc.toggleItemSelection(item);
   }
 
