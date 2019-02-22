@@ -24,6 +24,7 @@
               class="close btn-icon"
               [off-focus]="'button'"
               (onSelect)="removeItem($event, itm)"
+              (click)="removeItem($event, itm)"
               aria-label="Remove">
             <i class="fa fa-close"></i>
           </button>
@@ -38,7 +39,7 @@
           (keyup.enter)="loadMore($event)">
       (...)
     </button>
-   <button class="btn-icon pull-right caret" (click)="toggle($event)" aria-label="Toggle"></button>
+   <i class="btn-icon pull-right caret"></i>
   </div>
 
   <!-- options template -->

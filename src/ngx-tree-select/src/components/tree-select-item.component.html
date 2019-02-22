@@ -17,6 +17,7 @@
             [attr.aria-checked]="item.checked"
             class="btn-icon"
             (click)="select($event)"
+            (keyup.enter)="select($event)"
             aria-label="Select">
         <i class="fa" *ngIf="needCheckBox"
            [class.fa-check-square-o]="item.checked === true"
