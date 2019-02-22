@@ -56,20 +56,18 @@ export class OffFocusDirective {
 
             this.elem = this.el.nativeElement;
             var onselect = this.onSelect;
-            var nextItem = this.elem.parentElement.parentElement.nextElementSibling;
 
             this.elem.addEventListener('keyup', function(event) {
-                var dropdown = this.parentElement.parentElement.parentElement.parentElement.parentElement;
+                var dropdown = this.parentElement.parentElement.parentElement.parentElement;
+                var nextItem = this.parentElement.parentElement.nextElementSibling;
                 if (event.keyCode === 32) {
-                    (nextItem) ? nextItem.children[0].querySelector('.close').focus() : dropdown.querySelector('.caret').focus();
+                    (nextItem) ? nextItem.children[0].querySelector('.close').focus() : dropdown.focus();
                     onselect.emit(this);
                 }
             })
 
         }
-
     }
-
 
 }
 
