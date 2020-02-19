@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 <a name="0.14.0"></a>
+# [0.15.0](https://github.com/crazyht/ngx-tree-select/compare/v0.12.0...v0.14.0) (2020-02-19)
+
+### Bug Fixes
+
+* Remove rxjs-compat
+
+<a name="0.14.0"></a>
 # [0.14.0](https://github.com/crazyht/ngx-tree-select/compare/v0.12.0...v0.14.0) (2019-01-31)
 
 
