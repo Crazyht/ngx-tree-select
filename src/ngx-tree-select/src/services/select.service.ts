@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { SelectableItem } from '../models/selectable-item';
 import { SelectOption } from '../models/select-option';
 import { Injectable } from '@angular/core';
