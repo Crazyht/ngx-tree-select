@@ -7,11 +7,7 @@ cache:
     - node_modules
 
 addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+  chrome: stable
 
 node_js:
   - "6"
@@ -25,6 +21,7 @@ before_install:
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc; fi'
   - npm prune
   - npm update
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 install:
   - npm install
