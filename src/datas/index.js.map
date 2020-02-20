@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/datas/index.ts"],"names":[],"mappings":"AAAA,cAAc,aAAa,CAAC;AAC5B,cAAc,qBAAqB,CAAC;AACpC,cAAc,eAAe,CAAC","file":"index.js","sourceRoot":"","sourcesContent":["export * from './flat-data';\nexport * from './hierarchical-data';\nexport * from './simple-data';\n"]}
