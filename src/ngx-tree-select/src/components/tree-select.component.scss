@@ -57,6 +57,20 @@ ul {
   font-size: 14px;
   margin: 2px;
   outline: 0;
+
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-right: 5px !important;
+  max-width: 250px;
+
+  .value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .more-items-icon {
@@ -73,8 +87,6 @@ ul {
   line-height: .75;
   margin-left: 5px;
   padding-top: 3px;
-  position: absolute;
-  z-index: 50;
 }
 
 .caret {
