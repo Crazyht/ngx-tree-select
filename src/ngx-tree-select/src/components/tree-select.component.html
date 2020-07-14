@@ -19,7 +19,9 @@
               [class.btn]="multiple"
               [class.btn-default]="multiple"
               [class.btn-xs]="multiple">
-          {{itm.text}}
+            <span class="value">
+                {{itm.text}}
+            </span>
           <button *ngIf="multiple && !disabled"
               class="close btn-icon"
               [off-focus]="'button'"
