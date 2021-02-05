@@ -24,7 +24,7 @@ import { TreeSelectItemComponent } from './components/tree-select-item.component
 })
 
 export class NgxTreeSelectModule {
-  public static forRoot(options: TreeSelectDefaultOptions): ModuleWithProviders {
+  public static forRoot(options: TreeSelectDefaultOptions): ModuleWithProviders<NgxTreeSelectModule> {
     return {
       ngModule: NgxTreeSelectModule,
       providers: [

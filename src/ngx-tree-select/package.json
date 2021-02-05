@@ -9,8 +9,8 @@
     "select"
   ],
   "peerDependencies": {
-    "@angular/core": ">=4.0.0 <6.0.0",
-    "@angular/forms": ">=4.0.0 <6.0.0"
+    "@angular/core": ">=4.0.0 <^11.1.0",
+    "@angular/forms": ">=4.0.0 <^11.1.0"
   },
   "libConfig": {
     "inlineResources": true
