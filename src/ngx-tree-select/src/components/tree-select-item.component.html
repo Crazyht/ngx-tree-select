@@ -2,11 +2,11 @@
   <div class="item" [class.active]="item.selected && !needCheckBox">
     <a href="javascript:void(0)" (click)="toggleOpen($event)">
             <span>
-                    <i class="fa"
+                    <i class="fas"
                     [class.fa-plus-square-o]="haveChildren && !isOpen"
                     [class.fa-minus-square-o]="haveChildren && isOpen"></i>
                 </span>
-            <i class="fa" *ngIf="needCheckBox" [class.fa-check-square-o]="item.checked === true" [class.fa-square-o]="item.checked === false"
+            <i class="fas" *ngIf="needCheckBox" [class.fa-check-square-o]="item.checked === true" [class.fa-square-o]="item.checked === false"
                 [class.fa-square]="item.checked === null" (click)="select($event)"></i>
             <span *ngIf="allowParentSelection" (click)="select($event)"> {{item.text}}</span>
             <span *ngIf="!allowParentSelection"> {{item.text}}</span>
