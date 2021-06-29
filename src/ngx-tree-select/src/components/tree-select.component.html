@@ -1,30 +1,70 @@
-<div tabindex="0" class="dropdown open show" [off-click]="clickedOutside">
+<div class="dropdown open show">
 
   <!-- Control display -->
-  <div [class.disabled]="disabled">
-    <span tabindex="-1" class="btn btn-default btn-secondary form-control" [class.selected-container-text]="!multiple" [class.selected-container-item]="multiple"
-      (click)="toggle($event)">
+  <div tabindex="0"
+       [class.disabled]="disabled"
+       (click)="toggle($event)"
+       (keydown.enter)="toggle($event)"
+       [attr.aria-expanded]="isOpen"
+       [off-click]="clickedOutside">
+    <span class="btn btn-default btn-secondary form-control"
+          [class.selected-container-text]="!multiple"
+          [class.selected-container-item]="multiple">
       <span *ngIf="selection.length <= 0" class="ui-select-placeholder text-muted">{{placeholder}}</span>
       <span *ngFor="let itm of selection; let idx=index">
-        <span *ngIf="moreLoaded || maxVisibleItemCount == 0 || idx<maxVisibleItemCount" class="pull-left" [class.selected-item-text]="!multiple"
-          [class.selected-item-item]="multiple" [class.btn]="multiple" [class.btn-default]="multiple" [class.btn-xs]="multiple">
-          {{itm.text}}
-          <a *ngIf="multiple && !disabled" class="close" (click)="removeItem($event, itm)">x</a>
+        <span *ngIf="moreLoaded || maxVisibleItemCount == 0 || idx<maxVisibleItemCount"
+              class="pull-left"
+              [class.selected-item-text]="!multiple"
+              [class.selected-item-item]="multiple"
+              [class.btn]="multiple"
+              [class.btn-default]="multiple"
+              [class.btn-xs]="multiple">
+            <span class="value">
+                {{itm.text}}
+            </span>
+          <button *ngIf="multiple && !disabled"
+              class="close btn-icon"
+              [off-focus]="'button'"
+              (onSelect)="removeItem($event, itm)"
+              (click)="removeItem($event, itm)"
+              aria-label="Remove">
+            <i class="fa fa-close"></i>
+          </button>
         </span>
       </span>
-
     </span>
-
   </div>
   <div class="enabled">
-    <span class="pull-right more-items-icon" (click)="loadMore($event)" *ngIf="showMoreLink">(...)</span>
-    <i class="caret pull-right" (click)="toggle($event)"></i>
+    <button *ngIf="showMoreLink"
+          class="pull-right more-items-icon btn-icon"
+          (click)="loadMore($event)"
+          (keyup.enter)="loadMore($event)">
+      (...)
+    </button>
+   <button (click)="toggle($event)" class="btn-icon pull-right caret"></button>
   </div>
 
   <!-- options template -->
-  <ul *ngIf="!disabled && isOpen && internalItems && internalItems.length > 0" class="dropdown-menu" role="menu">
-    <input name="filterText" *ngIf="allowFilter" type="text" [(ngModel)]="filter" (click)="setInputFocus()" (blur)="setInputFocusOut()"
-      class="form-control" placeholder="{{filterPlaceholder}}" [ngModelOptions]="{standalone: true}" autocomplete="off" />
+  <ul *ngIf="!disabled && isOpen && internalItems && internalItems.length > 0"
+      [off-focus]="'dropdown'"
+      [off-click]="clickedOutside"
+      tabindex="0"
+      class="dropdown-menu"
+      role="menu"
+      (keyup.esc)="toggle($event)">
+    <input *ngIf="allowFilter"
+           name="filterText"
+           type="text"
+           [(ngModel)]="filter"
+           (click)="setInputFocus()"
+           (keyup.enter)="setInputFocus()"
+           (blur)="setInputFocusOut()"
+           class="form-control"
+           placeholder="{{filterPlaceholder}}"
+           [ngModelOptions]="{standalone: true}"
+           autocomplete="off"
+           aria-label="Filter"
+    />
     <li *ngFor="let o of internalItems | itemPipe:filter" role="menuitem">
       <tree-select-item [item]="o" [onTouchedCallBack]="onTouchedCallback"></tree-select-item>
     </li>

@@ -6,28 +6,29 @@ $hover-text-color: #fff;
 
 .item {
   color: $text-color;
+  clear: both;
+  display: block;
+  font-weight: 400;
+  line-height: 1.42857143;
+  padding: 3px 10px;
+  margin: auto -10px;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: $hover-background-color;
+    color: $hover-text-color;
+    outline: 0;
+    text-decoration: none;
+    .btn-icon {
+      color: #fff;
+    }
+  }
 
   ul {
     list-style-type: none;
-  }
-
-  &>a {
-    clear: both;
-    color: inherit;
-    display: block;
-    font-weight: 400;
-    line-height: 1.42857143;
-    padding: 3px 20px;
-    padding-left: 10px;
-    text-decoration: none;
-    white-space: nowrap;
-
-    &:hover {
-      background-color: $hover-background-color;
-      color: $hover-text-color;
-      outline: 0;
-      text-decoration: none;
-    }
   }
 
   &.active {
@@ -35,5 +36,12 @@ $hover-text-color: #fff;
     color: $active-text-color;
     outline: 0;
     text-decoration: none;
+  }
+
+  .btn-icon {
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    border: none;
   }
 }

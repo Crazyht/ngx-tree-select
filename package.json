@@ -1,7 +1,7 @@
 {
-  "name": "ngx-tree-select",
+  "name": "@symplicity/ngx-tree-select",
   "version": "0.15.0",
-  "description": "Angular component for select with tree items.",
+  "description": "Angular component for select with tree items - Symplicity fork",
   "keywords": [
     "angular4",
     "treeview",
