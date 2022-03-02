@@ -142,7 +142,7 @@
     "jest-preset-angular": "2.0.5",
     "json-loader": "0.5.7",
     "jsonfile": "4.0.0",
-    "karma": "1.7.1",
+    "karma": "6.3.16",
     "karma-chrome-launcher": "2.2.0",
     "karma-coverage": "1.1.1",
     "karma-jasmine": "1.1.0",
